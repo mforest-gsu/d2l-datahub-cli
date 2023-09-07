@@ -1,0 +1,38 @@
+{
+    "PreRequisite Conditions Met": {
+        "name": "PreRequisite Conditions Met",
+        "description": "The PreRequisite Conditions Met Brightspace Data Set returns all the prerequisite conditions that have been met for applicable users in the organization.",
+        "columns": [
+            {
+                "name": "PreRequisiteId",
+                "description": "Unique prerequisite identifier.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Updated key"
+            },
+            {
+                "name": "UserId",
+                "description": "Unique user identifier.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "5.7 \/ 6.0 - Updated key"
+            },
+            {
+                "name": "DateMet",
+                "description": "Date the prerequisite condition was met. Field can be null",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Updated column size"
+            }
+        ]
+    }
+}

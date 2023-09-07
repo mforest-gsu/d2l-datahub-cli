@@ -1,0 +1,38 @@
+{
+    "SCORM Interaction Objectives": {
+        "name": "SCORM Interaction Objectives",
+        "description": "The SCORM Interaction Objectives Brightspace Data Set defines the relationship between interactions and their objectives.",
+        "columns": [
+            {
+                "name": "InteractionId",
+                "description": "Unique identifier of the interaction.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ObjectiveId",
+                "description": "Unique identifier of the objective.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date when the activity was last modified (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            }
+        ]
+    }
+}

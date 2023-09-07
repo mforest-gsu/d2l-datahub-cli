@@ -1,0 +1,148 @@
+{
+    "Organizational Units": {
+        "name": "Organizational Units",
+        "description": "The Organizational Units Brightspace Data Set returns details about all org units within your organization.",
+        "columns": [
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "Organization",
+                "description": "Organization name",
+                "dataType": "nvarchar",
+                "columnSize": "50",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "Type",
+                "description": "Org unit type. For example: Group, Section, Semester, Department, etc.",
+                "dataType": "nvarchar",
+                "columnSize": "50",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.16 \/ 7.4 - Updated description"
+            },
+            {
+                "name": "Name",
+                "description": "Org unit name. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "128",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "Code",
+                "description": "Org unit code. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "50",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.8 \/ 5.2 - Updated description & column size"
+            },
+            {
+                "name": "StartDate",
+                "description": "Availability start date\u00a0(UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "EndDate",
+                "description": "Availability end date\u00a0(UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "IsActive",
+                "description": "Is the org unit active",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "CreatedDate",
+                "description": "Org unit create date",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Is the org unit soft deleted or recycled. Soft delete - the org unit has been soft deleted from the application, but is still present in the database. Recycled - the org unit remains in the recycle bin until removed, at which point it is deleted. The OrgName for recycled or soft deleted org units is SYSTEM. Backfill of historical IsDeleted, DeletedDate, and RecycledDate values is determined by the date\/time values in the OrgUnit audit log. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.9"
+            },
+            {
+                "name": "DeletedDate",
+                "description": "Date the org unit was soft deleted. Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.9"
+            },
+            {
+                "name": "RecycledDate",
+                "description": "Date the org unit was recycled. Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.9"
+            },
+            {
+                "name": "Version",
+                "description": "Indicates the version of the content in the row.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "OrgUnitTypeId",
+                "description": "Identifier for the org unit type.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.8 \/ 5.2"
+            }
+        ]
+    }
+}

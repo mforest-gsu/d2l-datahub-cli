@@ -1,0 +1,108 @@
+{
+    "Outcomes Scale Definition": {
+        "name": "Outcomes Scale Definition",
+        "description": "In the Outcomes Scale Definition Brightspace Data Set, each entry represents an achievement scale defined at the organization level. All data for the data set is available, starting with your organization's first use of Learning Outcomes.",
+        "columns": [
+            {
+                "name": "ScaleId",
+                "description": "ID for this scale.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "Name",
+                "description": "Name of this scale.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "IsDefault",
+                "description": "Indicates if this is the scale used by default whenever an assessment of an outcome takes place.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "UsePercentages",
+                "description": "Indicates if percentage ranges are specified for each scale level. This is used when suggesting a scale level for an assessment. Specific percentage threshold values are associated with each Scale Level.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "CreatedDate",
+                "description": "Date when this item was initially created (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "CreatedBy",
+                "description": "ID of user who initially created this item. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "LastModifiedDate",
+                "description": "Date when this item was last modified (UTC). Contains created date upon creation and deleted date for deleted items.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "LastModifiedBy",
+                "description": "ID of user who last modified, created, or deleted this item.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Indicates if this item has been deleted.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "RegistryId",
+                "description": "ID of registry that owns this scale.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.8"
+            }
+        ]
+    }
+}

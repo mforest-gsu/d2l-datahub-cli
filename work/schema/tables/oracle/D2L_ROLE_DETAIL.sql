@@ -1,0 +1,38 @@
+DROP TABLE D2L_ROLE_DETAIL;
+CREATE TABLE D2L_ROLE_DETAIL (
+  RoleId NUMBER(10) NOT NULL,
+  OrgId NUMBER(10) DEFAULT NULL,
+  RoleName NVARCHAR2(60) NOT NULL,
+  Description NVARCHAR2(200) DEFAULT NULL,
+  IsCascading NUMBER(1) NOT NULL,
+  InClassList NUMBER(1) NOT NULL,
+  ClassListRoleName NVARCHAR2(60) DEFAULT NULL,
+  ClassListShowGroups NUMBER(1) NOT NULL,
+  ClassListShowSections NUMBER(1) NOT NULL,
+  ClassListDisplayRole NUMBER(1) NOT NULL,
+  AccessInactiveCO NUMBER(1) NOT NULL,
+  HasSpecialAccess NUMBER(1) NOT NULL,
+  AddToCourseOfferingGroups NUMBER(1) NOT NULL,
+  CanBeAutoEnrolledIntoGroups NUMBER(1) NOT NULL,
+  AddToCourseOfferingSections NUMBER(1) NOT NULL,
+  CanBeAutoEnrolledIntoSections NUMBER(1) NOT NULL,
+  ClassListDisplayRoleCategory NUMBER(1) NOT NULL,
+  ClassListRoleCategory NVARCHAR2(50) NOT NULL,
+  ClassListRoleCategoryOrder NUMBER(10) NOT NULL,
+  AccessPastCourses NUMBER(1) NOT NULL,
+  AccessFutureCourses NUMBER(1) NOT NULL,
+  SortOrder NUMBER(10) NOT NULL,
+  ShowInContent NUMBER(1) NOT NULL,
+  ShowInDiscussionAssess NUMBER(1) NOT NULL,
+  ShowInDiscussionStats NUMBER(1) NOT NULL,
+  ShowInGrades NUMBER(1) NOT NULL,
+  ShowInAttendance NUMBER(1) NOT NULL,
+  AllowSelfEnrollInGroups NUMBER(1) NOT NULL,
+  ShowInRegistration NUMBER(1) NOT NULL,
+  ShowInUserProgress NUMBER(1) NOT NULL,
+  RoleAlias NVARCHAR2(60) DEFAULT NULL,
+  Version NUMBER(20) NOT NULL,
+  RoleCode NVARCHAR2(50) DEFAULT NULL
+);
+CREATE UNIQUE INDEX D2L_ROLE_DETAIL_PK ON D2L_ROLE_DETAIL (RoleId);
+QUIT;

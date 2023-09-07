@@ -1,0 +1,158 @@
+{
+    "Virtual Classroom Usage": {
+        "name": "Virtual Classroom Usage",
+        "description": "The Virtual Classroom Usage Brightspace Data Set returns information about how Virtual Classroom by Bongo is being used for Bongo Premium customers. The first data point is from July 1, 2018 and the data set will only appear for Bongo Premium customers if there is usage to retrieve. Note: The data includes all Virtual Classroom meetings that have ever been created. Cancelled meetings can be identified using the IsCancelled field, and do not appear in the LTI\u00a0Links Brightspace Data Set. The Virtual Classroom UI only displays meetings that are scheduled to occur in the future, or have occurred and were recorded. Note: This data set is available as a FULL\u00a0CSV containing all of the data and does not include a differential. Data is produced on a weekly basis, regardless of whether you purchased the hourly data freshness add-on. Since the data is owned by Bongo, data set generation is done on a region schedule and may not align to existing schedules.",
+        "columns": [
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier of the course where the meeting was scheduled. Will be null if the meeting was cancelled.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "4.9 \/ 5.3"
+            },
+            {
+                "name": "CourseName",
+                "description": "The name of the course where the meeting was scheduled. Will be null if the meeting was cancelled.",
+                "dataType": "nvarchar",
+                "columnSize": "255",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.14 \/ 7.2 - Updated Column size"
+            },
+            {
+                "name": "MeetingId",
+                "description": "Unique meeting identifier. If a meeting is reoccurring, each occurrence is represented in a new row.",
+                "dataType": "nvarchar",
+                "columnSize": "36",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "4.9 \/ 5.3"
+            },
+            {
+                "name": "MeetingName",
+                "description": "The name of the Virtual Classroom meeting.",
+                "dataType": "nvarchar",
+                "columnSize": "255",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.9 \/ 5.3"
+            },
+            {
+                "name": "CreationUserId",
+                "description": "Unique identifier of the user who scheduled the meeting.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "4.9 \/ 5.3"
+            },
+            {
+                "name": "CreationDate",
+                "description": "The date and time the meeting was created (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.9 \/ 5.3"
+            },
+            {
+                "name": "ScheduledDate",
+                "description": "The date and time the meeting is scheduled to start (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.9 \/ 5.3"
+            },
+            {
+                "name": "ScheduledDuration",
+                "description": "Planned length of the meeting in minutes.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.9 \/ 5.3"
+            },
+            {
+                "name": "IsPublished",
+                "description": "Indicates if the option to automatically publish the recording to attendees is enabled.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.9 \/ 5.3"
+            },
+            {
+                "name": "ExternalLinksEnabled",
+                "description": "Indicates if the option to use external links to join the meeting was enabled when the Virtual Classroom session was scheduled.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.9 \/ 5.3"
+            },
+            {
+                "name": "WholeClassInvited",
+                "description": "Indicates if all users in an org unit were invited.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.9 \/ 5.3"
+            },
+            {
+                "name": "IsCancelled",
+                "description": "Indicates if the meeting is cancelled. Comparable to IsDeleted in other data sets.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.9 \/ 5.3"
+            },
+            {
+                "name": "StartDateTime",
+                "description": "The DateTime that the Virtual Classroom session was started (UTC). Will be null if the meeting was not started or canceled.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.9 \/ 5.3"
+            },
+            {
+                "name": "EndDateTime",
+                "description": "The DateTime that the Virtual Classroom session was ended (UTC). Will be null if the meeting was not started or canceled.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.9 \/ 5.3"
+            },
+            {
+                "name": "IsRecorded",
+                "description": "Indicates if the meeting was recorded.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.9 \/ 5.3"
+            }
+        ]
+    }
+}

@@ -1,0 +1,68 @@
+{
+    "Competency Activity Log": {
+        "name": "Competency Activity Log",
+        "description": "The Competency Activity Log Brightspace Data Set records changes as competencies are mapped to specific activities.",
+        "columns": [
+            {
+                "name": "ActivityId",
+                "description": "Unique activity identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "1.6"
+            },
+            {
+                "name": "ActivityLogId",
+                "description": "Unique identifier for the activity log",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "1.6"
+            },
+            {
+                "name": "LogTypeId",
+                "description": "Log type identifier",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.6"
+            },
+            {
+                "name": "LogTypeName",
+                "description": "Name of the log type. Field can be null.",
+                "dataType": "varchar",
+                "columnSize": "19",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "LogDateTime",
+                "description": "Time and date of the entry in the log",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.6"
+            },
+            {
+                "name": "ModifiedBy",
+                "description": "User who modified the competency structure.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "1.6"
+            }
+        ]
+    }
+}

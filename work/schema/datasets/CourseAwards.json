@@ -1,0 +1,68 @@
+{
+    "Course Awards": {
+        "name": "Course Awards",
+        "description": "The Course Awards Brightspace Data Set returns a list of all the awards that exist in each course for all your org units.",
+        "columns": [
+            {
+                "name": "AssociationId",
+                "description": "Unique association identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "1.4"
+            },
+            {
+                "name": "AwardId",
+                "description": "Unique award identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "DateCreated",
+                "description": "Date when the award was created (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "HiddenAward",
+                "description": "Award is hidden from learner view",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.0"
+            },
+            {
+                "name": "ConditionSetId",
+                "description": "Identifier for the conditions that need to be met in order to issue this award. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.0"
+            }
+        ]
+    }
+}

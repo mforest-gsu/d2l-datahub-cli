@@ -1,0 +1,58 @@
+{
+    "LTI Links Shared": {
+        "name": "LTI Links Shared",
+        "description": "The LTI Links Shared Brightspace Data Set lists the parent Org Units that a link is shared with and can be used within the organization. LTI Links can be shared explicitly with an org unit or be shared with an org unit\u2019s descendants, which is called inherited sharing. When an LTI 1.1 link is shared, users have the option to share with descendants of a specific type such as course offering. Note: You can be assured of unique rows within the data set by using the following four fields: OuAvailabilitySetId, OrgUnitId, SharingType, and DescendantTypeId. These may be considered a composite unique identifier for the data set.",
+        "columns": [
+            {
+                "name": "OuAvailabilitySetId",
+                "description": "Unique sharing identifier. Can be used to join on LTI Links.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "7.6 - Updated Key"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Identifier for the Org Unit where the sharing occurred.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "7.6 - Updated Key"
+            },
+            {
+                "name": "SharingType",
+                "description": "Explicit or inherited sharing.",
+                "dataType": "varchar",
+                "columnSize": "9",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.6 - Updated Key"
+            },
+            {
+                "name": "DescendantTypeId",
+                "description": "Identifier of the descendant org unit type. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "7.6 - Updated Key"
+            },
+            {
+                "name": "LastModified",
+                "description": "The last time a link was updated. Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.7 \/ 5.1"
+            }
+        ]
+    }
+}

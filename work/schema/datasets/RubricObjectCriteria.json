@@ -1,0 +1,98 @@
+{
+    "Rubric Object Criteria": {
+        "name": "Rubric Object Criteria",
+        "description": "The Rubric Object Criteria Brightspace Data Set returns information about the rubric criteria within a rubric.",
+        "columns": [
+            {
+                "name": "RubricId",
+                "description": "Unique rubric identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "CriterionId",
+                "description": "Identifier for the criterion associated with the rubric levels",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "Name",
+                "description": "Name of the criterion.",
+                "dataType": "nvarchar",
+                "columnSize": "256",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "2.0 - field name updated"
+            },
+            {
+                "name": "SortOrder",
+                "description": "Sort order by which the criteria is listed",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "CriteriaGroupId",
+                "description": "Identifier for the criterion group to which the criterion belongs",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "2.0 - field name updated"
+            },
+            {
+                "name": "GroupName",
+                "description": "Name of the criterion group.",
+                "dataType": "nvarchar",
+                "columnSize": "256",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "2.0 - field name updated"
+            },
+            {
+                "name": "GroupSortOrder",
+                "description": "Sort order assigned to the criterion group",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "2.0 - field name updated"
+            },
+            {
+                "name": "LevelSetId",
+                "description": "Identifier of the Level Set to which the level belongs",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Set to true if the Level Set, Criterion Group or Criterion has been deleted",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            }
+        ]
+    }
+}

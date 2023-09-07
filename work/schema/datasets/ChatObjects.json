@@ -1,0 +1,78 @@
+{
+    "Chat Objects": {
+        "name": "Chat Objects",
+        "description": "The Chat Objects Brightspace Data Set returns the attributes for all chats in the organization.",
+        "columns": [
+            {
+                "name": "ChatId",
+                "description": "Unique chat identifier.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "ChatType",
+                "description": "Type of chat. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "128",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "Name",
+                "description": "Name of chat object.",
+                "dataType": "nvarchar",
+                "columnSize": "150",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "Description",
+                "description": "Description of chat object. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "CreatorUserId",
+                "description": "Unique chat object creator identifier.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "7.8 - Changed Key"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date \/ time the chat object was last modified. Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            }
+        ]
+    }
+}

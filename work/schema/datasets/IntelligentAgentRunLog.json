@@ -1,0 +1,108 @@
+{
+    "Intelligent Agent Run Log": {
+        "name": "Intelligent Agent Run Log",
+        "description": "The Intelligent Agent Run Log Brightspace Data Set lists all the times, including practice runs, each intelligent agent has run in your organization. This data set captures data from November 2020 onwards.",
+        "columns": [
+            {
+                "name": "AgentId",
+                "description": "Unique intelligent agent identifier.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "AgentRunId",
+                "description": "Unique intelligent agent run identifier.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "IsPracticeRun",
+                "description": "Indicates if it is a practice run.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "IsRunNow",
+                "description": "Indicates if it was an unscheduled run.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "NumUsers",
+                "description": "Count of the number of users affected by this run.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "NumUsersWithErrors",
+                "description": "The number of users where the action produced errors.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "NumUsersWithInfos",
+                "description": "The number of users where the action produced informational messages.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "NumUsersWithWarnings",
+                "description": "The number of users where the action produced warning messages.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "RunUserId",
+                "description": "Unique identifier of the user who ran the agent. 0 for system.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.7 \/ 6.0 - Changed Key"
+            },
+            {
+                "name": "RunDate",
+                "description": "The date the run occurred (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            }
+        ]
+    }
+}

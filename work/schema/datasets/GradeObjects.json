@@ -1,0 +1,298 @@
+{
+    "Grade Objects": {
+        "name": "Grade Objects",
+        "description": "The Grade Objects Brightspace Data Set returns a list of the grade objects created for your org units. The data set returns a NULL grade scheme value when the grade item is using the default scheme.",
+        "columns": [
+            {
+                "name": "GradeObjectId",
+                "description": "Unique grade object identifier",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "ParentGradeObjectId",
+                "description": "Parent grade object identifier. Note:\u00a0Categories are considered Parent grade objects. Category names can be determined by using the ParentGradeObjectId and joining the data set to itself. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "8.0 - Updated Description"
+            },
+            {
+                "name": "Name",
+                "description": "Grade object name",
+                "dataType": "nvarchar",
+                "columnSize": "128",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "TypeName",
+                "description": "Grade object type name. Field can be null.",
+                "dataType": "varchar",
+                "columnSize": "50",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "StartDate",
+                "description": "Start date for the grade object (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "EndDate",
+                "description": "End date for the grade object (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "IsAutoPointed",
+                "description": "Indicates if the object is automatically pointed. If this contains a value, the object automatically has points assigned; if it is set to 0, then the grade object must manually have points assigned.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "IsFormula",
+                "description": "Is a formula associated with the grade object",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "IsBonus",
+                "description": "Is bonus grade",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "MaxPoints",
+                "description": "Maximum points achievable in this grade",
+                "dataType": "decimal",
+                "columnSize": "19, 9",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.8 \/ 5.2 - Updated column size"
+            },
+            {
+                "name": "CanExceedMaxGrade",
+                "description": "Can user get more than maximum points",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "ExcludeFromFinalGradeCalc",
+                "description": "Is grade excluded from final grade calculation",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "GradeSchemeId",
+                "description": "Unique grade scheme identifier. This column returns a null\u00a0result when the grade item is set to use default scheme. This is intended. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.2 - Updated description"
+            },
+            {
+                "name": "Weight",
+                "description": "Weight associated with the grade. Field can be null.",
+                "dataType": "decimal",
+                "columnSize": "19, 9",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.8 \/ 5.2 - Updated column size"
+            },
+            {
+                "name": "NumLowestGradesToDrop",
+                "description": "Drop number of lowest grades from the calculated grade",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "NumHighestGradesToDrop",
+                "description": "Drop number of highest grades from the calculated grade",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "WeightDistributionType",
+                "description": "Grade weight distribution within category. Field can be null.",
+                "dataType": "varchar",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "CreatedDate",
+                "description": "Date the grade was created (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "ToolName",
+                "description": "Tool associated with the object. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "50",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "AssociatedToolItemId",
+                "description": "Unique activity ID associated with the grade object: Dropbox ID, Quiz ID, Discussion ID. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "LastModified",
+                "description": "Last time the grade was modified (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.1"
+            },
+            {
+                "name": "ShortName",
+                "description": "The item or category short name as per the corresponding field in Brightspace. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "128",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "GradeObjectTypeId",
+                "description": "ID\u00a0of the grade object type. Possible values:",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.11 - Updated description"
+            },
+            {
+                "name": "SortOrder",
+                "description": "Specified sort order of grade objects",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.1"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Indicates if the grade object is deleted. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.10"
+            },
+            {
+                "name": "DeletedDate",
+                "description": "Date the grade object was soft deleted. Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.10"
+            },
+            {
+                "name": "DeletedByUserId",
+                "description": "ID of the user who deleted the grade object. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.7 \/ 6.0 - Changed Type and Column Size"
+            },
+            {
+                "name": "ResultId",
+                "description": "Unique release condition result identifier. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.5"
+            }
+        ]
+    }
+}

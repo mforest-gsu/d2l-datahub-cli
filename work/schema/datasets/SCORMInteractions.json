@@ -1,0 +1,88 @@
+{
+    "SCORM Interactions": {
+        "name": "SCORM Interactions",
+        "description": "The SCORM Interactions Brightspace Data Set describes the runtime interactions that exist in each activity in the SCORM package. Each interaction will only be known after the first user, regardless of role, attempts it.",
+        "columns": [
+            {
+                "name": "InteractionId",
+                "description": "Unique identifier of the interaction.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ActivityId",
+                "description": "Unique identifier for each activity.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "InternalId",
+                "description": "Unique label for the interaction. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "255",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "InteractionType",
+                "description": "The type of interaction (UNDEFINED, TRUEFALSE, CHOICE, FILLIN, LONGFILLIN, LIKERT, MATCHING, PERFORMANCE, SEQUENCING, NUMERIC, OTHER).",
+                "dataType": "nvarchar",
+                "columnSize": "100",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "Description",
+                "description": "Brief informative description of the interaction. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "250",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "Weighting",
+                "description": "Weight given to the interaction relative to other interactions. Field can be null.",
+                "dataType": "float",
+                "columnSize": "24",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "CorrectResponses",
+                "description": "JSON representation of an array of correct responses for this interaction. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "2000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date when the activity was last modified (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            }
+        ]
+    }
+}

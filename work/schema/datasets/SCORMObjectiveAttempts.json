@@ -1,0 +1,98 @@
+{
+    "SCORM Objective Attempts": {
+        "name": "SCORM Objective Attempts",
+        "description": "The SCORM Objective Attempts Brightspace Data Set outputs the score and completion information on every objective associated to the SCORM object where an attempt has been made.",
+        "columns": [
+            {
+                "name": "VisitId",
+                "description": "Unique identifier of the SCORM visit.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ObjectiveId",
+                "description": "Unique identifier of the objective.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "AttemptNumber",
+                "description": "Number of the attempt on the objective.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "Score",
+                "description": "Number that reflects the performance of the learner on this objective, scaled to between 0 and 100. Field can be null.",
+                "dataType": "float",
+                "columnSize": "24",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ScoreRaw",
+                "description": "Number that reflects the performance of the learner on this objective, relative to the min and max scores. Field can be null.",
+                "dataType": "float",
+                "columnSize": "24",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "Success",
+                "description": "Indicates whether the learner has mastered the objective (PASSED, FAILED, UNKNOWN). Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "100",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "Completion",
+                "description": "Indicates whether the learner has completed the objective (COMPLETED, INCOMPLETE, UNKNOWN, NOT_ATTEMPTED, BROWSED). Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "100",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "Progress",
+                "description": "How much of the objective was completed in this attempt, between 0 and 100. Field can be null.",
+                "dataType": "float",
+                "columnSize": "24",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date when the activity was last modified (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            }
+        ]
+    }
+}

@@ -1,0 +1,78 @@
+{
+    "Outcomes In Registries": {
+        "name": "Outcomes In Registries",
+        "description": "The Outcomes in Registries Brightspace Data Set provides details of which outcomes belong to which registries for all your org units. It can be used to list all outcomes in the intent list of a course, or all the outcomes in a program. The only available data for org unit owned registries is from June 2021 onwards. All data for program registries is available, starting with your organization's first use of Learning Outcomes.",
+        "columns": [
+            {
+                "name": "OutcomeId",
+                "description": "ID of this Outcome in the Outcome Details data set.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "7.7 - Updated Type and Size"
+            },
+            {
+                "name": "RegistryId",
+                "description": "ID of registry representing the context in which this outcome exists.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "CreatedDate",
+                "description": "For imported outcomes, the date that this outcome was mapped to the registry (UTC). For authored outcomes, the date this outcome was created. Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "CreatedBy",
+                "description": "ID of user who imported or created the outcome in the registry. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "LastModifiedDate",
+                "description": "Date when this item was last modified (UTC). Contains created date upon creation and deleted date for deleted items.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "LastModifiedBy",
+                "description": "ID of user who last modified, created, or deleted this item.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Indicates if this item has been deleted.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.8"
+            }
+        ]
+    }
+}

@@ -1,0 +1,108 @@
+{
+    "Survey User Answers": {
+        "name": "Survey User Answers",
+        "description": "The Survey User Answers Brightspace Data Set returns data to describe how a user responded to a survey question. Rows in the data set are filtered out if they are associated with deleted survey attempts.",
+        "columns": [
+            {
+                "name": "AttemptId",
+                "description": "Unique attempt identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "QuestionId",
+                "description": "Unique question identifier.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "6.7 - Updated description"
+            },
+            {
+                "name": "QuestionVersionId",
+                "description": "Unique question version identifier. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "TimeCompleted",
+                "description": "Date\/time the survey was completed (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "QuestionNumber",
+                "description": "Question number in the survey. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "Comment",
+                "description": "Feedback left by instructor. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "SortOrder",
+                "description": "Sort order of the question.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "Score",
+                "description": "Score the user received for the answer. Field can be null.",
+                "dataType": "decimal",
+                "columnSize": "19, 9",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.8 \/ 5.2 - Updated column size"
+            },
+            {
+                "name": "Page",
+                "description": "Page the question appeared on when the user took the survey",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "Assigned",
+                "description": "Indicates if the survey is assigned to a user. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            }
+        ]
+    }
+}

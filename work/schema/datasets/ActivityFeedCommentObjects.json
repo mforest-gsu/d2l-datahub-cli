@@ -1,0 +1,88 @@
+{
+    "Activity Feed Comment Objects": {
+        "name": "Activity Feed Comment Objects",
+        "description": "The Activity Feed Comment Objects Brightspace Data Set returns details on each comment in the organization.",
+        "columns": [
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.9\/6.2"
+            },
+            {
+                "name": "CommentId",
+                "description": "Unique comment identifier.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "5.9\/6.2"
+            },
+            {
+                "name": "LastModifiedBy",
+                "description": "Unique identifier of the user who last modified the comment.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.9\/6.2"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date the comment was created, updated, or deleted (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.9\/6.2"
+            },
+            {
+                "name": "Content",
+                "description": "The text of the comment.",
+                "dataType": "nvarchar",
+                "columnSize": "3072",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.9\/6.2"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Indicates if the comment has been deleted.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.9\/6.2"
+            },
+            {
+                "name": "PostId",
+                "description": "Unique identifier for the parent post.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.9\/6.2"
+            },
+            {
+                "name": "Version",
+                "description": "Version of comment.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.9\/6.2"
+            }
+        ]
+    }
+}

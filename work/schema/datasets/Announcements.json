@@ -1,0 +1,168 @@
+{
+    "Announcements": {
+        "name": "Announcements",
+        "description": "The Announcements Brightspace Data Set returns details on the announcements a user has created for your org units.",
+        "columns": [
+            {
+                "name": "AnnouncementId",
+                "description": "Unique announcement identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "Title",
+                "description": "Announcement title",
+                "dataType": "nvarchar",
+                "columnSize": "400",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "StartDate",
+                "description": "First time the announcement is visible (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "EndDate",
+                "description": "Last date the announcement is visible (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "IsGlobal",
+                "description": "If new items are visible across orgs",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "IsDraft",
+                "description": "If in draft, then the announcement has not been published yet",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "NumAttachments",
+                "description": "Number of attachments",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "DeletedDate",
+                "description": "Date the announcement was deleted (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "DeletedByUserId",
+                "description": "Deleted by user ID. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "LastModified",
+                "description": "Last modified date\/time (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "LastModifiedBy",
+                "description": "User who last modified the announcement. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.7 \/ 5.1"
+            },
+            {
+                "name": "CreatedBy",
+                "description": "User who created the announcement. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.7 \/ 5.1"
+            },
+            {
+                "name": "IsAuthorInfoShown",
+                "description": "If author information is displayed.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.7 \/ 5.1"
+            },
+            {
+                "name": "CreatedDate",
+                "description": "Date the announcement was created (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.7 \/ 5.1"
+            },
+            {
+                "name": "ResultId",
+                "description": "Unique release condition result identifier. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.7 \/ 6.0"
+            }
+        ]
+    }
+}

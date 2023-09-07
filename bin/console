@@ -1,0 +1,12 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+define("APP_DIR", __DIR__ . "/..");
+
+chdir(APP_DIR);
+
+require_once APP_DIR . "/vendor/autoload.php";
+
+D2L\DataHub\App::run(APP_DIR);

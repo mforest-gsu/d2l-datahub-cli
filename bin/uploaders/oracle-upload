@@ -1,0 +1,19 @@
+#!/bin/bash
+
+DB_NAME=${1}
+DAT_FILE=${2}
+PAR_FILE=${3}
+SQL_FILE=${4}
+
+# Create named pipe for uncompressed data file
+mknod ${DAT_FILE} p
+gzip -dc ${DAT_FILE}.gz > ${DAT_FILE} &
+
+# Execute Loader
+sqlldr userid=/@${DB_NAME} parfile="${PAR_FILE}"
+
+# Execute SQL file
+sqlplus /@${DB_NAME} @"${SQL_FILE}"
+
+# Remove named pipe
+rm -f ${DAT_FILE}

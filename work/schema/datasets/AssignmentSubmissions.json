@@ -1,0 +1,158 @@
+{
+    "Assignment Submissions": {
+        "name": "Assignment Submissions",
+        "description": "The Assignment Submissions Brightspace Data Set returns a high-level summary information of all submissions made by a user to a given assignment for all your org units. Results are ordered from newest to oldest.",
+        "columns": [
+            {
+                "name": "DropboxId",
+                "description": "Unique assignment identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "2.5\/3.0 - Added FK"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "SubmitterId",
+                "description": "The user or group ID of the submitter.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "5.0"
+            },
+            {
+                "name": "SubmitterType",
+                "description": "The type submission, either user or group. Field can be null.",
+                "dataType": "varchar",
+                "columnSize": "5",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "FileSubmissionCount",
+                "description": "Number of files submitted to the assignment",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "TotalFileSize",
+                "description": "Total file size of all submissions, in bytes.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.14 \/ 7.2 - Updated Description"
+            },
+            {
+                "name": "FeedbackUserId",
+                "description": "Feedback by user ID. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.7 \/ 5.1 - Removed FK"
+            },
+            {
+                "name": "FeedbackIsRead",
+                "description": "Is feedback read",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "Score",
+                "description": "Score the user achieved on the assignment submission. Field can be null.",
+                "dataType": "decimal",
+                "columnSize": "19, 9",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.8 \/ 5.2 - Updated column size"
+            },
+            {
+                "name": "IsGraded",
+                "description": "Is assignment submission graded",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "LastSubmissionDate",
+                "description": "Last submission date time (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "Feedback",
+                "description": "Instructor feedback. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0 - Updated description"
+            },
+            {
+                "name": "FeedbackLastModified",
+                "description": "Last modified date time for draft and published feedback (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.16 \/ 7.4 - Updated description"
+            },
+            {
+                "name": "FeedbackReadDate",
+                "description": "First date time that feedback is read (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.16 \/ 7.4 - Updated description"
+            },
+            {
+                "name": "CompletionDate",
+                "description": "Indicates the date when the assignment was submitted by the learner (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.2"
+            }
+        ]
+    }
+}

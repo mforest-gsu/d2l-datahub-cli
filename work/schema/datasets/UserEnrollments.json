@@ -1,0 +1,68 @@
+{
+    "User Enrollments": {
+        "name": "User Enrollments",
+        "description": "The User Enrollments Brightspace Data Set returns a list of enrollments for all users in your organization.",
+        "columns": [
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "UserId",
+                "description": "Unique user identifier",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "RoleName",
+                "description": "Role name",
+                "dataType": "nvarchar",
+                "columnSize": "60",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Updated column size"
+            },
+            {
+                "name": "EnrollmentDate",
+                "description": "Date enrolled (UTC)",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "EnrollmentType",
+                "description": "Enrollment type. Field can be null.",
+                "dataType": "varchar",
+                "columnSize": "50",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Updated column size"
+            },
+            {
+                "name": "RoleId",
+                "description": "Unique role identifier",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.7 and 6.0 - Added FK"
+            }
+        ]
+    }
+}

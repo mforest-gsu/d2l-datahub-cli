@@ -1,0 +1,128 @@
+{
+    "Question Library": {
+        "name": "Question Library",
+        "description": "The Question Library Brightspace Data Set details all the questions that have been created in the organization. This includes quiz questions that are not currently used in a quiz.",
+        "columns": [
+            {
+                "name": "QuestionId",
+                "description": "Unique question identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.0"
+            },
+            {
+                "name": "QuestionVersionId",
+                "description": "Unique question version identifier. Each time you edit a quiz, survey, or self-assessment question, a new version of that question is created, indicated by the QuestionVersionID field.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "6.11 - Updated description"
+            },
+            {
+                "name": "IsAutoGraded",
+                "description": "Indicates if the question is automatically graded.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.11 - Updated description"
+            },
+            {
+                "name": "TemplateTypeId",
+                "description": "Unique identifier of the template used to create this question. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Removed FK"
+            },
+            {
+                "name": "QuestionType",
+                "description": "Type of question. Field can be null.",
+                "dataType": "varchar",
+                "columnSize": "28",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Updated column size"
+            },
+            {
+                "name": "Name",
+                "description": "Question name. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "256",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Updated column size"
+            },
+            {
+                "name": "Question",
+                "description": "Body of the question. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.11 - Updated description"
+            },
+            {
+                "name": "Comment",
+                "description": "Comment associated with the question. Field can be null. When you add a question to a quiz, the Overall Question Feedback field provides feedback comments during the grading process. The information captured in this field is the Comment field.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.0"
+            },
+            {
+                "name": "AnswerKey",
+                "description": "Answer key for the question. This only applies to Written Response Questions. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.0"
+            },
+            {
+                "name": "CreationDate",
+                "description": "Date the question was created\u00a0(UTC)",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Field"
+            },
+            {
+                "name": "Version",
+                "description": "Indicates the version of the row. This information is used to determine which table row occurred first, similar to the way time stamps function in other data sets.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.0"
+            },
+            {
+                "name": "AllowsAttachments",
+                "description": "Indicates if attachments are allowed in this question. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.8 \/ 6.1"
+            }
+        ]
+    }
+}

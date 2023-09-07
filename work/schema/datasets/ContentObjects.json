@@ -1,0 +1,248 @@
+{
+    "Content Objects": {
+        "name": "Content Objects",
+        "description": "The Content Objects Brightspace Data Set returns information about content topics and modules created for your org units.",
+        "columns": [
+            {
+                "name": "ContentObjectId",
+                "description": "Unique identifier of the content",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "Title",
+                "description": "Content title",
+                "dataType": "nvarchar",
+                "columnSize": "150",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Updated column size"
+            },
+            {
+                "name": "ContentObjectType",
+                "description": "Content object type",
+                "dataType": "varchar",
+                "columnSize": "6",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "CompletionType",
+                "description": "Content completion type",
+                "dataType": "varchar",
+                "columnSize": "7",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Updated column size"
+            },
+            {
+                "name": "ParentContentObjectId",
+                "description": "Parent content object identifier",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "Location",
+                "description": "Location of the content asset. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1024",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.13 - Updated column size"
+            },
+            {
+                "name": "StartDate",
+                "description": "Content availability start date (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "EndDate",
+                "description": "Content availability end date (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "DueDate",
+                "description": "Content availability due date (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "ObjectId1",
+                "description": "Object ID, depending on the type of associated tool: TopicId, ChecklistId, SurveyId, QuizId, DropboxId, ChatId, Self-AssessmentId. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "ObjectId2",
+                "description": "Object ID, depending on the type of associated tool: TopicId, ChecklistId, SurveyId, QuizId, DropboxId, ChatId, Self-AssessmentId. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "ObjectId3",
+                "description": "Object Id, depending on the type of associated tool: TopicId, ChecklistId, SurveyId, QuizId, DropboxId, ChatId, Self-AssessmentId. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date the content was last modified (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.0 \u2013 Updated name"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Content is deleted",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "SortOrder",
+                "description": "Display sort order used for the content objects",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "2.2"
+            },
+            {
+                "name": "Depth",
+                "description": "Indicates the number of nested hierarchical levels in the discussion post.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "2.5 \/ 3.0"
+            },
+            {
+                "name": "ToolId",
+                "description": "Unique identifier for the tool. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "4.6 \/ 5.0"
+            },
+            {
+                "name": "IsHidden",
+                "description": "Content object has not been published yet",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.6 \/ 5.0"
+            },
+            {
+                "name": "ResultId",
+                "description": "Release Condition unique result identifier. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.7 \/ 5.1 - Updated description"
+            },
+            {
+                "name": "DeletedDate",
+                "description": "Date when the content object was deleted (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.6 \/ 5.0"
+            },
+            {
+                "name": "CreatedBy",
+                "description": "User who created the content object. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.6 \/ 5.0"
+            },
+            {
+                "name": "LastModifiedBy",
+                "description": "User who last modified the content object. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.6 \/ 5.0"
+            },
+            {
+                "name": "DeletedBy",
+                "description": "User who deleted the content object. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "8.6 - Updated description"
+            }
+        ]
+    }
+}

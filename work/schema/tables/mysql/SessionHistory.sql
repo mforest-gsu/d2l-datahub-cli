@@ -1,0 +1,13 @@
+DROP TABLE IF EXISTS `SessionHistory`;
+
+CREATE TABLE `SessionHistory` (
+  `SessionId` BIGINT DEFAULT NULL,
+  `OrgId` INT DEFAULT NULL,
+  `UserId` INT DEFAULT NULL,
+  `DateStarted` DATETIME DEFAULT NULL,
+  `DateEnded` DATETIME NOT NULL,
+  `LastAccessed` DATETIME DEFAULT NULL,
+  `TimedOut` TINYINT NOT NULL,
+  `HistoryID` BIGINT NOT NULL,
+  UNIQUE KEY (`HistoryID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

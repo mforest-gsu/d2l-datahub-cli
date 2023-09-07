@@ -1,0 +1,19 @@
+DROP TABLE IF EXISTS `LTILinkMigrationAudit`;
+
+CREATE TABLE `LTILinkMigrationAudit` (
+  `LTIMigrationId` VARCHAR(16) NOT NULL,
+  `UserId` BIGINT NOT NULL,
+  `MigrationDate` DATETIME NOT NULL,
+  `OrgUnitId` BIGINT NOT NULL,
+  `LinkId` BIGINT NOT NULL,
+  `LinkURL` VARCHAR(2000) NOT NULL,
+  `LinkName` VARCHAR(200) NOT NULL,
+  `ClientId` VARCHAR(255) DEFAULT NULL,
+  `RegistrationDomain` VARCHAR(2083) DEFAULT NULL,
+  `DeploymentId` VARCHAR(16) DEFAULT NULL,
+  `JobId` BIGINT NOT NULL,
+  `Status` VARCHAR(2) NOT NULL,
+  `FailureCode` VARCHAR(2) DEFAULT NULL,
+  `MigrationType` VARCHAR(2) NOT NULL,
+  UNIQUE KEY (`LTIMigrationId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

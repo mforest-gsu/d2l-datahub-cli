@@ -1,0 +1,178 @@
+{
+    "Question Relationships": {
+        "name": "Question Relationships",
+        "description": "The Question Relationships Brightspace Data Set details which quizzes, sections, question pools, surveys, or self-assessments the questions in Question Library have been added to.",
+        "columns": [
+            {
+                "name": "CollectionId",
+                "description": "Unique question collection identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.5 - Updated key"
+            },
+            {
+                "name": "QuestionId",
+                "description": "Unique question identifier. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "7.5 - Updated key"
+            },
+            {
+                "name": "QuestionVersionId",
+                "description": "Unique question version identifier. Each time you edit a quiz, survey, or self-assessment question, a new version of that question is created, indicated by the QuestionVersionID field. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "7.6 -Updated key"
+            },
+            {
+                "name": "Order",
+                "description": "Order in which questions appear in the user interface. If the question is within a section, the Order field uses the section's order in the user interface.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.0"
+            },
+            {
+                "name": "SectionId",
+                "description": "Unique section identifier. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.0"
+            },
+            {
+                "name": "IsQuestionPool",
+                "description": "Indicates if the question pool is a random section.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.0"
+            },
+            {
+                "name": "CreationDate",
+                "description": "Date the question was created\u00a0(UTC)",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.0"
+            },
+            {
+                "name": "CreatedBy",
+                "description": "Id of the user who created the quiz, section, question pool, survey, or self-assessment. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.11 - Updated description"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date when the quiz, section, question pool, survey, or self-assessment was last modified (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.11 - Updated description"
+            },
+            {
+                "name": "LastModifiedBy",
+                "description": "Id of the user who last modified the quiz, section, question pool, survey, or self-assessment. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.11 - Updated description"
+            },
+            {
+                "name": "Points",
+                "description": "Possible points for the question. Field can be null.",
+                "dataType": "decimal",
+                "columnSize": "19, 9",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.8 \/ 5.2 - Updated column size"
+            },
+            {
+                "name": "Difficulty",
+                "description": "Difficulty level assigned to the question. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.0"
+            },
+            {
+                "name": "IsBonus",
+                "description": "Indicates if the question is a bonus question. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.11 - Updated description"
+            },
+            {
+                "name": "IsMandatory",
+                "description": "Indicates if the question is mandatory. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.11 - Updated description"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Indicates if the question is deleted.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.11 - Updated description"
+            },
+            {
+                "name": "Version",
+                "description": "Indicates the version of the question. This column supports the Question Pools information in the Assessment Quality Dashboard. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.0"
+            },
+            {
+                "name": "ObjectId",
+                "description": "Unique identifier of the question.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.6 -Updated key"
+            }
+        ]
+    }
+}

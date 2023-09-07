@@ -1,0 +1,78 @@
+{
+    "Grade Schemes": {
+        "name": "Grade Schemes",
+        "description": "The Grade Schemes Brightspace Data Set returns data about created grade schemes.",
+        "columns": [
+            {
+                "name": "GradeSchemeId",
+                "description": "Unique grade scheme identifier.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "1.4 - Added Primary Key designation"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "SchemeName",
+                "description": "Grade scheme name",
+                "dataType": "nvarchar",
+                "columnSize": "128",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "GradeSchemeRangeId",
+                "description": "Unique grade scheme range identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "1.4"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Indicates that the grade scheme is deleted. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.10"
+            },
+            {
+                "name": "DeletedDate",
+                "description": "Date when the scheme was deleted (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.10"
+            },
+            {
+                "name": "Version",
+                "description": "Indicates the version of the row. This information is used to determine which table row occurred first, similar to the way time stamps function in other data sets.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0"
+            }
+        ]
+    }
+}

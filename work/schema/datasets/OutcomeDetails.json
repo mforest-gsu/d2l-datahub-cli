@@ -1,0 +1,118 @@
+{
+    "Outcome Details": {
+        "name": "Outcome Details",
+        "description": "The Outcome Details Brightspace Data Set provides details of the outcomes that are part of all registries in all your org units. User IDs and dates are only populated for authored outcomes, because updates to ASN outcomes rely on the cache invalidation system (performed by a system user). The only available data for authored outcomes is from June 2021 onwards. All data for ASN imported outcomes is available, starting with your organization's first use of Learning Outcomes.",
+        "columns": [
+            {
+                "name": "OutcomeId",
+                "description": "Unique outcome identifier.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "OutcomeDefinitionSource",
+                "description": "Provider for this outcome, e.g. ASN.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "OutcomeDefinitionId",
+                "description": "ID of outcome within provider (e.g. ASN), or null if locally authored. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "128",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.14 \/ 7.2 - Updated Column size"
+            },
+            {
+                "name": "ParentOutcomeId",
+                "description": "ID of the parent outcome, if nested under a parent outcome object in the same org unit, or null for top level outcomes with no parent. Field can be null.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "Description",
+                "description": "Main body of this outcome. Truncated to 1000 characters.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "Notation",
+                "description": "Outcome notation for ASN outcomes.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "CreatedDate",
+                "description": "For authored outcomes, date when this item was initially created (UTC). For imported outcomes, this field is null. Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "CreatedBy",
+                "description": "For authored outcomes, ID of user who initially created this item. For imported outcomes, this field is null. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "LastModifiedDate",
+                "description": "Date when this item was last modified (UTC). Contains created date upon creation and deleted date for deleted items. Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "LastModifiedBy",
+                "description": "ID of user who last modified, created, or deleted this item. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Indicates if this item has been deleted for authored outcomes. This flag will be null for outcomes imported from external providers, e.g. ASN. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.8"
+            }
+        ]
+    }
+}

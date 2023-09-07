@@ -1,0 +1,31 @@
+DROP TABLE IF EXISTS `DiscussionTopic`;
+
+CREATE TABLE `DiscussionTopic` (
+  `OrgUnitId` INT NOT NULL,
+  `TopicId` BIGINT NOT NULL,
+  `ForumId` BIGINT NOT NULL,
+  `Name` VARCHAR(1000) NOT NULL,
+  `Description` VARCHAR(1000) DEFAULT NULL,
+  `MustPostToParticipate` TINYINT NOT NULL,
+  `AllowAnon` TINYINT NOT NULL,
+  `IsHidden` TINYINT NOT NULL,
+  `RequiresApproval` TINYINT NOT NULL,
+  `LastPostDate` DATETIME DEFAULT NULL,
+  `LastPostUserId` BIGINT DEFAULT NULL,
+  `NumViews` BIGINT NOT NULL,
+  `SortOrder` INT NOT NULL,
+  `IsDeleted` TINYINT DEFAULT NULL,
+  `DeletedDate` DATETIME DEFAULT NULL,
+  `DeletedByUserId` INT DEFAULT NULL,
+  `GradeItemId` INT DEFAULT NULL,
+  `ScoreOutOf` FLOAT DEFAULT NULL,
+  `ScoreCalculationMethod` VARCHAR(19) NOT NULL,
+  `IncludeNonScoredValues` TINYINT NOT NULL,
+  `Version` BIGINT NOT NULL,
+  `ResultId` INT DEFAULT NULL,
+  `StartDate` DATETIME DEFAULT NULL,
+  `StartDateAvailabilityType` VARCHAR(2) DEFAULT NULL,
+  `EndDate` DATETIME DEFAULT NULL,
+  `EndDateAvailabilityType` VARCHAR(2) DEFAULT NULL,
+  UNIQUE KEY (`TopicId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

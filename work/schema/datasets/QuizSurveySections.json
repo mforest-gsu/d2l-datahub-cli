@@ -1,0 +1,188 @@
+{
+    "Quiz Survey Sections": {
+        "name": "Quiz Survey Sections",
+        "description": "The Quiz Survey Sections Brightspace Data Set returns information about all the sections and question pools that have been created in quizzes in the organization.",
+        "columns": [
+            {
+                "name": "CollectionId",
+                "description": "Unique question collection identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "3.4"
+            },
+            {
+                "name": "SectionId",
+                "description": "Unique section identifier.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "3.4"
+            },
+            {
+                "name": "Name",
+                "description": "Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "256",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "NameIsDisplayed",
+                "description": "Indicates if the section name is hidden or shown.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.4"
+            },
+            {
+                "name": "IsQuestionPool",
+                "description": "Indicates if the question pool is a random section.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.4"
+            },
+            {
+                "name": "SectionText",
+                "description": "Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.4"
+            },
+            {
+                "name": "SectionTextIsHTML",
+                "description": "Indicates if the section text is HTML\u00a0or plain text.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.4"
+            },
+            {
+                "name": "IsSectionTextHidden",
+                "description": "Indicates if the section text is hidden or shown. Values are 0 for hidden, and 1 for shown. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.4"
+            },
+            {
+                "name": "QuestionPoints",
+                "description": "Field can be null.",
+                "dataType": "decimal",
+                "columnSize": "19, 9",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.8 \/ 5.2 - Updated column size"
+            },
+            {
+                "name": "NumQuestions",
+                "description": "Indicates the number of questions in the quiz section.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.4"
+            },
+            {
+                "name": "NumChoices",
+                "description": "Indicates the number of choices in the question pool from which the quiz can be created.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.4"
+            },
+            {
+                "name": "Shuffle",
+                "description": "Indicates that the quiz questions in the pool are shuffled.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.4"
+            },
+            {
+                "name": "CreationDate",
+                "description": "Date the quiz was created (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.4"
+            },
+            {
+                "name": "CreatedBy",
+                "description": "Id of the user who created the quiz. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "6.7 - Updated key"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date when the quiz was last modified (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.4"
+            },
+            {
+                "name": "LastModifiedBy",
+                "description": "Id of the user who last modified the quiz. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "6.7 - Updated key"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Indicates that the quiz question is deleted. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.4"
+            },
+            {
+                "name": "Version",
+                "description": "Indicates the version of the question. This column supports the Question Pools information in the Assessment Quality Dashboard. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.0"
+            }
+        ]
+    }
+}

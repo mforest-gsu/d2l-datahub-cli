@@ -1,0 +1,58 @@
+{
+    "Competency Structure": {
+        "name": "Competency Structure",
+        "description": "The Competency Structure Brightspace Data Set returns information about all competency structures for your org units.",
+        "columns": [
+            {
+                "name": "ObjectId",
+                "description": "Unique competency or learning objective ID",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.4 - Added Primary Key designation"
+            },
+            {
+                "name": "ParentObjectId",
+                "description": "Parent competency or learning objective ID",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.4 - Added Primary Key designation"
+            },
+            {
+                "name": "BaseObjectID",
+                "description": "Unique basic object ID",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.4 - Added Primary Key designation"
+            },
+            {
+                "name": "Depth",
+                "description": "Indicates the depth of the competency structure",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.2"
+            },
+            {
+                "name": "EntryTime",
+                "description": "The order in which a competency object exists with respect to its hierarchy.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "1.4"
+            }
+        ]
+    }
+}

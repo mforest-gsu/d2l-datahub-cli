@@ -1,0 +1,98 @@
+{
+    "Rubric Assessment Criteria": {
+        "name": "Rubric Assessment Criteria",
+        "description": "The Rubric Assessment Criteria Brightspace Data Set returns details for all rubric criteria in rubrics.",
+        "columns": [
+            {
+                "name": "AssessmentId",
+                "description": "Unique assessment ID",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "UserId",
+                "description": "Unique user identifier",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "5.6 - Updated PK"
+            },
+            {
+                "name": "RubricId",
+                "description": "Unique rubric ID",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.6 - Updated FK"
+            },
+            {
+                "name": "Score",
+                "description": "Rubric score the user achieved on a criterion. Field can be null.",
+                "dataType": "decimal",
+                "columnSize": "19, 9",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.8 \/ 5.2 - Updated column size"
+            },
+            {
+                "name": "Feedback",
+                "description": "Feedback for that criterion. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "IsScoreOverridden",
+                "description": "Is score overridden by instructor",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "CriterionId",
+                "description": "Unique criterion identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "4.9 \/ 5.3 - Updated PK"
+            },
+            {
+                "name": "LevelAchievedId",
+                "description": "Unique rubric level achieved identifier. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "Version",
+                "description": "Indicates the version of the row. This information is used to determine which table row occurred first, similar to the way time stamps function in other data sets.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0"
+            }
+        ]
+    }
+}

@@ -1,0 +1,168 @@
+{
+    "LTI Launches": {
+        "name": "LTI Launches",
+        "description": "The LTI Launches Brightspace Data Set logs details of each time a user launches an LTI link in the organization. Note: users must have the External\u00a0Learning Tools > Download LTI\u00a0Launch Data Set permission at the Organization level.",
+        "columns": [
+            {
+                "name": "LTILaunchId",
+                "description": "Unique identifier for each individual launch.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "UserId",
+                "description": "The user who performed this launch.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "IMSRoleNames",
+                "description": "A list of user's IMS roles.",
+                "dataType": "nvarchar",
+                "columnSize": "10000",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ImpersonatingUserId",
+                "description": "The impersonating user who performed this launch. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ImpersonatingUserIMSRoleName",
+                "description": "A list of impersonating user's IMS roles. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "10000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "LaunchDate",
+                "description": "The UTC time when this launch occurred.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Id of the org unit where this launch happened.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "LTILinkId",
+                "description": "The id of the link that was used for the LTI launch.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.7 \/ 6.0 - Changed Key"
+            },
+            {
+                "name": "DeploymentId",
+                "description": "The unique identifier of the link's deployment that was used for the LTI launch. This is only available for 1.3 links. Field can be null.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ClientId",
+                "description": "The unique identifier of the link's registration that was used for the LTI launch. This is only available for 1.3 links. Field can be null.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ToolProviderId",
+                "description": "The id of the link's tool provider that was used for the LTI launch. This is only available for 1.1 links. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "300",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ContentTopicId",
+                "description": "Id of the content topic where this launch happened. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ParentModuleId",
+                "description": "Id of the parent module where this launch happened. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "Placement",
+                "description": "Placement type of this launch. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "10",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "MessageVersion",
+                "description": "LTI message version of this launch. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "10",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "RequestType",
+                "description": "LTI request type of this launch. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "30",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            }
+        ]
+    }
+}

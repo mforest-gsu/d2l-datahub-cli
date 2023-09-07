@@ -1,0 +1,88 @@
+{
+    "JIT Provisioned Users Log": {
+        "name": "JIT Provisioned Users Log",
+        "description": "The JIT Provisioned Users Log Brightspace Data Set returns information on any issues or failures with the provisioning of users via Just-In-Time User Provisioning. Each row in the data set represents a log of action (for example, created or updated) taken on users provisioned via Just-In-Time User Provisioning. It provides information about the users, the type of their provider, the Id of the provider, date, and time that the users were provisioned (UTC).",
+        "columns": [
+            {
+                "name": "UserId",
+                "description": "Unique identifier for the user.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "7.12"
+            },
+            {
+                "name": "MappingField",
+                "description": "The Brightspace field used to map the user with the Identity Provider (For example: \"Username\", \"Email Address\", \"Org Defined Id\").",
+                "dataType": "nvarchar",
+                "columnSize": "32",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.12"
+            },
+            {
+                "name": "MappingFieldValue",
+                "description": "The value of the Brightspace field used to map the user with the Identity Provider.",
+                "dataType": "nvarchar",
+                "columnSize": "270",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.12"
+            },
+            {
+                "name": "ProviderType",
+                "description": "The type of provider that provisioned the user (For example: \u201cSAML\u201d).",
+                "dataType": "nvarchar",
+                "columnSize": "32",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.12"
+            },
+            {
+                "name": "ProviderId",
+                "description": "The Id of the provider that provisioned the user.",
+                "dataType": "nvarchar",
+                "columnSize": "1024",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.12"
+            },
+            {
+                "name": "RoleId",
+                "description": "The Org level Role that the user was provisioned as.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "7.12"
+            },
+            {
+                "name": "Timestamp",
+                "description": "Date and time that the user was provisioned (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "7.12"
+            },
+            {
+                "name": "Action",
+                "description": "Indicates the provisioning action taken on the user (For example:: \"Created\", \"Updated\").",
+                "dataType": "nvarchar",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.12"
+            }
+        ]
+    }
+}

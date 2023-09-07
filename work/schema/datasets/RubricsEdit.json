@@ -1,0 +1,128 @@
+{
+    "Rubrics Edit": {
+        "name": "Rubrics Edit",
+        "description": "In the Rubrics Edit Brightspace Data Set, each row represents one element of a rubric that was changed by a permissioned user. If multiple elements are changed in the same rubric, multiple data rows will appear in the data set. Modified Object Type Lookup The following table contains all possible ModifiedObjectType values and their corresponding rubric element:",
+        "columns": [
+            {
+                "name": "AuditLogId",
+                "description": "Unique identifier",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "7.12"
+            },
+            {
+                "name": "RubricId",
+                "description": "Unique rubric identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "7.12"
+            },
+            {
+                "name": "CriterionId",
+                "description": "Identifier for the criterion row of the rubric. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "7.12"
+            },
+            {
+                "name": "LevelId",
+                "description": "Identifier for the evaluation level of the rubric. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "7.12"
+            },
+            {
+                "name": "ModifiedBy",
+                "description": "ID of the user who last modified this item",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.12"
+            },
+            {
+                "name": "ModifiedObjectType",
+                "description": "Rubric element that has been edited. Refer to Modified Object Type Lookup for details.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.13 - Updated field name"
+            },
+            {
+                "name": "CriteriaGroupId",
+                "description": "Identifier for the criterion group to which the criterion belongs. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.12"
+            },
+            {
+                "name": "ModifiedDate",
+                "description": "The date when this item was modified (UTC)",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.12"
+            },
+            {
+                "name": "PreviousValue",
+                "description": "The value of the object prior to the modification.",
+                "dataType": "nvarchar",
+                "columnSize": "4000",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.13 - Updated column size"
+            },
+            {
+                "name": "ModifiedValue",
+                "description": "The value of the object after the modification.",
+                "dataType": "nvarchar",
+                "columnSize": "4000",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.13 - Updated column size"
+            },
+            {
+                "name": "IsLocked",
+                "description": "The locked status of the rubric at the time of the modification",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.12"
+            },
+            {
+                "name": "Version",
+                "description": "Incrementing sequence number to keep track of edits that were made during the same session.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "8.7"
+            }
+        ]
+    }
+}

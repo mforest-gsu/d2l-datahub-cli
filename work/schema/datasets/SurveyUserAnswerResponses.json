@@ -1,0 +1,108 @@
+{
+    "Survey User Answer Responses": {
+        "name": "Survey User Answer Responses",
+        "description": "The Survey User Answer Responses Brightspace Data Set returns data to describe the options a user chose or the answers they provided to survey questions. Rows in the data set are filtered out if they are associated with deleted survey attempts.",
+        "columns": [
+            {
+                "name": "AttemptId",
+                "description": "Unique attempt identifier.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "AttemptNumber",
+                "description": "Attempt number associated with the attempt ID.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "QuestionId",
+                "description": "Unique question identifier.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "QuestionVersionId",
+                "description": "Unique question version identifier.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "AnswerId",
+                "description": "Unique answer identifier.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "SortOrder",
+                "description": "Sort order of the survey answer responses. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Type and Column Size"
+            },
+            {
+                "name": "IsCorrect",
+                "description": "Is user response correct. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "UserSelection",
+                "description": "Option the user chose for the question. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "UserAnswer",
+                "description": "Answer the user entered. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "FileSetId",
+                "description": "Indicates the auto generated file set ID\u00a0of uploaded file(s). Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.8 \/ 6.1"
+            }
+        ]
+    }
+}

@@ -1,0 +1,48 @@
+{
+    "Tools": {
+        "name": "Tools",
+        "description": "The Tools Brightspace Data Set retrieves the data on all the tools that exist in the organization.",
+        "columns": [
+            {
+                "name": "ToolId",
+                "description": "Unique identifier for the tool",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "3.8 \/ 4.3"
+            },
+            {
+                "name": "Name",
+                "description": "Unique tool name",
+                "dataType": "nvarchar",
+                "columnSize": "50",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Updated column size"
+            },
+            {
+                "name": "DisplayName",
+                "description": "Display name of the tool",
+                "dataType": "nvarchar",
+                "columnSize": "200",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.18 \/ 8.4 - Updated column size"
+            },
+            {
+                "name": "Version",
+                "description": "Indicates the version of the row. This information is used to determine which table row occurred first, similar to the way time stamps function in other data sets.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.8 \/ 4.3"
+            }
+        ]
+    }
+}

@@ -1,0 +1,98 @@
+{
+    "User Attribute Definitions": {
+        "name": "User Attribute Definitions",
+        "description": "The User Attribute Definitions Brightspace Data Set returns a list of all defined user attributes in your organization. If no user attributes are defined for your organization, the data set will not generate.",
+        "columns": [
+            {
+                "name": "AttributeId",
+                "description": "Unique identifier of the attribute.",
+                "dataType": "nvarchar",
+                "columnSize": "128",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "Name",
+                "description": "Display name for the attribute.",
+                "dataType": "nvarchar",
+                "columnSize": "128",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "Type",
+                "description": "Indicates the type of data stored in the attribute. Can be one of \"string\", \"date\", \"user\", or \"org_unit\".",
+                "dataType": "nvarchar",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "AllowMultiple",
+                "description": "Indicates if multiple values are allowed for the attribute (TRUE - 1) or not (FALSE - 0).",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "IsDefault",
+                "description": "Indicates if the attribute is a default (TRUE\u00a0- 1) or a custom attribute (FALSE - 0).",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date the attribute definition was last modified (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "ModifiedBy",
+                "description": "User who last modified the attribute definition.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Indicates if the attribute definition is deleted (TRUE - 1) or not (FALSE - 0).",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "Version",
+                "description": "Indicates the version of the row. This information is used to determine which table row occurred first.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            }
+        ]
+    }
+}

@@ -1,0 +1,78 @@
+{
+    "Checklist Category Details": {
+        "name": "Checklist Category Details",
+        "description": "The Checklist Category Details Brightspace Data Set returns information on categories within checklists.",
+        "columns": [
+            {
+                "name": "CategoryId",
+                "description": "Unique category identifier.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "3.3"
+            },
+            {
+                "name": "ChecklistId",
+                "description": "Unique checklist identifier.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "3.3"
+            },
+            {
+                "name": "Name",
+                "description": "Name of the checklist category.",
+                "dataType": "nvarchar",
+                "columnSize": "512",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "Description",
+                "description": "Description of the category. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.3"
+            },
+            {
+                "name": "DescriptionIsHtml",
+                "description": "Indicates if the description is in HTML.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.3"
+            },
+            {
+                "name": "SortOrder",
+                "description": "The order in which the checklist categories are sorted.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.3"
+            },
+            {
+                "name": "LastModifiedUtc",
+                "description": "Last modified date\/time (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.3"
+            }
+        ]
+    }
+}

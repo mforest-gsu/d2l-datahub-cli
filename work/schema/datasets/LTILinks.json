@@ -1,0 +1,268 @@
+{
+    "LTI Links": {
+        "name": "LTI Links",
+        "description": "The LTI Links Brightspace Data Set retrieves the list of LTI links that exist in the organization. It does not include deleted links.",
+        "columns": [
+            {
+                "name": "LtiLinkId",
+                "description": "Unique identifier for the LTI\u00a0link.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Identifier for the Org Unit where the link was created.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "4.7 \/ 5.1 - Updated description"
+            },
+            {
+                "name": "Title",
+                "description": "The title of the link.",
+                "dataType": "nvarchar",
+                "columnSize": "200",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "LinkType",
+                "description": "The type of link, either being a basic LTI launch or a CIM\/Deep Linking launch to retrieve content from a tool. (0 = Basic LTI Launch, 1 = Content Item Message or Deeplinking).",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "LTIVersion",
+                "description": "Indicates whether the link is Legacy or LTI Advantage.",
+                "dataType": "varchar",
+                "columnSize": "12",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "Url",
+                "description": "The URL used during the launch. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "Description",
+                "description": "Description of the LTI link. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "IsVisible",
+                "description": "Determines if the link is displayed when adding to course content in the course. For Legacy LTI, this is called IsVisible in the UI.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "SendTCInfo",
+                "description": "If true, determines if the tool_consumer variables are allowed to be included in the LTI launch. Legacy LTI only.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "SendContextInfo",
+                "description": "If true, determines if context_id, context_title, context_label, and context_type variables are included in the LTI launch. Legacy LTI only.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "SendCourseInfo",
+                "description": "If true, determines if LISSourcedId is included in the launch. Legacy LTI only.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "SendOrgUnitInfo",
+                "description": "If true, determines if Org Unit Id, Course Name, Course Code, Org Unit Type, LIS Course Offering Sourcedid, and LIS Course Section Sourcedid are included in the LTI launch. LTIAdvantage only. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "SendUserId",
+                "description": "If true, determines a unique identifier for the user, generated on the user's first launch. Legacy LTI only. This is always sent to LTIAdvantage and cannot be turned off unless Anonymous launch is used.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "SendUserName",
+                "description": "If true, determines if users first, last, and given name (first last) are sent during launch.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "SendUserEmail",
+                "description": "If true, determines if the user's primary email is sent during launch.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "SendLinkTitle",
+                "description": "If true, determines if the LTI Link Title is sent during launch. Legacy LTI only.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "SendLinkDescription",
+                "description": "If true, determines if the LTI Link Description is sent during launch. Legacy LTI only.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "SendD2LUserName",
+                "description": "If true, determines if the Brightspace username is sent during launch.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "SendD2LOrgDefinedId",
+                "description": "If true, determines if the Brightspace OrgDefinedId is sent during launch.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "SendD2LOrgRoleId",
+                "description": "If true, determines if the custom Brightspace D2L role is sent during launch. Legacy LTI only.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "SendBrightspaceUserId",
+                "description": "If true, determines if the D2L User Id is sent during the launch. LTIAdvantage only. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "Anonymous",
+                "description": "If true, no user information is sent during the launch. LTIAdvantage only. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "Shared",
+                "description": "Indicates whether the link is shared with additional org units or not. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "UseToolProviderSecuritySettings",
+                "description": "If true, uses the Tool Provider security settings versus link security settings based on domain matching. Legacy LTI only.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "LastModifiedDate",
+                "description": "The last time a link was updated. Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "OuAvailabilitySetId",
+                "description": "Unique sharing identifier. Can be used to join on LTI Links Shared. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.7 \/ 5.1"
+            }
+        ]
+    }
+}

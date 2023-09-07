@@ -1,0 +1,78 @@
+{
+    "Quiz Question Answer Options": {
+        "name": "Quiz Question Answer Options",
+        "description": "The Quiz Question Answer Options Brightspace Data Set returns possible options for a given quiz answer. Only includes answer options for these question types: Short Answer, Fill in the Blanks, and Multi-Short Answer. Rows in the data set are filtered out if they are associated with deleted quiz attempts.",
+        "columns": [
+            {
+                "name": "AnswerId",
+                "description": "Unique answer Identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "AnswerText",
+                "description": "User answer. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "Weight",
+                "description": "Weight associated with the answer",
+                "dataType": "decimal",
+                "columnSize": "19, 9",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.8 \/ 5.2 - Updated column size"
+            },
+            {
+                "name": "QuestionId",
+                "description": "Unique question identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "QuestionVersionId",
+                "description": "Unique question version identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "QuizObjectId",
+                "description": "Unique quiz object identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "6.7 - Updated key"
+            },
+            {
+                "name": "AnswerOptionId",
+                "description": "Unique answer option identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "1.2"
+            }
+        ]
+    }
+}

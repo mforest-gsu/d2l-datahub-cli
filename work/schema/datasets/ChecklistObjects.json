@@ -1,0 +1,108 @@
+{
+    "Checklist Objects": {
+        "name": "Checklist Objects",
+        "description": "The Checklist Objects Brightspace Data Set returns information on checklist attributes.",
+        "columns": [
+            {
+                "name": "ChecklistId",
+                "description": "Unique checklist identifier.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "3.3"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Unique identifier for the org unit where the checklist exists.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "3.3"
+            },
+            {
+                "name": "Name",
+                "description": "Checklist name.",
+                "dataType": "nvarchar",
+                "columnSize": "512",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "Description",
+                "description": "Description of the checklist. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.3"
+            },
+            {
+                "name": "DescriptionIsHtml",
+                "description": "Indication if the description is in HTML.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.3"
+            },
+            {
+                "name": "SharedUserId",
+                "description": "Unique user Id that the checklist is shared with. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "3.3"
+            },
+            {
+                "name": "DisplayInNewWindow",
+                "description": "Indicates if the checklist appears in a new browser window when viewed.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.3"
+            },
+            {
+                "name": "SortOrder",
+                "description": "The order in which the checklist is sorted.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.3"
+            },
+            {
+                "name": "Version",
+                "description": "Indicates the version for this row entry. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.3"
+            },
+            {
+                "name": "ResultId",
+                "description": "Unique release condition result identifier. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "4.9 \/ 5.3"
+            }
+        ]
+    }
+}

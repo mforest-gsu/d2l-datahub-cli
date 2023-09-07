@@ -1,0 +1,128 @@
+{
+    "Outcomes Assessed Checkpoints": {
+        "name": "Outcomes Assessed Checkpoints",
+        "description": "The Outcomes Assessed Checkpoints Brightspace Data Set provides details about the Overall Achievement Calculation Settings for a checkpoint. The data set only captures data from July 2021 onwards.",
+        "columns": [
+            {
+                "name": "CheckpointId",
+                "description": "ID of this checkpoint.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "6.9"
+            },
+            {
+                "name": "DemonstrationId",
+                "description": "ID of demonstration which assesses this outcome against the checkpoint.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "6.9"
+            },
+            {
+                "name": "Feedback",
+                "description": "Feedback left by assessor, truncated to 1000 characters.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.9"
+            },
+            {
+                "name": "ConfigDecayRate",
+                "description": "Value of the decay rate in Mastery View Settings for checkpoint calculation.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.9"
+            },
+            {
+                "name": "ConfigAggregationMethod",
+                "description": "Calculation method selected in Mastery View Settings. Possible values:",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.9"
+            },
+            {
+                "name": "ConfigIncludedActivities",
+                "description": "Selected activities for use in calculation in Mastery View Settings. If Most Recently Assessed Activities is selected, the specific number of activities to include is stored in ConfigRecentlyAssessedActivityCount. Possible values:",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.9"
+            },
+            {
+                "name": "ConfigMultipleAttemptStrategy",
+                "description": "Selected attempt for use in calculation in Mastery View Settings. Possible values:",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.9"
+            },
+            {
+                "name": "ConfigRecentlyAssessedActivityCount",
+                "description": "The number of recently assessed activities to include in calculation, when Most Recently Assessed Activities is selected.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.9"
+            },
+            {
+                "name": "ConfigTieBreaker",
+                "description": "Selected method for how to handle multiple items of the same count in calculating the overall level of achievement in Mastery View Settings. Possible values:",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.9"
+            },
+            {
+                "name": "LastModifiedDate",
+                "description": "Date when this item was last modified. Contains created date upon creation and deleted date for deleted items. Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.9"
+            },
+            {
+                "name": "LastModifiedBy",
+                "description": "ID of user who last modified, created, or deleted this item. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.9"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Indicates if this item has been deleted.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.9"
+            }
+        ]
+    }
+}

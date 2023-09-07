@@ -1,0 +1,38 @@
+{
+    "Course Access": {
+        "name": "Course Access",
+        "description": "The Course Access Brightspace Data Set returns information on each day each user has accessed each course offering from the LMS\u00a0(via a browser) across the organization. The data set does not include course access via any of our Apps. The Course Access data set is limited to 3 years of data (all of the previous two calendar years and the current calendar year to date).",
+        "columns": [
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "2.4"
+            },
+            {
+                "name": "UserId",
+                "description": "Unique user identifier.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "2.4"
+            },
+            {
+                "name": "DayAccessed",
+                "description": "Indicates the most recent day in local time when a user accessed the course.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "7.5 - Updated description"
+            }
+        ]
+    }
+}

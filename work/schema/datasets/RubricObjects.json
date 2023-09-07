@@ -1,0 +1,108 @@
+{
+    "Rubric Objects": {
+        "name": "Rubric Objects",
+        "description": "The Rubric Objects Brightspace Data Set returns information about the rubric properties.",
+        "columns": [
+            {
+                "name": "RubricId",
+                "description": "Unique rubric Identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "Name",
+                "description": "Name of the rubric",
+                "dataType": "nvarchar",
+                "columnSize": "256",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "RubricStatus",
+                "description": "Status of the rubric. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "256",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "Description",
+                "description": "Description of the rubric object. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "RubricType",
+                "description": "Type of rubric used. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "256",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "ScoringMethods",
+                "description": "Type of scoring methods used. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "256",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "IsScoreVisible",
+                "description": "Is the rubric score visible",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "OrgUnitID",
+                "description": "Org unit identifier associated with the rubric",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "IsShared",
+                "description": "Set to true if the Rubric object is shared",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Set to true if the rubric object is deleted",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            }
+        ]
+    }
+}

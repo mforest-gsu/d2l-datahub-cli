@@ -1,0 +1,88 @@
+{
+    "Enrollments and Withdrawals": {
+        "name": "Enrollments and Withdrawals",
+        "description": "The Enrollments and Withdrawals Brightspace Data Set returns a list of enrollments and withdrawals for all users in your organization.",
+        "columns": [
+            {
+                "name": "LogId",
+                "description": "Unique log entry identifier for any change to the user enrollment.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "7.7 - Updated description"
+            },
+            {
+                "name": "UserId",
+                "description": "Unique user identifier",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.7 \/ 6.0 - Added FK"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.7 \/ 6.0 - Added FK"
+            },
+            {
+                "name": "RoleId",
+                "description": "Unique role identifier. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.7 \/ 6.0 - Added FK"
+            },
+            {
+                "name": "Action",
+                "description": "Indicates whether the item is an enrollment or a withdrawal",
+                "dataType": "varchar",
+                "columnSize": "50",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.2"
+            },
+            {
+                "name": "EnrollmentType",
+                "description": "Enrollment type. Field can be null.",
+                "dataType": "varchar",
+                "columnSize": "50",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Updated column size"
+            },
+            {
+                "name": "ModifiedByUserId",
+                "description": "Identifies the last user who modified the enrollment status for the user. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.2"
+            },
+            {
+                "name": "EnrollmentDate",
+                "description": "Date enrolled (UTC)",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.2"
+            }
+        ]
+    }
+}

@@ -1,0 +1,88 @@
+{
+    "Session History": {
+        "name": "Session History",
+        "description": "The Session History Brightspace Data Set returns a list of login session histories for all users in your organization. Does not include app usage. The Session History data set and differential is limited to 3 years of data (all of the previous two calendar years and the current calendar year to date).",
+        "columns": [
+            {
+                "name": "SessionId",
+                "description": "Unique session identifier. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.19 \/ 8.5 - Updated type"
+            },
+            {
+                "name": "OrgId",
+                "description": "Unique org unit Identifier. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "UserId",
+                "description": "Unique user identifier. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "DateStarted",
+                "description": "Session start date time (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "DateEnded",
+                "description": "Session end date time (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "LastAccessed",
+                "description": "Last access date time\u00a0(UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "TimedOut",
+                "description": "If session timed out.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "HistoryID",
+                "description": "Unique session history identifier.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "1.6"
+            }
+        ]
+    }
+}

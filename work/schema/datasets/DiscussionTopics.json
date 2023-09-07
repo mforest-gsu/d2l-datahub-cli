@@ -1,0 +1,268 @@
+{
+    "Discussion Topics": {
+        "name": "Discussion Topics",
+        "description": "The Discussion Topics Brightspace Data Set returns discussion topics. Results are ordered from newest to oldest.",
+        "columns": [
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "2.3"
+            },
+            {
+                "name": "TopicId",
+                "description": "Unique topic identifier.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "2.3"
+            },
+            {
+                "name": "ForumId",
+                "description": "Unique discussion forum identifier.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "2.3"
+            },
+            {
+                "name": "Name",
+                "description": "Name of the discussion topic.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "2.4"
+            },
+            {
+                "name": "Description",
+                "description": "Description of the discussion topic. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "2.4"
+            },
+            {
+                "name": "MustPostToParticipate",
+                "description": "Indicates that a user must post in the discussion topic in order to participate in any discussion threads.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "2.3"
+            },
+            {
+                "name": "AllowAnon",
+                "description": "Indicates whether there is anonymous posting permitted for the discussion topic.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "2.3"
+            },
+            {
+                "name": "IsHidden",
+                "description": "Indicates whether the discussion topic is hidden.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "2.3"
+            },
+            {
+                "name": "RequiresApproval",
+                "description": "Indicates that the discussion topic requires approval from a moderator before contributions to the forum are posted.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "2.3"
+            },
+            {
+                "name": "LastPostDate",
+                "description": "Indicates the last time a post was made to the discussion topic (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "2.3"
+            },
+            {
+                "name": "LastPostUserId",
+                "description": "Indicates the last user who made a post to the discussion topic. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "2.3"
+            },
+            {
+                "name": "NumViews",
+                "description": "Indicates the number of views on the discussion topic.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "2.3"
+            },
+            {
+                "name": "SortOrder",
+                "description": "Display sort order used for the content objects.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "2.3"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Indicates if the discussion topic is deleted. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "2.3"
+            },
+            {
+                "name": "DeletedDate",
+                "description": "Date when the discussion topic was deleted (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "2.3"
+            },
+            {
+                "name": "DeletedByUserId",
+                "description": "User who deleted the discussion topic. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "2.3"
+            },
+            {
+                "name": "GradeItemId",
+                "description": "Unique grade identifier. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "3.8 \/ 4.3"
+            },
+            {
+                "name": "ScoreOutOf",
+                "description": "Topic score used to evaluate the discussion thread. Field can be null. Note: Score can exceed ScoreOutOf.",
+                "dataType": "float",
+                "columnSize": "53",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "ScoreCalculationMethod",
+                "description": "Method used to calculate score. Strings are predefined, with the following values:Average - Calculates the score from the average score of each post in the topic made by a user. Max - Calculates the score based on the maximum score of any one post in the topic for a user.Min - Calculates the score based on the minimum score of any one post in the topic for a user.Mode Max - Given the number of posts, selects the score that is repeated the most. If there is a tie, it takes the highest score.Mode Min - Given the number of posts, selects the score that is repeated the most. If there is a tie, it takes the lowest score.Sum - Calculates the score from the sum of scores on each post in a topic for a user.Blank value (null) - The score is not calculated based on the scores of each post (Manual updates).",
+                "dataType": "varchar",
+                "columnSize": "19",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.8 \/ 4.3"
+            },
+            {
+                "name": "IncludeNonScoredValues",
+                "description": "Indicates whether to include non-scored values.\t\t\t\t\tTrue posts that have not been scored are scored as 0. Otherwise, posts without a score are not included in the score aggregate (defined in the ScoreCalculationType).",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.8 \/ 4.3"
+            },
+            {
+                "name": "Version",
+                "description": "Indicates the version of the row. This information is used to determine which table row occurred first, similar to the way time stamps function in other data sets.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.8 \/ 4.3"
+            },
+            {
+                "name": "ResultId",
+                "description": "Unique release condition result identifier. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "4.9 \/ 5.3"
+            },
+            {
+                "name": "StartDate",
+                "description": "First date when learners can post to the topic (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.12 \/ 7.0 - Added"
+            },
+            {
+                "name": "StartDateAvailabilityType",
+                "description": "Before the StartDate, this type determines whether learners can view or access the discussion topic. See About Availability type for details. Field can be null.",
+                "dataType": "smallint",
+                "columnSize": "2",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.7 - Updated Description"
+            },
+            {
+                "name": "EndDate",
+                "description": "Last date when learners can post to the topic (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.12 \/ 7.0 - Added"
+            },
+            {
+                "name": "EndDateAvailabilityType",
+                "description": "After the EndDate, this type determines whether learners can view or access the discussion topic. See About Availability type for details. Field can be null.",
+                "dataType": "smallint",
+                "columnSize": "2",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.7 - Updated Description"
+            }
+        ]
+    }
+}

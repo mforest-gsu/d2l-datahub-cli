@@ -1,0 +1,108 @@
+{
+    "SCORM Objectives": {
+        "name": "SCORM Objectives",
+        "description": "The SCORM Objectives Brightspace Data Set describes the global, activity, and runtime interactions that exist for each SCORM package. The objectives will only be known after the first user registration or visit.",
+        "columns": [
+            {
+                "name": "ObjectiveId",
+                "description": "Unique identifier of the objective.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ScormObjectId",
+                "description": "Unique identifier for each SCORM object.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ObjectiveType",
+                "description": "Type of objective (GLOBAL, ACTIVITY, RUNTIME).",
+                "dataType": "nvarchar",
+                "columnSize": "100",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ActivityId",
+                "description": "Unique identifier for each activity. Field can be null.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "InternalId",
+                "description": "Unique label for the objective. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "255",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "IsPrimary",
+                "description": "Whether this is the primary objective of the activity. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "Description",
+                "description": "Brief informative description of the objective. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "250",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ScoreMin",
+                "description": "Minimum value, for the objective, in the range for the raw score. Field can be null.",
+                "dataType": "float",
+                "columnSize": "24",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ScoreMax",
+                "description": "Maximum value, for the objective, in the range for the raw score. Field can be null.",
+                "dataType": "float",
+                "columnSize": "24",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date when the activity was last modified (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            }
+        ]
+    }
+}

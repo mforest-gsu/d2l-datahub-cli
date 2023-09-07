@@ -1,0 +1,98 @@
+{
+    "Activity Exemptions Log": {
+        "name": "Activity Exemptions Log",
+        "description": "The Activity Exemptions Log Brightspace Data Set returns details on the exemptions a user has created for your organization units.",
+        "columns": [
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.7 \/ 6.0 - Changed Type and Column Size"
+            },
+            {
+                "name": "UserId",
+                "description": "Unique user identifier.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.7 \/ 6.0 - Changed Type and Column Size"
+            },
+            {
+                "name": "ObjectId",
+                "description": "Unique identifier of the object with an exemption. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.6"
+            },
+            {
+                "name": "ActivityId",
+                "description": "Unique identifier for an activity associated with the exemption",
+                "dataType": "varchar",
+                "columnSize": "225",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.6"
+            },
+            {
+                "name": "LogTypeName",
+                "description": "Name of log type. Field can be null.",
+                "dataType": "varchar",
+                "columnSize": "50",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.6"
+            },
+            {
+                "name": "LastModifiedUtc",
+                "description": "Time of the last log entry (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.6"
+            },
+            {
+                "name": "LastModifiedBy",
+                "description": "User ID of user who last modified the exemption. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.7 \/ 6.0 - Changed Type and Column Size"
+            },
+            {
+                "name": "ActivityExemptionsLogId",
+                "description": "Unique exemptions log identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "1.6"
+            },
+            {
+                "name": "ToolId",
+                "description": "Unique identifier for the tool with an exemption",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "4.7 \/ 5.1 - Updated description"
+            }
+        ]
+    }
+}

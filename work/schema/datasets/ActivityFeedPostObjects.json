@@ -1,0 +1,118 @@
+{
+    "Activity Feed Post Objects": {
+        "name": "Activity Feed Post Objects",
+        "description": "The Activity Feed Post Objects Brightspace Data Set returns details on each post in the organization.",
+        "columns": [
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.9 \/ 6.2"
+            },
+            {
+                "name": "PostId",
+                "description": "Unique post identifier.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "5.9 \/ 6.2"
+            },
+            {
+                "name": "PostType",
+                "description": "The type of post.",
+                "dataType": "nvarchar",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.9 \/ 6.2"
+            },
+            {
+                "name": "LastModifiedBy",
+                "description": "Unique identifier of the user who last modified the post.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.9 \/ 6.2"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date the post was created, updated, or deleted (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.9 \/ 6.2"
+            },
+            {
+                "name": "DropboxId",
+                "description": "Unique identifier of the posted assignment, if the post is of type assignment. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.9 \/ 6.2"
+            },
+            {
+                "name": "Content",
+                "description": "The text of the message post, if the post is of type message. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "3072",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.9 \/ 6.2"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Indicates if the post has been deleted.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.9 \/ 6.2"
+            },
+            {
+                "name": "CommentCount",
+                "description": "Indicates the number of comments associated with the post.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.9 \/ 6.2"
+            },
+            {
+                "name": "AttachmentCount",
+                "description": "Indicates the number of attachments associated with the post, if the post is of type message. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.9 \/ 6.2"
+            },
+            {
+                "name": "Version",
+                "description": "Version of post.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.9 \/ 6.2"
+            }
+        ]
+    }
+}

@@ -1,0 +1,138 @@
+{
+    "Award Objects": {
+        "name": "Award Objects",
+        "description": "The Award Objects Brightspace Data Set returns details on all awards that were created anywhere in the organization.",
+        "columns": [
+            {
+                "name": "AwardId",
+                "description": "Unique award identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "3.4"
+            },
+            {
+                "name": "Name",
+                "description": "Award name",
+                "dataType": "nvarchar",
+                "columnSize": "256",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "AwardTypeId",
+                "description": "Award type identifier",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.4"
+            },
+            {
+                "name": "Type",
+                "description": "Award type (Certificate or Badge)",
+                "dataType": "nvarchar",
+                "columnSize": "128",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "Description",
+                "description": "Description of the award.",
+                "dataType": "nvarchar",
+                "columnSize": "512",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.7 - Changed Description"
+            },
+            {
+                "name": "ExpiryCalculationType",
+                "description": "Calculation type for expiry of award",
+                "dataType": "nvarchar",
+                "columnSize": "128",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "ExpiryNotificationType",
+                "description": "Time unit for expiry notification\u00a0(such as days)",
+                "dataType": "nvarchar",
+                "columnSize": "128",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "ExpiryDate",
+                "description": "Date when the award is scheduled to expire. Can be NULL if the award never expires or has a relative expiry date.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "8.7 - Updated description"
+            },
+            {
+                "name": "ImagePath",
+                "description": "Indicates the location where the award image is stored. Field can be null.",
+                "dataType": "varchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "CreatedByUserId",
+                "description": "User who created the award",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Field"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date award was last changed (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.4"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Indicates whether the award is deleted",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.4"
+            },
+            {
+                "name": "Criteria",
+                "description": "Indicates the criteria necessary to issue the award. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "8.7"
+            }
+        ]
+    }
+}

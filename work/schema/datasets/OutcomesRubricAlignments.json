@@ -1,0 +1,98 @@
+{
+    "Outcomes Rubric Alignments": {
+        "name": "Outcomes Rubric Alignments",
+        "description": "In the Outcomes Rubric Alignments Brightspace Data Set, each entry represents an alignment for a learning outcome to a rubric criterion row. The data set only captures data from June 2021 onwards.",
+        "columns": [
+            {
+                "name": "RubricId",
+                "description": "Unique rubric identifier.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "7.6"
+            },
+            {
+                "name": "CriterionId",
+                "description": "Identifier for the criterion row of the rubric.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "7.6"
+            },
+            {
+                "name": "OutcomeId",
+                "description": "Unique identifier for the outcome object.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "7.6"
+            },
+            {
+                "name": "RegistryId",
+                "description": "ID of the registry for the org unit or program.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "7.6"
+            },
+            {
+                "name": "CreatedDate",
+                "description": "The date when the alignment of this outcome was recorded for this rubric criterion row. Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.6"
+            },
+            {
+                "name": "CreatedBy",
+                "description": "ID of the user who initially created this alignment. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "7.6"
+            },
+            {
+                "name": "LastModifiedDate",
+                "description": "Date when this item was last modified (UTC). Contains created date upon creation and deleted date for deleted items.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.6"
+            },
+            {
+                "name": "LastModifiedBy",
+                "description": "ID of user who last modified, created, or deleted this item.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "7.6"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Set to true if the outcome alignment has been removed from the rubric or the rubric has been deleted.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.6"
+            }
+        ]
+    }
+}

@@ -1,0 +1,48 @@
+{
+    "Local Authentication Security Log": {
+        "name": "Local Authentication Security Log",
+        "description": "The Local Authentication Security Log Brightspace Data Set has a record of users who are authorized for local login and whether two-factor authentication was enabled or disabled. This data set only captures data from May 2022 onwards.",
+        "columns": [
+            {
+                "name": "UserId",
+                "description": "Unique identifier of the user.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "7.6"
+            },
+            {
+                "name": "Action",
+                "description": "The action performed for the user. Possible values:",
+                "dataType": "nvarchar",
+                "columnSize": "70",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "7.6"
+            },
+            {
+                "name": "ModifiedBy",
+                "description": "UserId of the user who performed the action.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "7.6"
+            },
+            {
+                "name": "ModifiedDate",
+                "description": "Date and time when the action was performed (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "7.6"
+            }
+        ]
+    }
+}

@@ -1,0 +1,48 @@
+{
+    "Release Condition Results": {
+        "name": "Release Condition Results",
+        "description": "The Release Condition Results Brightspace Data Set returns all the release condition results and whether they have been met for applicable users in the organization. These are the resulting actions that occur when pre-requisites are met.",
+        "columns": [
+            {
+                "name": "ResultId",
+                "description": "Unique result identifier.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "6.7 - Updated key"
+            },
+            {
+                "name": "UserId",
+                "description": "Unique user identifier.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "6.7 - Updated key"
+            },
+            {
+                "name": "Met",
+                "description": "Indicates whether the result has been met or not met by the user.",
+                "dataType": "varchar",
+                "columnSize": "7",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Updated column size"
+            },
+            {
+                "name": "Version",
+                "description": "Indicates the version of the row. This information is used to determine which table row occurred first, similar to the way time stamps function in other data sets.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.7 \/ 4.2"
+            }
+        ]
+    }
+}

@@ -1,0 +1,118 @@
+{
+    "Activity Feed Post Log": {
+        "name": "Activity Feed Post Log",
+        "description": "The Activity Feed Post Log Brightspace Data Set returns details on all actions that occur to each post in the organization.",
+        "columns": [
+            {
+                "name": "LogId",
+                "description": "Unique log entry identifier",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "5.8 \/ 6.1"
+            },
+            {
+                "name": "UserId",
+                "description": "Unique identifier of the user who last modified the post.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.8 \/ 6.1"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.8 \/ 6.1"
+            },
+            {
+                "name": "PostId",
+                "description": "Unique post identifier.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.8 \/ 6.1"
+            },
+            {
+                "name": "PostType",
+                "description": "Type of post.",
+                "dataType": "nvarchar",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.8 \/ 6.1"
+            },
+            {
+                "name": "Action",
+                "description": "Indicates whether the post was created, updated, or deleted.",
+                "dataType": "nvarchar",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.8 \/ 6.1"
+            },
+            {
+                "name": "ActionDate",
+                "description": "Date the post was created, updated, or deleted (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.8 \/ 6.1"
+            },
+            {
+                "name": "DropboxId",
+                "description": "Unique ID of the posted assignment, if the post is of type assignment. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.8 \/ 6.1"
+            },
+            {
+                "name": "Content",
+                "description": "The text of the message post, if the post is of type message. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "3072",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.8 \/ 6.1"
+            },
+            {
+                "name": "CommentCount",
+                "description": "Number of comments associated with the post.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.8 \/ 6.1"
+            },
+            {
+                "name": "AttachmentCount",
+                "description": "Indicates the number of attachments associated with the post, if the post is of type message. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.8 \/ 6.1"
+            }
+        ]
+    }
+}

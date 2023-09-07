@@ -1,0 +1,338 @@
+{
+    "Role Details": {
+        "name": "Role Details",
+        "description": "The Role Details Brightspace Data Set returns a full set of attributes for each role in your organization.",
+        "columns": [
+            {
+                "name": "RoleId",
+                "description": "Unique role identifier.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "OrgId",
+                "description": "Unique org unit identifier. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "RoleName",
+                "description": "Name of the role.",
+                "dataType": "nvarchar",
+                "columnSize": "60",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "Description",
+                "description": "Description of the role. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "200",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "IsCascading",
+                "description": "Attribute indicating that the role cascades from other roles.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "InClassList",
+                "description": "Attribute indicating that users with this role appear in class lists.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "ClassListRoleName",
+                "description": "Attribute indicating the role name for users that appear in class lists. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "60",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "ClassListShowGroups",
+                "description": "Attribute indicating that members of this role can see groups consisting of learners in the class list.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "ClassListShowSections",
+                "description": "Attribute indicating that members of this role can see sections consisting of learners in the class list.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "ClassListDisplayRole",
+                "description": "Attribute indicating that members of this role appear in the class list with the role displayed.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "AccessInactiveCO",
+                "description": "Attribute indicating that the role can access inactive course offerings.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "HasSpecialAccess",
+                "description": "Attribute indicating that the role has special access to courses.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "AddToCourseOfferingGroups",
+                "description": "Attribute indicating that the role appears in the course offering group.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Field"
+            },
+            {
+                "name": "CanBeAutoEnrolledIntoGroups",
+                "description": "Attribute indicating that the role can be automatically enrolled into groups in a class.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "AddToCourseOfferingSections",
+                "description": "Attribute indicating that users with this role can be added to course offering sections.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "CanBeAutoEnrolledIntoSections",
+                "description": "Attribute indicating that users with this role can be automatically enrolled into course sections.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "ClassListDisplayRoleCategory",
+                "description": "Attributing that this role category appears in class lists.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "ClassListRoleCategory",
+                "description": "Attribute indicating this is a role that can be used to sort members of a class list.",
+                "dataType": "nvarchar",
+                "columnSize": "50",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "ClassListRoleCategoryOrder",
+                "description": "Attribute indicating the order in which the role categories should appear in the class list.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "AccessPastCourses",
+                "description": "Attribute indicating that this role can access past courses.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "AccessFutureCourses",
+                "description": "Attribute indicating that this role can access courses that have not yet started.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "SortOrder",
+                "description": "Indicates the sort order for users with this role.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "ShowInContent",
+                "description": "Indicates that this role should appear in Content.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "ShowInDiscussionAssess",
+                "description": "Indicates that this role should appear in Discussions assessments.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "ShowInDiscussionStats",
+                "description": "Indicates that this role should appear in Discussions statistics.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "ShowInGrades",
+                "description": "Indicates that this role should appear in Grades.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "ShowInAttendance",
+                "description": "Indicates that this role should appear in Attendance.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "AllowSelfEnrollInGroups",
+                "description": "Indicates that this role should have permission to self-enroll in groups.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "ShowInRegistration",
+                "description": "Indicates that this role should appear in registration information for a course.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "ShowInUserProgress",
+                "description": "Indicates that this role should appear in User Progress.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "RoleAlias",
+                "description": "Indicates the alias for this role. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "60",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.1"
+            },
+            {
+                "name": "Version",
+                "description": "Indicates the version for this row entry.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.7 \/ 5.1 - Updated column name"
+            },
+            {
+                "name": "RoleCode",
+                "description": "Code assigned to each role for mapping to other systems or organizations. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "50",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changes Column\u00a0Size"
+            }
+        ]
+    }
+}

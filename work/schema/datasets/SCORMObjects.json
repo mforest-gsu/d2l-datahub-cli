@@ -1,0 +1,118 @@
+{
+    "SCORM Objects": {
+        "name": "SCORM Objects",
+        "description": "The SCORM Objects Brightspace Data Set describes all the SCORM objects that exist, and which course and which topic they are located in. At time of launch, this data set contains data from July 2020 onwards. Remaining baseline data will be filled in upon a future release.",
+        "columns": [
+            {
+                "name": "ScormObjectId",
+                "description": "Unique identifier of the SCORM object.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ContentObjectId",
+                "description": "Unique identifier of the content topic.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ContentServiceContentId",
+                "description": "Unique identifier for the associated content in content service.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ContentServiceRevisionId",
+                "description": "Unique identifier of the associated revision in content service.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ContentServiceTopicId",
+                "description": "Unique identifier of the associated topic in content service.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "Title",
+                "description": "The title of the SCORM object. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "Description",
+                "description": "The description of the SCORM package. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "LearningStandard",
+                "description": "The learning standard used by the SCORM content, one of SCORM_11, SCORM_12, SCORM_2004_2ND_EDITION, SCORM_2004_3RD_EDITION, SCORM_2004_4TH_EDITION, AICC, XAPI, CMI5. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "100",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date when the SCORM content was last modified (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "LastModifiedBy",
+                "description": "User that last modified this SCORM object.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.5"
+            }
+        ]
+    }
+}

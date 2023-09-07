@@ -1,0 +1,138 @@
+{
+    "SCORM Visits": {
+        "name": "SCORM Visits",
+        "description": "The SCORM Visits Brightspace Data Set lists each user visit on each SCORM object, the overall completion status, and time spent on the visit.",
+        "columns": [
+            {
+                "name": "VisitId",
+                "description": "Unique identifier for each SCORM visit.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ScormObjectId",
+                "description": "Unique identifier of the SCORM object.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "UserId",
+                "description": "User associated with the SCORM visit.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "FirstAccessDate",
+                "description": "The date the user first accessed the SCORM object. Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "LastAccessDate",
+                "description": "The date the user last accessed the SCORM object. Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "CompletedDate",
+                "description": "The date the user first completed the SCORM object. Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "Completion",
+                "description": "The completion status of the user for the SCORM object. One of UNKNOWN, COMPLETED, or INCOMPLETE. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "100",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "Success",
+                "description": "The success status of the user for the SCORM object. One of UNKNOWN, PASSED, or FAILED. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "100",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "Score",
+                "description": "The score attained by the user for the SCORM object, between 0 and 100. Field can be null.",
+                "dataType": "float",
+                "columnSize": "24",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "TimeSpent",
+                "description": "The amount of time the user has had the SCORM object open, in seconds. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "Progress",
+                "description": "How much of the activity has been completed, between 0 and 100. Field can be null.",
+                "dataType": "float",
+                "columnSize": "24",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.15 \/ 7.3 - updated Type and Size"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date when the activity was last modified (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            }
+        ]
+    }
+}

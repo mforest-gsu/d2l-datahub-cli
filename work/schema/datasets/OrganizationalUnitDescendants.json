@@ -1,0 +1,28 @@
+{
+    "Organizational Unit Descendants": {
+        "name": "Organizational Unit Descendants",
+        "description": "The Organizational Unit Descendants Brightspace Data Set returns a list of all the org units and the corresponding descendants for an org unit. A descendant is defined as the child of an org unit.",
+        "columns": [
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "DescendantOrgUnitId",
+                "description": "Child org unit identifier",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.0"
+            }
+        ]
+    }
+}

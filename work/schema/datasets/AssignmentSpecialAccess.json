@@ -1,0 +1,108 @@
+{
+    "Assignment Special Access": {
+        "name": "Assignment Special Access",
+        "description": "The Assignment Special Access Brightspace Data Set returns all applicable special access start, end, and due dates for each assignment in the organization.",
+        "columns": [
+            {
+                "name": "DropboxId",
+                "description": "Unique assignment identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "5.8\/6.1"
+            },
+            {
+                "name": "UserId",
+                "description": "Unique user identifier.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "5.8\/6.1"
+            },
+            {
+                "name": "StartDate",
+                "description": "Assignment special access availability start date (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.8\/6.1"
+            },
+            {
+                "name": "EndDate",
+                "description": "Assignment special access availability end date (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.8\/6.1"
+            },
+            {
+                "name": "DueDate",
+                "description": "Assignment special access due date\u00a0(UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.8\/6.1"
+            },
+            {
+                "name": "ModifiedBy",
+                "description": "User who modified the assignment special access.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.8\/6.1"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date when the special access was last modified for the assignment (UTC)",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.8\/6.1"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Indicates if special access has been deleted.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.8\/6.1"
+            },
+            {
+                "name": "StartDateAvailabilityType",
+                "description": "Determines whether learners can view or access the assignment before the StartDate. See About Availability Type for details. No data available for assignments created before December 2022\/20.22.12. Field can be null.",
+                "dataType": "smallint",
+                "columnSize": "2",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.13"
+            },
+            {
+                "name": "EndDateAvailabilityType",
+                "description": "Determines whether learners can view or access the assignment after the EndDate. See About Availability Type for details. No data available for assignments created before December 2022\/20.22.12. Field can be null.",
+                "dataType": "smallint",
+                "columnSize": "2",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.13"
+            }
+        ]
+    }
+}

@@ -1,0 +1,108 @@
+{
+    "SCORM Interaction Attempts": {
+        "name": "SCORM Interaction Attempts",
+        "description": "The SCORM Interaction Attempts Brightspace Data Set lists the runtime interactions for each user on the activities they have attempted, including their response and time spent.",
+        "columns": [
+            {
+                "name": "VisitId",
+                "description": "Unique identifier of the visit.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "InteractionId",
+                "description": "Unique identifier of the interaction.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "AttemptNumber",
+                "description": "Number of the attempt on the interaction.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ActivityId",
+                "description": "Unique identifier of the activity.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "Timestamp",
+                "description": "Point in time at which the interaction was first made available to the learner for learner interaction and response. Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "Response",
+                "description": "Data generated when a learner responds to an interaction. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "Result",
+                "description": "Judgment of the correctness of the learner response (CORRECT, INCORRECT, UNANTICIPATED, NEUTRAL). Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "100",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "NumericResult",
+                "description": "Numeric judgement of the correctness of the learner response. Field can be null.",
+                "dataType": "float",
+                "columnSize": "24",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "TimeSpent",
+                "description": "The time the learner spent in this attempt, in seconds. Field can be null.",
+                "dataType": "float",
+                "columnSize": "24",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date when the interaction attempt was last modified (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            }
+        ]
+    }
+}

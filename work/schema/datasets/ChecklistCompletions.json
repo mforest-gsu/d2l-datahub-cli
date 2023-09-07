@@ -1,0 +1,48 @@
+{
+    "Checklist Completions": {
+        "name": "Checklist Completions",
+        "description": "The Checklist Completions Brightspace Data Set returns the completion status of each checklist item.",
+        "columns": [
+            {
+                "name": "UserId",
+                "description": "Unique user Identifier.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "DateCompleted",
+                "description": "Checklist completion date (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "ItemId",
+                "description": "Unique checklist item identifier.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date the content user completion was last modified (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.8"
+            }
+        ]
+    }
+}

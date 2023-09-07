@@ -1,0 +1,228 @@
+{
+    "Assignment Summary": {
+        "name": "Assignment Summary",
+        "description": "The Assignment Summary Brightspace Data Set returns information on the assignments for your org units.",
+        "columns": [
+            {
+                "name": "DropboxId",
+                "description": "Unique assignment identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "Name",
+                "description": "Assignment name",
+                "dataType": "nvarchar",
+                "columnSize": "128",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "Category",
+                "description": "Assignment category. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "128",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "Type",
+                "description": "Individual\/group assignment",
+                "dataType": "varchar",
+                "columnSize": "10",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "GradeItemId",
+                "description": "Unique grade item identifier. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "PossibleScore",
+                "description": "Possible score a user can achieve on the assignment. Field can be null.",
+                "dataType": "decimal",
+                "columnSize": "19, 9",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.8 \/ 5.2 - Updated column size"
+            },
+            {
+                "name": "StartDate",
+                "description": "Assignment availability start date (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "EndDate",
+                "description": "Assignment availability end date (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "DueDate",
+                "description": "Assignment due date\u00a0(UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "IsRestricted",
+                "description": "Is assignment restricted",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Is assignment deleted",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "TurnItInEnabled",
+                "description": "Is TurnItIn enabled",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "IsHidden",
+                "description": "True or false value indicating whether the assignment is hidden.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.2"
+            },
+            {
+                "name": "SortOrder",
+                "description": "Display sort order used for the content objects",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "2.2"
+            },
+            {
+                "name": "SubmissionType",
+                "description": "Indicates the format submission type for the assignment being submitted. Values for this column include File, Text, On Paper, and Observed.",
+                "dataType": "varchar",
+                "columnSize": "18",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.2"
+            },
+            {
+                "name": "CompletionType",
+                "description": "Indicates how the assignment was completed. Values for this column include OnSubmission, DueDate, ManuallyByLearner, and OnEvaluation.",
+                "dataType": "varchar",
+                "columnSize": "27",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.2"
+            },
+            {
+                "name": "ResultId",
+                "description": "Unique release condition result identifier. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "4.9 \/ 5.3"
+            },
+            {
+                "name": "CategoryId",
+                "description": "Unique category identifier for the assignment. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.9 \/ 6.2"
+            },
+            {
+                "name": "Version",
+                "description": "Indicates the version of the row. This information is used to determine which table row occurred first, similar to the way time stamps function in other data sets.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "StartDateAvailabilityType",
+                "description": "Determines whether learners can view or access the assignment before the StartDate. See About Availability Type for details. All assignments with start dates created before December 2022\/20.22.12 have default value '0'. Field can be null.",
+                "dataType": "smallint",
+                "columnSize": "2",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.13"
+            },
+            {
+                "name": "EndDateAvailabilityType",
+                "description": "Determines whether learners can view or access the assignment after the EndDate. See About Availability Type for details. All assignments with end dates created before December 2022\/20.22.12 have default value '0'. Field can be null.",
+                "dataType": "smallint",
+                "columnSize": "2",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.13"
+            }
+        ]
+    }
+}

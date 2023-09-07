@@ -1,0 +1,78 @@
+{
+    "Gradebook Settings": {
+        "name": "Gradebook Settings",
+        "description": "The Grade Book Settings Brightspace Data Set returns all the grade book settings for your org units.",
+        "columns": [
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "GradeSchemeId",
+                "description": "Unique grade scheme identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "2.5 \/ 3.0 - Removed FK"
+            },
+            {
+                "name": "GradingSystem",
+                "description": "Type of grading system setup for the course",
+                "dataType": "varchar",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "UngradedItems",
+                "description": "Drop ungraded items\/Treat them as 0",
+                "dataType": "varchar",
+                "columnSize": "25",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "IsAdjustedFinalGradeReleased",
+                "description": "Is final adjusted grade released to user. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "IsCalculatedFinalGradeReleased",
+                "description": "Is calculated adjusted grade released to user. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date gradebook settings were last modified (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.7"
+            }
+        ]
+    }
+}

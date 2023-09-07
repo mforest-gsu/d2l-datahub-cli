@@ -1,0 +1,108 @@
+{
+    "Rubric Object Levels": {
+        "name": "Rubric Object Levels",
+        "description": "The Rubric Object Levels Brightspace Data Set returns information about the rubric levels in a rubric criteria.",
+        "columns": [
+            {
+                "name": "RubricId",
+                "description": "Unique rubric Identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "LevelId",
+                "description": "Identifier for the level associated with the rubric",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "Name",
+                "description": "Name of the level",
+                "dataType": "nvarchar",
+                "columnSize": "256",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "Description",
+                "description": "Description of the level. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "Feedback",
+                "description": "Automated feedback provided by the rubric for the corresponding level. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "Value",
+                "description": "Value assigned to the level. This is populated based on the rubric type and scoring method. Field can be null.",
+                "dataType": "decimal",
+                "columnSize": "19, 9",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.8 \/ 5.2 - Updated column size"
+            },
+            {
+                "name": "RangeStartValue",
+                "description": "Level range start value which is populated based on the rubric type and scoring method. Field can be null.",
+                "dataType": "decimal",
+                "columnSize": "19, 9",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.8 \/ 5.2 - Updated column size"
+            },
+            {
+                "name": "SortOrder",
+                "description": "Sort order for the levels",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "LevelSetId",
+                "description": "Identifier for the level set to which the level belongs",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Set to true when Level Set or Level have been deleted. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            }
+        ]
+    }
+}

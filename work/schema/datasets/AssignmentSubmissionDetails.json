@@ -1,0 +1,128 @@
+{
+    "Assignment Submission Details": {
+        "name": "Assignment Submission Details",
+        "description": "The Assignment Submission Details Brightspace Data Set returns details of each individual submission made by the user for all your org units. Results are ordered from newest to oldest.",
+        "columns": [
+            {
+                "name": "SubmissionId",
+                "description": "Unique submission identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "2.5 \/ 3.0 - Removed FK"
+            },
+            {
+                "name": "DropboxId",
+                "description": "Unique assignment identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "UserId",
+                "description": "Unique user identifier. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.7 \/ 5.1 - Removed FK"
+            },
+            {
+                "name": "GroupId",
+                "description": "Unique group identifier for the submission made to the assignment. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Type and Column Size"
+            },
+            {
+                "name": "NumberOfFilesSubmitted",
+                "description": "Number of files submitted. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Type and Column Size"
+            },
+            {
+                "name": "TotalFileSize",
+                "description": "Total file size of all submissions made, in bytes.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.14 \/ 7.2 - Updated Description"
+            },
+            {
+                "name": "SubmittedByUserId",
+                "description": "Submission made by user ID",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "DateSubmitted",
+                "description": "Date the submission was made (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "Comments",
+                "description": "Comments on the submission. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "IsTurnItInExempt",
+                "description": "Is exempt from TurnItIn. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Is submission deleted",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "IsPreview",
+                "description": "Is submission preview",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            }
+        ]
+    }
+}

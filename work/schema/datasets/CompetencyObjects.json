@@ -1,0 +1,128 @@
+{
+    "Competency Objects": {
+        "name": "Competency Objects",
+        "description": "The Competency Objects Brightspace Data Set returns the competencies and learning objectives which have been created within your organization.",
+        "columns": [
+            {
+                "name": "ObjectId",
+                "description": "Unique competency or learning objective ID",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "Name",
+                "description": "Competency name",
+                "dataType": "nvarchar",
+                "columnSize": "256",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "Type",
+                "description": "Competency type",
+                "dataType": "varchar",
+                "columnSize": "256",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "ReadyForEvaluation",
+                "description": "Is flagged as ready for evaluation",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "Status",
+                "description": "Status of competency: Draft, In Review, Approved, Archived. Field can be null.",
+                "dataType": "varchar",
+                "columnSize": "9",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "Description",
+                "description": "Competency or learning objective description. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "NeedReevaluation",
+                "description": "Flag indicating if the competency or learning objective needs to be reevaluated",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "ReevaluationIfAchieved",
+                "description": "Determines if reevaluation will occur when the competency or learning objective is updated and the competency or learning objective has already been achieved. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "ReevaluationIfNotAchieved",
+                "description": "Determines if reevaluation will occur when the competency or learning objective is updated and the competency or learning objective has not been achieved. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "AdditionalIdentifier",
+                "description": "Additional competency or learning objective identifier. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "512",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "IsHidden",
+                "description": "Indicates if the competency is hidden to consumers.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.9 \/ 4.4"
+            }
+        ]
+    }
+}

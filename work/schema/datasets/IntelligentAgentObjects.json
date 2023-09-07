@@ -1,0 +1,238 @@
+{
+    "Intelligent Agent Objects": {
+        "name": "Intelligent Agent Objects",
+        "description": "The Intelligent Agent Objects Brightspace Data Set describes all the intelligent agents created in your organization.",
+        "columns": [
+            {
+                "name": "AgentId",
+                "description": "Unique agent identifier.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier where the agent was created.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "AgentName",
+                "description": "Name of intelligent agent.",
+                "dataType": "nvarchar",
+                "columnSize": "128",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "Description",
+                "description": "The description of the intelligent agent. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "Enabled",
+                "description": "Indicates if the agent is enabled.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "SpecificRoles",
+                "description": "Array of the roles the agent allies to. If null, it applies to all users visible in the Classlist. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Updated Description"
+            },
+            {
+                "name": "LoginConditionEnabled",
+                "description": "Indicates if the agent looks at login activity.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "LoginConditionThreshold",
+                "description": "Number of days the login threshold is set to. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "LoginConditionType",
+                "description": "The type of login activity: User has not logged in for at least X days or user has logged in during the past X days. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "14",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "AccessConditionEnabled",
+                "description": "Indicates if the agent looks at course access activity.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "AccessConditionThreshold",
+                "description": "Number of days the course activity threshold is set to. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "AccessConditionType",
+                "description": "The type of course activity: User has not accessed course in for at least X days or user has accessed course in during the past X days. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "20",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "ResultId",
+                "description": "Unique release condition result identifier. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.7 \/ 6.0 - Changed Type and Column Size"
+            },
+            {
+                "name": "RepeatType",
+                "description": "Indicates whether the action is taken once or every time the criteria is met for a user.",
+                "dataType": "nvarchar",
+                "columnSize": "10",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "EmailWhenSatisfied",
+                "description": "Indicates if an email is sent when the criteria are satisfied.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "EnableSchedule",
+                "description": "Indicates if a schedule is used.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "ScheduleType",
+                "description": "Defines the frequency the schedule runs on: daily, weekly, monthly, annually. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "ScheduleRepeatsEvery",
+                "description": "The number of days, weeks, etc between runs. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "StartDate",
+                "description": "When the schedule begins (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "EndDate",
+                "description": "When the schedule ends (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "LastModified",
+                "description": "The date when the agent was last modified (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "LastModifiedBy",
+                "description": "The unique user identifier of the user who last changed the agent. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "6.16 \/ 7.4 - Updated description"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Indicates if the agent is deleted.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            }
+        ]
+    }
+}

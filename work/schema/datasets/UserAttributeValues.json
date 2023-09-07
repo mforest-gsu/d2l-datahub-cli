@@ -1,0 +1,78 @@
+{
+    "User Attribute Values": {
+        "name": "User Attribute Values",
+        "description": "The User Attribute Values Brightspace Data Set returns a list of all values for all defined user attributes for each user in your organization. If no user attributes are defined for your organization, the data set will not generate.",
+        "columns": [
+            {
+                "name": "UserId",
+                "description": "Unique identifier of the user who the attribute is assigned to.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "5.7 \/ 6.0 - Added FK"
+            },
+            {
+                "name": "AttributeId",
+                "description": "Unique identifier of the attribute.",
+                "dataType": "nvarchar",
+                "columnSize": "128",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "Value",
+                "description": "Value or list of values assigned to the user for the given attribute. Formatted as comma-separated values (CSV).",
+                "dataType": "nvarchar",
+                "columnSize": "4000",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.19 \/ 8.5 - Updated description"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date the attribute value was last modified (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "ModifiedBy",
+                "description": "User who last modified the attribute value.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Indicates if the attribute value is deleted (TRUE\u00a0- 1) or not (FALSE - 0).",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "Version",
+                "description": "Indicates the version of the row. This information is used to determine which row occurred first.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            }
+        ]
+    }
+}

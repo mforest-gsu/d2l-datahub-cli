@@ -1,0 +1,108 @@
+{
+    "SIS Course Merge Log": {
+        "name": "SIS Course Merge Log",
+        "description": "The SIS\u00a0Course Merge Log Brightspace Data Set returns a list of attempts to merge or unmerge course offerings using the SIS\u00a0Course Merge tool. This data set only captures data from July 2023 onwards.",
+        "columns": [
+            {
+                "name": "BatchId",
+                "description": "The batch ID for this job.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "8.6"
+            },
+            {
+                "name": "JobType",
+                "description": "What type of job was requested: Merge or Unmerge.",
+                "dataType": "nvarchar",
+                "columnSize": "32",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "8.6"
+            },
+            {
+                "name": "Status",
+                "description": "The status of the job: Started, CompletedWithErrors, Completed, or Failed.",
+                "dataType": "nvarchar",
+                "columnSize": "32",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "8.6"
+            },
+            {
+                "name": "OriginalTargetOrgUnitId",
+                "description": "The target course which the source courses are merged or were originally merged into.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "8.6"
+            },
+            {
+                "name": "OriginalSourceOrgUnitId",
+                "description": "The source course which is being merged or was previously merged into the target.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "8.6"
+            },
+            {
+                "name": "SourceSystemId",
+                "description": "The ID of the source system that this course belongs to.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "8.6"
+            },
+            {
+                "name": "NumberOfCoursesInBatch",
+                "description": "The total number of source courses with the same batch ID being attempted to merge or unmerge. Only shown for course merge jobs with the \"Started\" status. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "8.6"
+            },
+            {
+                "name": "UserId",
+                "description": "The user who requested the merge or unmerge.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "8.6"
+            },
+            {
+                "name": "ErrorType",
+                "description": "The type of error that occurred. Possible values: Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "48",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "8.6"
+            },
+            {
+                "name": "Timestamp",
+                "description": "The date and time when the merge or unmerge event occurred (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "8.6"
+            }
+        ]
+    }
+}

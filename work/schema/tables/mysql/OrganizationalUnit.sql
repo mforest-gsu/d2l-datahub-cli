@@ -1,0 +1,19 @@
+DROP TABLE IF EXISTS `OrganizationalUnit`;
+
+CREATE TABLE `OrganizationalUnit` (
+  `OrgUnitId` INT NOT NULL,
+  `Organization` VARCHAR(50) NOT NULL,
+  `Type` VARCHAR(50) NOT NULL,
+  `Name` VARCHAR(128) DEFAULT NULL,
+  `Code` VARCHAR(50) DEFAULT NULL,
+  `StartDate` DATETIME DEFAULT NULL,
+  `EndDate` DATETIME DEFAULT NULL,
+  `IsActive` TINYINT NOT NULL,
+  `CreatedDate` DATETIME NOT NULL,
+  `IsDeleted` TINYINT DEFAULT NULL,
+  `DeletedDate` DATETIME DEFAULT NULL,
+  `RecycledDate` DATETIME DEFAULT NULL,
+  `Version` BIGINT NOT NULL,
+  `OrgUnitTypeId` INT NOT NULL,
+  UNIQUE KEY (`OrgUnitId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

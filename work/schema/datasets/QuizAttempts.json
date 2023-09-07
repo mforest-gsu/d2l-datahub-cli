@@ -1,0 +1,198 @@
+{
+    "Quiz Attempts": {
+        "name": "Quiz Attempts",
+        "description": "The Quiz Attempts Brightspace Data Set returns details for each user quiz attempt for all your org units. This data set includes completed quiz attempts and in-progress quiz attempts. Note: As of the July 2023\/20.23.7 release, the Grace Period and Allow the student to continue working, but automatically score the attempt as zero timing options are no longer available within the Quizzes tool. This affects the data within this data set in the following ways:",
+        "columns": [
+            {
+                "name": "AttemptId",
+                "description": "Unique attempt identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "QuizId",
+                "description": "Unique quiz identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "6.7 - Updated key"
+            },
+            {
+                "name": "UserId",
+                "description": "Unique user identifier",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "AttemptNumber",
+                "description": "Attempt number for the quiz",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "TimeStarted",
+                "description": "Quiz attempt start time\u00a0(UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "TimeCompleted",
+                "description": "Quiz attempt completion time\u00a0(UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "Score",
+                "description": "Score for the attempt. Field can be null.",
+                "dataType": "decimal",
+                "columnSize": "19, 9",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.8 \/ 5.2 - Updated column size"
+            },
+            {
+                "name": "IsGraded",
+                "description": "If a quiz has been graded",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "OldAttemptNumber",
+                "description": "Number of previous times a learner has attempted the quiz. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.10"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Indicates that the quiz attempt is deleted. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.10"
+            },
+            {
+                "name": "PossibleScore",
+                "description": "Indicates the total possible value of the quiz attempt. This should indicate what the quiz \"out of\"\u00a0score is, even if the quiz total possible value changes after the attempt is made. Field can be null.",
+                "dataType": "decimal",
+                "columnSize": "19, 9",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.8 \/ 6.1"
+            },
+            {
+                "name": "IsRetakeIncorrectOnly",
+                "description": "Indicates if the quiz allows Retake Incorrect Only.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.11 \/ 6.4"
+            },
+            {
+                "name": "DueDate",
+                "description": "Quiz attempt due date (UTC). Based on when the learner begins the attempt, even if the instructor changes the quiz due date later. Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.11"
+            },
+            {
+                "name": "TimeLimit",
+                "description": "Amount of time, in minutes, that a learner has to complete the quiz attempt. Based on when the learner begins the attempt, even if the instructor changes the quiz time limit later. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.11"
+            },
+            {
+                "name": "TimeLimitEnforced",
+                "description": "Indicates whether the time limit on this quiz attempt is enforced. Based on when the learner begins the attempt, even if the instructor changes the time limit enforced setting later. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.11"
+            },
+            {
+                "name": "GracePeriod",
+                "description": "Amount of time, in minutes, that a learner has to complete the quiz attempt in addition to the time limit. Based on when the learner begins the attempt, even if the instructor changes the quiz grace period later. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.11"
+            },
+            {
+                "name": "GracePeriodExceededBehaviour",
+                "description": "If the time limit is enforced for this attempt, indicates the desired behavior when the grace period is exceeded. Based on when the learner begins the attempt, even if the instructor changes the exceeded grace period behavior setting later. Types can be: Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "128",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.11"
+            },
+            {
+                "name": "ExtendedDeadline",
+                "description": "The extended deadline learners are allowed beyond the grace period for this attempt, in minutes. Based on when the learner begins the attempt, even if the instructor changes the quiz's extended deadline later. Beyond this extended deadline, the learner's attempt is graded as 0. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.11"
+            }
+        ]
+    }
+}

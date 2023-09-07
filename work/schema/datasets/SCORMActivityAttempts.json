@@ -1,0 +1,108 @@
+{
+    "SCORM Activity Attempts": {
+        "name": "SCORM Activity Attempts",
+        "description": "The SCORM Activity Attempts Brightspace Data Set lists each user attempt on each activity within a SCORM package, the completion status, success status, and time spent for each attempt.",
+        "columns": [
+            {
+                "name": "VisitId",
+                "description": "Unique identifier of the SCORM visit.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ActivityId",
+                "description": "Unique identifier of the activity.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "AttemptNumber",
+                "description": "Number of the attempt on the objective.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "Completion",
+                "description": "The completion status of the learner in this attempt (UNKNOWN, COMPLETED, INCOMPLETE). Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "100",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "Success",
+                "description": "The success status of the learner in this attempt (UNKNOWN, PASSED, FAILED). Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "100",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "Score",
+                "description": "The score achieved by the learner in this attempt, between 0 and 100. Field can be null.",
+                "dataType": "float",
+                "columnSize": "24",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ScoreRaw",
+                "description": "The raw score that the learner achieved in this attempt, between the min and max score of the activity. Field can be null.",
+                "dataType": "float",
+                "columnSize": "24",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "TimeSpent",
+                "description": "The time the learner spent in this attempt, in seconds. Field can be null.",
+                "dataType": "float",
+                "columnSize": "24",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "Progress",
+                "description": "How much of the activity was completed in this attempt, between 0 and 100. Field can be null.",
+                "dataType": "float",
+                "columnSize": "24",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date when the activity attempt was last modified (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            }
+        ]
+    }
+}

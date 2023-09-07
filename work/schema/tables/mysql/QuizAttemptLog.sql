@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS `QuizAttemptLog`;
+
+CREATE TABLE `QuizAttemptLog` (
+  `LogId` BIGINT NOT NULL,
+  `AttemptId` BIGINT NOT NULL,
+  `EventTypeId` INT NOT NULL,
+  `Name` VARCHAR(256) DEFAULT NULL,
+  `Description` VARCHAR(256) DEFAULT NULL,
+  `EventTime` DATETIME NOT NULL,
+  `IPAddress` VARCHAR(15) DEFAULT NULL,
+  UNIQUE KEY (`LogId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

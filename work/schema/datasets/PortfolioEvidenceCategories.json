@@ -1,0 +1,68 @@
+{
+    "Portfolio Evidence Categories": {
+        "name": "Portfolio Evidence Categories",
+        "description": "The Portfolio Evidence Categories Brightspace Data Set details the one or many categories that are mapped to each piece of evidence in the Portfolios in your organization.",
+        "columns": [
+            {
+                "name": "CategoryId",
+                "description": "The identifier for the category",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "5.7 \/ 6.0 - Updated column size"
+            },
+            {
+                "name": "EvidenceId",
+                "description": "The identifier for the evidence",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "5.7 \/ 6.0 - Updated column size"
+            },
+            {
+                "name": "Group",
+                "description": "Indicates how the category was linked to the evidence. By the learner or instructor.",
+                "dataType": "nvarchar",
+                "columnSize": "30",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "4.7 \/ 5.1 - Updated description"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Indicates whether the link between the category and the evidence is deleted",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.0"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date when the portfolio category was last modified (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.0"
+            },
+            {
+                "name": "LastModifiedBy",
+                "description": "User who last modified the portfolio category",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.0"
+            }
+        ]
+    }
+}

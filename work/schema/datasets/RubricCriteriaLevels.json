@@ -1,0 +1,78 @@
+{
+    "Rubric Criteria Levels": {
+        "name": "Rubric Criteria Levels",
+        "description": "The Rubric Criteria Levels Brightspace Data Set returns the details for all rubric criteria and associated levels where they exist.",
+        "columns": [
+            {
+                "name": "RubricId",
+                "description": "Unique rubric identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "4.9 \/ 5.3 - Corrected PK"
+            },
+            {
+                "name": "CriterionId",
+                "description": "Identifier for the criterion associated with the rubric levels",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "4.9 \/ 5.3 - Corrected PK"
+            },
+            {
+                "name": "Description",
+                "description": "Description of the criterion. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "2.0"
+            },
+            {
+                "name": "Feedback",
+                "description": "Automated feedback provided by the rubric for the rubric criterion. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "2.0"
+            },
+            {
+                "name": "Value",
+                "description": "Value assigned to the criterion in the rubric. This is populated based on the rubric type and the scoring method. Field can be null",
+                "dataType": "decimal",
+                "columnSize": "19, 9",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "2.0"
+            },
+            {
+                "name": "LevelId",
+                "description": "Identifier of the level associated with the criterion",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "2.0"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Set to true if the criterion has been deleted",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "2.0"
+            }
+        ]
+    }
+}

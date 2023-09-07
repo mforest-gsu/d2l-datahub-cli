@@ -1,0 +1,178 @@
+{
+    "Competency Activities": {
+        "name": "Competency Activities",
+        "description": "The Competency Activities Brightspace Data Set retrieves the data required to associate rubrics with competency activities. Using the returned data, clients can validate that they have configured the associations correctly.",
+        "columns": [
+            {
+                "name": "ActivityId",
+                "description": "Unique identifier for the activity associated with the competency.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "2.5 \/ 3.0"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Identifier for the Org Unit associated with the competency.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "1.8"
+            },
+            {
+                "name": "ActivityName",
+                "description": "The name of the activity.",
+                "dataType": "nvarchar",
+                "columnSize": "256",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.8"
+            },
+            {
+                "name": "ActivityTypeId",
+                "description": "Identifier for the activity type",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.8"
+            },
+            {
+                "name": "AssessmentType",
+                "description": "Rubric assessment type",
+                "dataType": "varchar",
+                "columnSize": "7",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.8"
+            },
+            {
+                "name": "ObjectLookupId",
+                "description": "Lookup object id that is associated with the object.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.8"
+            },
+            {
+                "name": "RubricId",
+                "description": "Identifier of the rubric. This field is only valid for competency activities associated with a rubric. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.8"
+            },
+            {
+                "name": "LevelId",
+                "description": "Identifier of the rubric level associated with the competency activity. This field is only valid for competency activities associated with a rubric. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.8"
+            },
+            {
+                "name": "RubricCriterionId",
+                "description": "Identifier of the rubric criterion associated with the activity. This field is only valid for competency activities associated with a rubric and scored at the criteria level. If the overall rubric score is used, the value is null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.8"
+            },
+            {
+                "name": "AssessmentThresholdCriteria",
+                "description": "For numeric activity only. Can be >= (greater than or equal to), > (greater than), = (equal to), <= (less than or equal to), or < (less than). Field can be null.",
+                "dataType": "varchar",
+                "columnSize": "2",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.8"
+            },
+            {
+                "name": "AssessmentThreshold",
+                "description": "When a competency activity is evaluated, the assessment threshold is the value that must be met by a learner to achieve the competency. Field can be null.",
+                "dataType": "decimal",
+                "columnSize": "19, 9",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.8"
+            },
+            {
+                "name": "IsAutoEval",
+                "description": "Indicates if this competency is automatically evaluated. If this is false, the competency is a manual evaluation.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.8"
+            },
+            {
+                "name": "RubricName",
+                "description": "Name of the rubric. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "256",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.8"
+            },
+            {
+                "name": "RubricLevelRequired",
+                "description": "Level required to achieve this learning objective. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "256",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "ObjectId",
+                "description": "Identifier of the competency object associated with the competency activity. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "1.8"
+            },
+            {
+                "name": "ActivityType",
+                "description": "Type of activity. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "50",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0"
+            },
+            {
+                "name": "Version",
+                "description": "Indicates the version of the row. This information is used to determine which table row occurred first, similar to the way time stamps function in other data sets.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0"
+            }
+        ]
+    }
+}

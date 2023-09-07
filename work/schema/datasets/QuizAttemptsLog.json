@@ -1,0 +1,78 @@
+{
+    "Quiz Attempts Log": {
+        "name": "Quiz Attempts Log",
+        "description": "The Quiz Attempts Log Brightspace Data Set returns details on the events that occur during a quiz attempt. This data set includes completed quiz attempts and in-progress quiz attempts. There is no explicit time cap placed on this data set.\u00a0 However, data is sorted from newest to oldest and older data will be dropped if the data set reaches the row limit.",
+        "columns": [
+            {
+                "name": "LogId",
+                "description": "Unique log identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "AttemptId",
+                "description": "Unique attempt identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "EventTypeId",
+                "description": "Unique event type identifier",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "Name",
+                "description": "Name of the event. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "256",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "Description",
+                "description": "Description of the event. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "256",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "EventTime",
+                "description": "Event occurred time\u00a0(UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            },
+            {
+                "name": "IPAddress",
+                "description": "IPAddress at which the event occurred. Field can be null.",
+                "dataType": "varchar",
+                "columnSize": "15",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.6 \/ 4.1"
+            }
+        ]
+    }
+}

@@ -1,0 +1,128 @@
+{
+    "Release Condition Objects": {
+        "name": "Release Condition Objects",
+        "description": "The Release Condition Objects Brightspace Data Set returns all the release conditions (pre-requisites and results) that have been created in the organization.",
+        "columns": [
+            {
+                "name": "PreRequisiteId",
+                "description": "Unique pre-requisite identifier.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "6.7 - Updated key"
+            },
+            {
+                "name": "ResultId",
+                "description": "Unique result identifier.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "3.7 \/ 4.2"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Unique organization identifier.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "6.7 - Updated key"
+            },
+            {
+                "name": "Name",
+                "description": "Pre-requisite condition name.",
+                "dataType": "varchar",
+                "columnSize": "64",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Updated column size"
+            },
+            {
+                "name": "IsNegativeCondition",
+                "description": "Indicates if the condition relies on something not happening.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.7 \/ 4.2"
+            },
+            {
+                "name": "PreRequisiteToolId",
+                "description": "Unique pre-requisite tool identifier.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.5 - Corrected Field name"
+            },
+            {
+                "name": "Id1",
+                "description": "Unique identifier for the pre-requisite tool. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Removed FK"
+            },
+            {
+                "name": "Id2",
+                "description": "Secondary unique identifier for the pre-requisite tool when needed. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Removed FK"
+            },
+            {
+                "name": "ResultToolId",
+                "description": "Unique result tool identifier.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "3.7 \/ 4.2"
+            },
+            {
+                "name": "UsesPercentage",
+                "description": "Indicates if the pre-requisite is looking at a grade percentage.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.7 \/ 4.2"
+            },
+            {
+                "name": "OperatorTypeDesc",
+                "description": "Defines where all or any of the pre-requisites need to be met. Field can be null.",
+                "dataType": "varchar",
+                "columnSize": "3",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.7 \/ 4.2"
+            },
+            {
+                "name": "Version",
+                "description": "Indicates the version of the row. This information is used to determine which table row occurred first, similar to the way time stamps function in other data sets.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.7 \/ 4.2"
+            }
+        ]
+    }
+}

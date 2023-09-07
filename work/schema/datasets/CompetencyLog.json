@@ -1,0 +1,138 @@
+{
+    "Competency Log": {
+        "name": "Competency Log",
+        "description": "The Competency Log Brightspace Data Set returns data changes to the competency structure.",
+        "columns": [
+            {
+                "name": "CompetencyLogId",
+                "description": "Unique log identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "1.5"
+            },
+            {
+                "name": "LogTypeId",
+                "description": "Log type identifier",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.5"
+            },
+            {
+                "name": "LogTypeName",
+                "description": "Name of the log type. Field can be null.",
+                "dataType": "varchar",
+                "columnSize": "19",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "ObjectId",
+                "description": "Identifier for the object that created the change in the competency structure recorded in the log.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "1.5"
+            },
+            {
+                "name": "ObjectTypeId",
+                "description": "Identifier for the object type that created the change in the competency structure recorded in the log.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.5"
+            },
+            {
+                "name": "ObjectTypeName",
+                "description": "Name of the object type. Field can be null.",
+                "dataType": "varchar",
+                "columnSize": "18",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "ObjectVersion",
+                "description": "Version of the object that created the change in the competency structure",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.5"
+            },
+            {
+                "name": "LogDateTime",
+                "description": "Time and date of the entry in the log (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.5"
+            },
+            {
+                "name": "ModifiedBy",
+                "description": "User who modified the competency structure.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "1.5"
+            },
+            {
+                "name": "IndirectObjectId",
+                "description": "Identifier for the indirect object that created the change in the log. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.5"
+            },
+            {
+                "name": "IndirectObjectTypeName",
+                "description": "Name of the indirect object type. Field can be null.",
+                "dataType": "varchar",
+                "columnSize": "18",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "IndirectObjectTypeId",
+                "description": "Identifier of the type of indirect object that created the change in the log. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.5"
+            },
+            {
+                "name": "IndirectObjectVersion",
+                "description": "Version of the object that indirectly created the change in the log. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.5"
+            }
+        ]
+    }
+}

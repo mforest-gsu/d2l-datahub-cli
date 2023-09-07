@@ -1,0 +1,108 @@
+{
+    "Content Files Properties Log": {
+        "name": "Content Files Properties Log",
+        "description": "In the Content Files Properties Log Brightspace Data Set, each row represents a change (created, edited, or deleted) to a file that is linked to a content object within an org unit. The data set only captures changes to content files from July 2022 onwards. Q: Does this data set provide the size of all files within Brightspace?A: No. This data set only provides data on files associated with content objects. Additionally, it only surfaces data for newly uploaded, edited, or deleted files (associated with content) starting with the release of the data set in July 2022. It does not provide any historical data. Q: Are Active and Inactive courses included in the data?A: Yes. As long as the files are associated with a content object, it doesn't matter whether the course is active or inactive. Q: Are all file formats included in the data?A: Yes, all file formats are included when associated with a content object. However, please be aware that this data set does NOT include files that are embedded within an HTML content object. Q: If courses are copied (via Course Copy or CCS) or imported, will files associated with the newly created course be included in the data?A: Yes, files that are associated with content objects within a copied or imported course are surfaced in the data set with \"Created\" in the Action field. For more information about this data set, refer to New Brightspace Data Set - Content Files Properties Log in Brightspace Community.",
+        "columns": [
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "7.8"
+            },
+            {
+                "name": "ContentObjectId",
+                "description": "Unique identifier of the content object.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "7.8"
+            },
+            {
+                "name": "Action",
+                "description": "Action taken on the file: Created, Updated, or Deleted.",
+                "dataType": "nvarchar",
+                "columnSize": "10",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.8"
+            },
+            {
+                "name": "FilePath",
+                "description": "Virtual file path of the file.",
+                "dataType": "nvarchar",
+                "columnSize": "10000",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.8"
+            },
+            {
+                "name": "FileName",
+                "description": "Name of the file.",
+                "dataType": "nvarchar",
+                "columnSize": "512",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.8"
+            },
+            {
+                "name": "FileExtension",
+                "description": "Extension of the file.",
+                "dataType": "nvarchar",
+                "columnSize": "512",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.8"
+            },
+            {
+                "name": "FileSizeBytes",
+                "description": "Size of the file in bytes.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.8"
+            },
+            {
+                "name": "UploadDate",
+                "description": "Time the file was uploaded (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.8"
+            },
+            {
+                "name": "LastModifiedBy",
+                "description": "Unique user identifier that last modified the file. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "7.8"
+            },
+            {
+                "name": "LastModified",
+                "description": "The last time the file was modified (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "7.8"
+            }
+        ]
+    }
+}

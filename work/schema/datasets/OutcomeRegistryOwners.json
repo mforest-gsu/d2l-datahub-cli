@@ -1,0 +1,88 @@
+{
+    "Outcome Registry Owners": {
+        "name": "Outcome Registry Owners",
+        "description": "In the Outcomes Registry Owners Brightspace Data Set, each entry represents a registry for both program and org unit owned registries. The data set only captures data from June 2021 onwards.",
+        "columns": [
+            {
+                "name": "OwnerType",
+                "description": "Type of entity which owns this registry. Set to 1 if owner is org unit, set to 2 if owner is program.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "OwnerId",
+                "description": "ID or org unit owner when OwnerType is 1. ID of program when OwnerType is 2.",
+                "dataType": "nvarchar",
+                "columnSize": "255",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "6.14 \/ 7.2 - Updated Column size"
+            },
+            {
+                "name": "RegistryId",
+                "description": "ID of registry for the org unit or program.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "CreatedDate",
+                "description": "Date when this item was initially created (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "CreatedBy",
+                "description": "ID of user who initially created this item. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "LastModifiedDate",
+                "description": "Date when this item was last modified (UTC). Contains created date upon creation and deleted date for deleted items.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "LastModifiedBy",
+                "description": "ID of user who last modified, created, or deleted this item.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "6.8"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Indicates if this item has been deleted.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.8"
+            }
+        ]
+    }
+}

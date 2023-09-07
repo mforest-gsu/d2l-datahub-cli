@@ -1,0 +1,128 @@
+{
+    "SCORM Activities": {
+        "name": "SCORM Activities",
+        "description": "The SCORM Activities Brightspace Data Set describes the activities that exist in the SCORM package. Each activity will only be known after the first user, regardless of role, attempts it.",
+        "columns": [
+            {
+                "name": "ActivityId",
+                "description": "Unique identifier of the SCORM activity.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ScormObjectId",
+                "description": "Unique identifier for each content object.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ParentActivityId",
+                "description": "Unique identifier of the parent activity. Field can be null.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "NumChildren",
+                "description": "Number of child activities of this activity.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "InternalId",
+                "description": "Unique label for the activity. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "255",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "Title",
+                "description": "The title of the activity. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "200",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "CompletionThreshold",
+                "description": "Used to determine when the activity is considered complete. Field can be null.",
+                "dataType": "float",
+                "columnSize": "24",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "PassingScore",
+                "description": "Scaled score required to pass the activity, between 0 and 100. Field can be null.",
+                "dataType": "float",
+                "columnSize": "24",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "PassingScoreUsed",
+                "description": "Whether the passing score was used to determine the learner success status. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ScoreMin",
+                "description": "Minimum value in the range for the raw score in an activity attempt. Field can be null.",
+                "dataType": "float",
+                "columnSize": "24",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "ScoreMax",
+                "description": "Maximum value in the range for the raw score in an activity attempt. Field can be null.",
+                "dataType": "float",
+                "columnSize": "24",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date when the activity was last modified (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.5"
+            }
+        ]
+    }
+}

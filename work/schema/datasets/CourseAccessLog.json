@@ -1,0 +1,48 @@
+{
+    "Course Access Log": {
+        "name": "Course Access Log",
+        "description": "The Course Access Log Brightspace Data Set returns information on users accessing their course offerings using the Pulse app. The data set creates a row with a timestamp when a user initially accesses a course, then creates additional rows for every 30 minutes that the user spends in the course.",
+        "columns": [
+            {
+                "name": "OrgUnitId",
+                "description": "Unique identifier for the org unit.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "7.5"
+            },
+            {
+                "name": "UserId",
+                "description": "Unique identifier for the user.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "7.5"
+            },
+            {
+                "name": "Timestamp",
+                "description": "Indicates the time in UTC that a user accessed the course.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "7.5"
+            },
+            {
+                "name": "Source",
+                "description": "The source of the course access. Only Pulse data is available at this time.",
+                "dataType": "nvarchar",
+                "columnSize": "20",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "7.5"
+            }
+        ]
+    }
+}

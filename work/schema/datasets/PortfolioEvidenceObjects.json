@@ -1,0 +1,148 @@
+{
+    "Portfolio Evidence Objects": {
+        "name": "Portfolio Evidence Objects",
+        "description": "The Portfolio Evidence Objects Brightspace Data Set defines the attributes of each piece of evidence in Portfolios in your organization.",
+        "columns": [
+            {
+                "name": "EvidenceId",
+                "description": "Unique evidence identifier",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Updated column size"
+            },
+            {
+                "name": "OwnerId",
+                "description": "The user ID that this evidence belongs to",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.0"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "7.6 - Updated description"
+            },
+            {
+                "name": "EvidenceType",
+                "description": "The type of evidence",
+                "dataType": "nvarchar",
+                "columnSize": "30",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.0"
+            },
+            {
+                "name": "Title",
+                "description": "The evidence title",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.0"
+            },
+            {
+                "name": "IsApproved",
+                "description": "Indicates the evidence is approved",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.0"
+            },
+            {
+                "name": "IsSpotlighted",
+                "description": "Indicates the evidence is spotlighted",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.0"
+            },
+            {
+                "name": "IsSharedToParents",
+                "description": "Indicates the evidence is shared to parents",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.0"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Indicates that the evidence object is deleted.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.0"
+            },
+            {
+                "name": "IsRecoverableByInstructor",
+                "description": "Indicates that the deleted evidence object can be recovered by the instructor. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.0"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date when the evidence object was last modified (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.0"
+            },
+            {
+                "name": "LastModifiedBy",
+                "description": "User who last modified the evidence object",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.0"
+            },
+            {
+                "name": "IsSharedWithInstructor",
+                "description": "Indicates the evidence is shared to instructors. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.6"
+            },
+            {
+                "name": "DateSharedWithInstructor",
+                "description": "Date when the evidence was most recently shared to instructors (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.6"
+            }
+        ]
+    }
+}

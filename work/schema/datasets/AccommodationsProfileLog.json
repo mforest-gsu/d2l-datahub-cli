@@ -1,0 +1,78 @@
+{
+    "Accommodations Profile Log": {
+        "name": "Accommodations Profile Log",
+        "description": "The Accommodations Profile Log Brightspace Data Set returns all accommodations that have been created for learners in an org unit. Note: Learner accommodations contain sensitive information.",
+        "columns": [
+            {
+                "name": "AccommodatedUserId",
+                "description": "Unique user identifier.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "6.10"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "6.10"
+            },
+            {
+                "name": "QuizTimeLimitMultiplier",
+                "description": "Amount of Time Multiplier for a quiz. Field can be null.",
+                "dataType": "decimal",
+                "columnSize": "5,2",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.13 \/ 7.1 - Updated column size"
+            },
+            {
+                "name": "QuizTimeLimitExtraTime",
+                "description": "Amount of extra time allowed. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.10"
+            },
+            {
+                "name": "QuizControlAlwaysAllowRightClick",
+                "description": "Indicates if the accommodation includes Always Include RightClick. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.10"
+            },
+            {
+                "name": "ModifiedBy",
+                "description": "Unique identifier of the user who last modified the accommodation.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "6.10"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date the accommodation was updated (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "6.10"
+            }
+        ]
+    }
+}

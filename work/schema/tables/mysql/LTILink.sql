@@ -1,0 +1,31 @@
+DROP TABLE IF EXISTS `LTILink`;
+
+CREATE TABLE `LTILink` (
+  `LtiLinkId` BIGINT NOT NULL,
+  `OrgUnitId` INT NOT NULL,
+  `Title` VARCHAR(200) NOT NULL,
+  `LinkType` INT NOT NULL,
+  `LTIVersion` VARCHAR(12) NOT NULL,
+  `Url` VARCHAR(1000) DEFAULT NULL,
+  `Description` VARCHAR(1000) DEFAULT NULL,
+  `IsVisible` TINYINT NOT NULL,
+  `SendTCInfo` TINYINT NOT NULL,
+  `SendContextInfo` TINYINT NOT NULL,
+  `SendCourseInfo` TINYINT NOT NULL,
+  `SendOrgUnitInfo` TINYINT DEFAULT NULL,
+  `SendUserId` TINYINT NOT NULL,
+  `SendUserName` TINYINT NOT NULL,
+  `SendUserEmail` TINYINT NOT NULL,
+  `SendLinkTitle` TINYINT NOT NULL,
+  `SendLinkDescription` TINYINT NOT NULL,
+  `SendD2LUserName` TINYINT NOT NULL,
+  `SendD2LOrgDefinedId` TINYINT NOT NULL,
+  `SendD2LOrgRoleId` TINYINT NOT NULL,
+  `SendBrightspaceUserId` TINYINT DEFAULT NULL,
+  `Anonymous` TINYINT DEFAULT NULL,
+  `Shared` TINYINT DEFAULT NULL,
+  `UseToolProviderSecuritySettings` TINYINT NOT NULL,
+  `LastModifiedDate` DATETIME DEFAULT NULL,
+  `OuAvailabilitySetId` BIGINT DEFAULT NULL,
+  UNIQUE KEY (`LtiLinkId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

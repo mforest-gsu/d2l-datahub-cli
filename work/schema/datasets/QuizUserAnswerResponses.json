@@ -1,0 +1,108 @@
+{
+    "Quiz User Answer Responses": {
+        "name": "Quiz User Answer Responses",
+        "description": "The Quiz User Answer Responses Brightspace Data Set returns details on how a user answered a specific quiz question. Data includes whether an answer is correct and details around the quiz score. Rows in the data set are filtered out if they are associated with deleted quiz questions. The Quiz User Answer Responses data set and differential is limited to 3 years of data (all of the previous two calendar years and the current calendar year to date).",
+        "columns": [
+            {
+                "name": "AttemptId",
+                "description": "Unique attempt identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "AttemptNumber",
+                "description": "Attempt number associated with the AttemptId",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "QuestionId",
+                "description": "Unique question identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "QuestionVersionId",
+                "description": "Unique question version identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "AnswerId",
+                "description": "Unique answer identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "SortOrder",
+                "description": "Order in which quiz question options appear to the user. For example, the order in which multi-select or true \/false options appear. Some question types can be randomized, for example, multi-select.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "IsCorrect",
+                "description": "Is user response correct. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "UserSelection",
+                "description": "Option the user chose for the question. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "UserAnswer",
+                "description": "User answer. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "FileSetId",
+                "description": "Indicates the auto generated file set ID\u00a0of uploaded file(s). Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.8 \/ 6.1"
+            }
+        ]
+    }
+}

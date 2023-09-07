@@ -1,0 +1,15 @@
+DROP TABLE IF EXISTS `RubricObjectLevel`;
+
+CREATE TABLE `RubricObjectLevel` (
+  `RubricId` BIGINT NOT NULL,
+  `LevelId` BIGINT NOT NULL,
+  `Name` VARCHAR(256) NOT NULL,
+  `Description` VARCHAR(1000) DEFAULT NULL,
+  `Feedback` VARCHAR(1000) DEFAULT NULL,
+  `Value` DECIMAL(19, 9) DEFAULT NULL,
+  `RangeStartValue` DECIMAL(19, 9) DEFAULT NULL,
+  `SortOrder` INT NOT NULL,
+  `LevelSetId` BIGINT NOT NULL,
+  `IsDeleted` TINYINT DEFAULT NULL,
+  UNIQUE KEY (`LevelId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

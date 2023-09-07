@@ -1,0 +1,98 @@
+{
+    "Portfolio Evidence Log": {
+        "name": "Portfolio Evidence Log",
+        "description": "The Portfolio Evidence Log Brightspace Data Set returns the actions that occur to each piece of evidence in the Portfolios in your organization. The first data point is from May, 2019 or your first use of the Portfolio tool, whichever is more recent.",
+        "columns": [
+            {
+                "name": "LogId",
+                "description": "Unique identifier for each action that occurs on each object in a portfolio.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Change to column size"
+            },
+            {
+                "name": "ParentObjectId",
+                "description": "Unique identifier of the evidence. Field can be null.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Change to column size"
+            },
+            {
+                "name": "ObjectId",
+                "description": "Unique identifier of the object where the action occurred. This is equal to ParentObjectId when the ObjectType is evidence.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Change to column size"
+            },
+            {
+                "name": "ObjectType",
+                "description": "Indicates what type of object the action occurred on such as the evidence itself or reflection, etc.",
+                "dataType": "nvarchar",
+                "columnSize": "40",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.7 \/ 5.1 - Updated description"
+            },
+            {
+                "name": "UserId",
+                "description": "Unique user identifier.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "4.5"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "7.6 - Updated description"
+            },
+            {
+                "name": "Action",
+                "description": "The action that occurred: Created, Updated or Deleted.",
+                "dataType": "nvarchar",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.5"
+            },
+            {
+                "name": "IsMobile",
+                "description": "Indicates if the action occurred on a mobile device.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.5"
+            },
+            {
+                "name": "ActionDate",
+                "description": "Date action was completed (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.5"
+            }
+        ]
+    }
+}

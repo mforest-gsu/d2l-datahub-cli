@@ -1,0 +1,58 @@
+{
+    "Attendance User Sessions": {
+        "name": "Attendance User Sessions",
+        "description": "The Attendance User Sessions Brightspace Data Set provides the result for each user's session in each register in your organization.",
+        "columns": [
+            {
+                "name": "UserId",
+                "description": "Unique user identifier.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "AttendanceSessionId",
+                "description": "Unique identifier for the session.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "SchemeSymbolId",
+                "description": "Unique scheme symbol identifier given to the user for the session.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date the symbol for the user in the session was last modified (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.10 \/ 5.4"
+            },
+            {
+                "name": "LastModifiedBy",
+                "description": "Unique identifier for the user who last modified the session. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.15 \/ 7.3"
+            }
+        ]
+    }
+}

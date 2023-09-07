@@ -1,0 +1,58 @@
+{
+    "Content User Completion": {
+        "name": "Content User Completion",
+        "description": "The Content User Completion Brightspace Data Set returns information about specific user's completion of content topics. The data set is limited to 3 years of data (all of the previous two calendar years and the current calendar year to date).",
+        "columns": [
+            {
+                "name": "ContentObjectId",
+                "description": "Unique identifier of the content",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "UserId",
+                "description": "Unique user identifier",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "DateCompleted",
+                "description": "Date content was completed (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date the content user completion was last modified (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.7"
+            }
+        ]
+    }
+}

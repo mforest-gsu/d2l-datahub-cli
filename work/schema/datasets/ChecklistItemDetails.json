@@ -1,0 +1,108 @@
+{
+    "Checklist Item Details": {
+        "name": "Checklist Item Details",
+        "description": "The Checklist Item Details Brightspace Data Set returns information on each checklist item within a checklist.",
+        "columns": [
+            {
+                "name": "ItemId",
+                "description": "Unique checklist item identifier.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "3.3"
+            },
+            {
+                "name": "CategoryId",
+                "description": "Unique category identifier. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "3.3"
+            },
+            {
+                "name": "Name",
+                "description": "Checklist item name. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "512",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "Description",
+                "description": "Checklist item description. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.3"
+            },
+            {
+                "name": "DescriptionIsHtml",
+                "description": "Indicates if the description is in HTML.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.3"
+            },
+            {
+                "name": "DueDate",
+                "description": "Date the item is due. Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.3"
+            },
+            {
+                "name": "ScheduleId",
+                "description": "Indicates the schedule to which this checklist belongs. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.7 \/ 6.0 - Changed Type and Column Size"
+            },
+            {
+                "name": "SortOrder",
+                "description": "The order in which the checklist items are sorted.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.3"
+            },
+            {
+                "name": "IsAutoChecked",
+                "description": "Indicates if the checklist item is automatically selected.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.3"
+            },
+            {
+                "name": "LastModifiedUtc",
+                "description": "Last modified date\/time (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "3.3"
+            }
+        ]
+    }
+}

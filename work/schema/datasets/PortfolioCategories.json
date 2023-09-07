@@ -1,0 +1,78 @@
+{
+    "Portfolio Categories": {
+        "name": "Portfolio Categories",
+        "description": "The Portfolio Categories Brightspace Data Set details the categories that have been created in your organization.",
+        "columns": [
+            {
+                "name": "CategoryId",
+                "description": "Unique category identifier",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Updated column size"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier. Field can be null",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.0"
+            },
+            {
+                "name": "Name",
+                "description": "Portfolio category name.",
+                "dataType": "nvarchar",
+                "columnSize": "256",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.0"
+            },
+            {
+                "name": "IsRetired",
+                "description": "Indicates the category is retired and therefore cannot be used.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.7 \/ 5.1 - Updated description"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Indicates if the portfolio category is deleted",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.0"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date when the portfolio category was last modified (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.0"
+            },
+            {
+                "name": "LastModifiedBy",
+                "description": "User who last modified the portfolio category.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.0"
+            }
+        ]
+    }
+}

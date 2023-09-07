@@ -1,0 +1,68 @@
+{
+    "Auditor Relationships Log": {
+        "name": "Auditor Relationships Log",
+        "description": "The Auditor Relationships Log Brightspace Data Set has a record of auditors and the users they audit in the organization. The User Auditors tool must be enabled to access this data. Note: The data set may appear blank unless new auditor-learner relationships are added. All historical data is populated 30 to 60 days after the November 2021\/20.21.11 release.",
+        "columns": [
+            {
+                "name": "AuditorId",
+                "description": "UserId (unique identifier) of the auditor.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "6.13 \/ 7.1"
+            },
+            {
+                "name": "UserToAuditId",
+                "description": "UserId (unique identifier) of the user to be audited by the auditor.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "6.13 \/ 7.1"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Org Unit identifier where the auditor relationship exists.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "6.15 \/ 7.3 - Updated description"
+            },
+            {
+                "name": "Action",
+                "description": "The action performed on the relationship. Either Created or Deleted.",
+                "dataType": "nvarchar",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "6.13 \/ 7.1"
+            },
+            {
+                "name": "ModifiedBy",
+                "description": "UserId who modified the auditor relationship.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "6.13 \/ 7.1"
+            },
+            {
+                "name": "ModifiedDate",
+                "description": "Date and time when the auditor relationship was modified (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "6.13 \/ 7.1"
+            }
+        ]
+    }
+}

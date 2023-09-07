@@ -1,0 +1,38 @@
+{
+    "Organizational Unit Recent Access": {
+        "name": "Organizational Unit Recent Access",
+        "description": "The Organizational Unit Recent Access Brightspace Data Set returns a list of users, corresponding org units, and the time stamp when they most recently accessed the org unit.",
+        "columns": [
+            {
+                "name": "OrgUnitId",
+                "description": "Unique org unit identifier",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "1.0"
+            },
+            {
+                "name": "UserId",
+                "description": "User Id of the user that accessed the org unit",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "8.6 - Fixed Field name"
+            },
+            {
+                "name": "LastAccessedDate",
+                "description": "Date the org was last accessed (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.0"
+            }
+        ]
+    }
+}

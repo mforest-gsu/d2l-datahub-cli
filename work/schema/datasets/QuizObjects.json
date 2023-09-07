@@ -1,0 +1,368 @@
+{
+    "Quiz Objects": {
+        "name": "Quiz Objects",
+        "description": "The Quiz Objects Brightspace Data Set returns information about the settings and properties of a quiz. Note: As the July 2023\/20.23.7 release, the Grace Period and Allow the student to continue working, but automatically score the attempt as zero timing options are no longer available within the Quizzes tool. This affects the data within this data set in the following ways:",
+        "columns": [
+            {
+                "name": "QuizId",
+                "description": "Unique quiz identifier",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": true,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "QuizName",
+                "description": "Quiz name",
+                "dataType": "nvarchar",
+                "columnSize": "256",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "QuizDescription",
+                "description": "Description of the Quiz. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "QuizCategory",
+                "description": "Category assigned to the quiz. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "256",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "IsActive",
+                "description": "Indicates if the quiz is active",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "OrgUnitId",
+                "description": "Org unit identifier associated with the quiz object",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "6.7 - Updated key"
+            },
+            {
+                "name": "StartDate",
+                "description": "First time the quiz is visible. Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "EndDate",
+                "description": "Last date the quiz is visible. Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "DueDate",
+                "description": "Date the quiz is due (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "CreationDate",
+                "description": "Date the quiz was created (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "CreatedBy",
+                "description": "Id of the user who created the quiz. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "LastModified",
+                "description": "Date when the quiz was last modified (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "LastModifiedBy",
+                "description": "Id of the user who last modified the quiz. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "GradeObjectId",
+                "description": "Grade object identifier associated with the quiz. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "OverallScoreCalculation",
+                "description": "Quiz score calculation method. Types include: Highest Attempt, Lowest Attempt, Average of all attempts, First Attempt, and Last Attempt. Field can be null.",
+                "dataType": "varchar",
+                "columnSize": "23",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "QuizScoreDenominator",
+                "description": "Denominator for the quiz score",
+                "dataType": "decimal",
+                "columnSize": "19, 9",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "4.8 \/ 5.2 - Updated column size"
+            },
+            {
+                "name": "HasPassword",
+                "description": "Is a password required to access this quiz. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "IPRestricted",
+                "description": "Is this quiz available to only certain IP\u00a0Addresses. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "TimeLimit",
+                "description": "Does this quiz have a time limit.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "TimeLimitEnforced",
+                "description": "Is the time limit assigned to this quiz enforced.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "TimeLimitExceededBehavior",
+                "description": "Are learners taking this quiz permitted to exceed the time limit. Possible values: Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "8.6 - Changed description"
+            },
+            {
+                "name": "TimeLimitGracePeriod",
+                "description": "Is there a grace period at the end of the time limit on this quiz. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "AttemptsAllowed",
+                "description": "Number of times learners are permitted to attempt the quiz. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "PreventMovingBackwards",
+                "description": "Indicates if learners are permitted to move to previous pages in the quiz.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "AllowHints",
+                "description": "Indicates that there are hints allowed for the quiz.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "NotificationEmail",
+                "description": "Indicates that there is a notification email for this quiz. Field can be null.",
+                "dataType": "nvarchar",
+                "columnSize": "1000",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.7 \/ 6.0 - Changed Column Size"
+            },
+            {
+                "name": "DisablePagerAccess",
+                "description": "Indicates that learners cannot access the pager functionality",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "DisplayInCalendar",
+                "description": "The quiz is not turned on in the calendar. Field can be null.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "ShowClock",
+                "description": "Indicates whether there is a quiz clock visible while learners are taking the quiz.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "1.7"
+            },
+            {
+                "name": "IsAttemptRldb",
+                "description": "Indicates that a quiz was attempted using Respondus.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "2.2"
+            },
+            {
+                "name": "IsSubviewRldb",
+                "description": "Indicates that a portion of the quiz was attempted using Respondus",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "2.2"
+            },
+            {
+                "name": "SortOrder",
+                "description": "Display sort order used for the content objects",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "2.2"
+            },
+            {
+                "name": "CategoryId",
+                "description": "Unique category identifier for the quiz. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.9 \/ 6.2"
+            },
+            {
+                "name": "ResultId",
+                "description": "Unique release condition result identifier. Field can be null.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "5.9 \/ 6.2"
+            },
+            {
+                "name": "IsRetakeIncorrectOnly",
+                "description": "Indicates if this attempt only includes questions that were incorrect on a previous attempt.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "5.11 \/ 6.4"
+            },
+            {
+                "name": "PagingTypeId",
+                "description": "Exposes page break information from the New Quiz Experience. Possible values: Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "7.14 \/ 8.0 - Updated field description"
+            }
+        ]
+    }
+}
