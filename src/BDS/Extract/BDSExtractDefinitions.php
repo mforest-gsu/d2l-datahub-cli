@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace D2L\DataHub\BDS\Extract;
 
 use D2L\DataHub\BDS\Extract\Command\ProcessExtractsCommand;
+use D2L\DataHub\BDS\Extract\Command\UploadExtractsCommand;
 use D2L\DataHub\BDS\Extract\ExtractProcessor\MySQLExtractProcessor;
 use D2L\DataHub\BDS\Extract\ExtractUploader\MySQLExtractUploader;
 use D2L\DataHub\BDS\Extract\Model\BDSExtractOptions;
@@ -54,6 +55,17 @@ class BDSExtractDefinitions extends DefinitionSource
                             throw new \RuntimeException();
                         }
                         return $extractProcessor;
+                    };
+                })
+            ]),
+            UploadExtractsCommand::class => static::autowire(null, [
+                'extractUploaderFactory' => static::factory(function (ContainerInterface $c) {
+                    return function (BDSExtractOptions $options) use ($c): ExtractProcessor {
+                        $extractUploader = $c->get($options->extractUploaderClass);
+                        if (!$extractUploader instanceof ExtractProcessor) {
+                            throw new \RuntimeException();
+                        }
+                        return $extractUploader;
                     };
                 })
             ])
