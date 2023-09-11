@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS `SurveyUserAnswerResponse`;
 
 CREATE TABLE `SurveyUserAnswerResponse` (
   `AttemptId` BIGINT NOT NULL,
-  `AttemptNumber` INT NOT NULL,
+  `AttemptNumber` INT DEFAULT NULL,
   `QuestionId` BIGINT NOT NULL,
   `QuestionVersionId` BIGINT NOT NULL,
   `AnswerId` BIGINT NOT NULL,
@@ -13,3 +13,4 @@ CREATE TABLE `SurveyUserAnswerResponse` (
   `FileSetId` BIGINT DEFAULT NULL,
   UNIQUE KEY (`AttemptId`, `QuestionId`, `QuestionVersionId`, `AnswerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+

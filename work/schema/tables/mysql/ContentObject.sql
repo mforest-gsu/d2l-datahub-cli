@@ -2,11 +2,11 @@ DROP TABLE IF EXISTS `ContentObject`;
 
 CREATE TABLE `ContentObject` (
   `ContentObjectId` INT NOT NULL,
-  `OrgUnitId` INT NOT NULL,
-  `Title` VARCHAR(150) NOT NULL,
-  `ContentObjectType` VARCHAR(6) NOT NULL,
-  `CompletionType` VARCHAR(7) NOT NULL,
-  `ParentContentObjectId` INT NOT NULL,
+  `OrgUnitId` INT DEFAULT NULL,
+  `Title` VARCHAR(150) DEFAULT NULL,
+  `ContentObjectType` VARCHAR(6) DEFAULT NULL,
+  `CompletionType` VARCHAR(7) DEFAULT NULL,
+  `ParentContentObjectId` INT DEFAULT NULL,
   `Location` VARCHAR(1024) DEFAULT NULL,
   `StartDate` DATETIME DEFAULT NULL,
   `EndDate` DATETIME DEFAULT NULL,
@@ -14,12 +14,12 @@ CREATE TABLE `ContentObject` (
   `ObjectId1` INT DEFAULT NULL,
   `ObjectId2` INT DEFAULT NULL,
   `ObjectId3` INT DEFAULT NULL,
-  `LastModified` DATETIME NOT NULL,
-  `IsDeleted` TINYINT NOT NULL,
-  `SortOrder` INT NOT NULL,
-  `Depth` INT NOT NULL,
+  `LastModified` DATETIME DEFAULT NULL,
+  `IsDeleted` TINYINT DEFAULT NULL,
+  `SortOrder` INT DEFAULT NULL,
+  `Depth` INT DEFAULT NULL,
   `ToolId` INT DEFAULT NULL,
-  `IsHidden` TINYINT NOT NULL,
+  `IsHidden` TINYINT DEFAULT NULL,
   `ResultId` INT DEFAULT NULL,
   `DeletedDate` DATETIME DEFAULT NULL,
   `CreatedBy` INT DEFAULT NULL,
@@ -27,3 +27,4 @@ CREATE TABLE `ContentObject` (
   `DeletedBy` INT DEFAULT NULL,
   UNIQUE KEY (`ContentObjectId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+

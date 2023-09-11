@@ -9,6 +9,7 @@ CREATE TABLE `SCORMObjectiveAttempt` (
   `Success` VARCHAR(100) DEFAULT NULL,
   `Completion` VARCHAR(100) DEFAULT NULL,
   `Progress` FLOAT DEFAULT NULL,
-  `LastModified` DATETIME NOT NULL,
+  `LastModified` DATETIME DEFAULT NULL,
   UNIQUE KEY (`VisitId`, `ObjectiveId`, `AttemptNumber`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+

@@ -2,8 +2,9 @@ DROP TABLE IF EXISTS `Tool`;
 
 CREATE TABLE `Tool` (
   `ToolId` INT NOT NULL,
-  `Name` VARCHAR(50) NOT NULL,
-  `DisplayName` VARCHAR(200) NOT NULL,
-  `Version` BIGINT NOT NULL,
+  `Name` VARCHAR(50) DEFAULT NULL,
+  `DisplayName` VARCHAR(200) DEFAULT NULL,
+  `Version` BIGINT DEFAULT NULL,
   UNIQUE KEY (`ToolId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+

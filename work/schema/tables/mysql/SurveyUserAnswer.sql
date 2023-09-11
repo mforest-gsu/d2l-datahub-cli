@@ -7,9 +7,10 @@ CREATE TABLE `SurveyUserAnswer` (
   `TimeCompleted` DATETIME DEFAULT NULL,
   `QuestionNumber` INT DEFAULT NULL,
   `Comment` VARCHAR(1000) DEFAULT NULL,
-  `SortOrder` INT NOT NULL,
+  `SortOrder` INT DEFAULT NULL,
   `Score` DECIMAL(19, 9) DEFAULT NULL,
-  `Page` INT NOT NULL,
+  `Page` INT DEFAULT NULL,
   `Assigned` TINYINT DEFAULT NULL,
   UNIQUE KEY (`AttemptId`, `QuestionId`, `QuestionVersionId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+

@@ -9,7 +9,7 @@ CREATE TABLE `GradeResult` (
   `WeightedNumerator` DECIMAL(19, 9) DEFAULT NULL,
   `WeightedDenominator` DECIMAL(19, 9) DEFAULT NULL,
   `IsReleased` TINYINT DEFAULT NULL,
-  `IsDropped` TINYINT NOT NULL,
+  `IsDropped` TINYINT DEFAULT NULL,
   `LastModified` DATETIME DEFAULT NULL,
   `LastModifiedBy` INT DEFAULT NULL,
   `Comments` VARCHAR(1000) DEFAULT NULL,
@@ -20,3 +20,4 @@ CREATE TABLE `GradeResult` (
   `Version` BIGINT DEFAULT NULL,
   UNIQUE KEY (`GradeObjectId`, `OrgUnitId`, `UserId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+

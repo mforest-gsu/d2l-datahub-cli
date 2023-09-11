@@ -2,14 +2,15 @@ DROP TABLE IF EXISTS `SCORMObjective`;
 
 CREATE TABLE `SCORMObjective` (
   `ObjectiveId` VARCHAR(16) NOT NULL,
-  `ScormObjectId` VARCHAR(16) NOT NULL,
-  `ObjectiveType` VARCHAR(100) NOT NULL,
+  `ScormObjectId` VARCHAR(16) DEFAULT NULL,
+  `ObjectiveType` VARCHAR(100) DEFAULT NULL,
   `ActivityId` VARCHAR(16) DEFAULT NULL,
   `InternalId` VARCHAR(255) DEFAULT NULL,
   `IsPrimary` TINYINT DEFAULT NULL,
   `Description` VARCHAR(250) DEFAULT NULL,
   `ScoreMin` FLOAT DEFAULT NULL,
   `ScoreMax` FLOAT DEFAULT NULL,
-  `LastModified` DATETIME NOT NULL,
+  `LastModified` DATETIME DEFAULT NULL,
   UNIQUE KEY (`ObjectiveId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+

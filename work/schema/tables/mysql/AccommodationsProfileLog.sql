@@ -6,7 +6,8 @@ CREATE TABLE `AccommodationsProfileLog` (
   `QuizTimeLimitMultiplier` DECIMAL(5,2) DEFAULT NULL,
   `QuizTimeLimitExtraTime` INT DEFAULT NULL,
   `QuizControlAlwaysAllowRightClick` TINYINT DEFAULT NULL,
-  `ModifiedBy` BIGINT NOT NULL,
+  `ModifiedBy` BIGINT DEFAULT NULL,
   `LastModified` DATETIME NOT NULL,
   UNIQUE KEY (`AccommodatedUserId`, `OrgUnitId`, `LastModified`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+

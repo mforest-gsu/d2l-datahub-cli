@@ -2,20 +2,21 @@ DROP TABLE IF EXISTS `Announcement`;
 
 CREATE TABLE `Announcement` (
   `AnnouncementId` BIGINT NOT NULL,
-  `OrgUnitId` BIGINT NOT NULL,
-  `Title` VARCHAR(400) NOT NULL,
-  `StartDate` DATETIME NOT NULL,
+  `OrgUnitId` BIGINT DEFAULT NULL,
+  `Title` VARCHAR(400) DEFAULT NULL,
+  `StartDate` DATETIME DEFAULT NULL,
   `EndDate` DATETIME DEFAULT NULL,
-  `IsGlobal` TINYINT NOT NULL,
-  `IsDraft` TINYINT NOT NULL,
-  `NumAttachments` INT NOT NULL,
+  `IsGlobal` TINYINT DEFAULT NULL,
+  `IsDraft` TINYINT DEFAULT NULL,
+  `NumAttachments` INT DEFAULT NULL,
   `DeletedDate` DATETIME DEFAULT NULL,
   `DeletedByUserId` INT DEFAULT NULL,
-  `LastModified` DATETIME NOT NULL,
+  `LastModified` DATETIME DEFAULT NULL,
   `LastModifiedBy` INT DEFAULT NULL,
   `CreatedBy` INT DEFAULT NULL,
-  `IsAuthorInfoShown` TINYINT NOT NULL,
+  `IsAuthorInfoShown` TINYINT DEFAULT NULL,
   `CreatedDate` DATETIME DEFAULT NULL,
   `ResultId` BIGINT DEFAULT NULL,
   UNIQUE KEY (`AnnouncementId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+

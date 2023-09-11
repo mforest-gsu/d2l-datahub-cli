@@ -5,9 +5,10 @@ CREATE TABLE `SessionHistory` (
   `OrgId` INT DEFAULT NULL,
   `UserId` INT DEFAULT NULL,
   `DateStarted` DATETIME DEFAULT NULL,
-  `DateEnded` DATETIME NOT NULL,
+  `DateEnded` DATETIME DEFAULT NULL,
   `LastAccessed` DATETIME DEFAULT NULL,
-  `TimedOut` TINYINT NOT NULL,
+  `TimedOut` TINYINT DEFAULT NULL,
   `HistoryID` BIGINT NOT NULL,
   UNIQUE KEY (`HistoryID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+

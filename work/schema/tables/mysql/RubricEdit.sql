@@ -2,16 +2,17 @@ DROP TABLE IF EXISTS `RubricEdit`;
 
 CREATE TABLE `RubricEdit` (
   `AuditLogId` VARCHAR(16) NOT NULL,
-  `RubricId` BIGINT NOT NULL,
+  `RubricId` BIGINT DEFAULT NULL,
   `CriterionId` BIGINT DEFAULT NULL,
   `LevelId` BIGINT DEFAULT NULL,
-  `ModifiedBy` INT NOT NULL,
-  `ModifiedObjectType` INT NOT NULL,
+  `ModifiedBy` INT DEFAULT NULL,
+  `ModifiedObjectType` INT DEFAULT NULL,
   `CriteriaGroupId` BIGINT DEFAULT NULL,
-  `ModifiedDate` DATETIME NOT NULL,
-  `PreviousValue` VARCHAR(4000) NOT NULL,
-  `ModifiedValue` VARCHAR(4000) NOT NULL,
-  `IsLocked` TINYINT NOT NULL,
-  `Version` INT NOT NULL,
+  `ModifiedDate` DATETIME DEFAULT NULL,
+  `PreviousValue` VARCHAR(4000) DEFAULT NULL,
+  `ModifiedValue` VARCHAR(4000) DEFAULT NULL,
+  `IsLocked` TINYINT DEFAULT NULL,
+  `Version` INT DEFAULT NULL,
   UNIQUE KEY (`AuditLogId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+

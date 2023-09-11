@@ -10,6 +10,7 @@ CREATE TABLE `SCORMActivityAttempt` (
   `ScoreRaw` FLOAT DEFAULT NULL,
   `TimeSpent` FLOAT DEFAULT NULL,
   `Progress` FLOAT DEFAULT NULL,
-  `LastModified` DATETIME NOT NULL,
+  `LastModified` DATETIME DEFAULT NULL,
   UNIQUE KEY (`VisitId`, `ActivityId`, `AttemptNumber`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+

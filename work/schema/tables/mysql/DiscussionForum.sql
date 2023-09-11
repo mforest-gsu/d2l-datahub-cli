@@ -1,22 +1,23 @@
 DROP TABLE IF EXISTS `DiscussionForum`;
 
 CREATE TABLE `DiscussionForum` (
-  `OrgUnitId` INT NOT NULL,
+  `OrgUnitId` INT DEFAULT NULL,
   `ForumId` BIGINT NOT NULL,
-  `Name` VARCHAR(400) NOT NULL,
+  `Name` VARCHAR(400) DEFAULT NULL,
   `Description` VARCHAR(1000) DEFAULT NULL,
-  `MustPostToParticipate` TINYINT NOT NULL,
-  `AllowAnon` TINYINT NOT NULL,
-  `IsHidden` TINYINT NOT NULL,
-  `RequiresApproval` TINYINT NOT NULL,
-  `SortOrder` INT NOT NULL,
+  `MustPostToParticipate` TINYINT DEFAULT NULL,
+  `AllowAnon` TINYINT DEFAULT NULL,
+  `IsHidden` TINYINT DEFAULT NULL,
+  `RequiresApproval` TINYINT DEFAULT NULL,
+  `SortOrder` INT DEFAULT NULL,
   `IsDeleted` TINYINT DEFAULT NULL,
   `DeletedDate` DATETIME DEFAULT NULL,
   `DeletedByUserId` INT DEFAULT NULL,
   `ResultId` INT DEFAULT NULL,
   `StartDate` DATETIME DEFAULT NULL,
   `StartDateAvailabilityType` VARCHAR(2) DEFAULT NULL,
-  `EndDate` DATETIME NOT NULL,
+  `EndDate` DATETIME DEFAULT NULL,
   `EndDateAvailabilityType` VARCHAR(2) DEFAULT NULL,
   UNIQUE KEY (`ForumId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+

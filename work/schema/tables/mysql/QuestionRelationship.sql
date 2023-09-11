@@ -1,21 +1,22 @@
 DROP TABLE IF EXISTS `QuestionRelationship`;
 
 CREATE TABLE `QuestionRelationship` (
-  `CollectionId` BIGINT NOT NULL,
+  `CollectionId` BIGINT DEFAULT NULL,
   `QuestionId` BIGINT DEFAULT NULL,
   `QuestionVersionId` BIGINT DEFAULT NULL,
-  `Order` BIGINT NOT NULL,
+  `Order` BIGINT DEFAULT NULL,
   `SectionId` BIGINT DEFAULT NULL,
-  `IsQuestionPool` TINYINT NOT NULL,
-  `CreationDate` DATETIME NOT NULL,
+  `IsQuestionPool` TINYINT DEFAULT NULL,
+  `CreationDate` DATETIME DEFAULT NULL,
   `CreatedBy` BIGINT DEFAULT NULL,
-  `LastModified` DATETIME NOT NULL,
+  `LastModified` DATETIME DEFAULT NULL,
   `LastModifiedBy` BIGINT DEFAULT NULL,
   `Points` DECIMAL(19, 9) DEFAULT NULL,
   `Difficulty` INT DEFAULT NULL,
   `IsBonus` TINYINT DEFAULT NULL,
   `IsMandatory` TINYINT DEFAULT NULL,
-  `IsDeleted` TINYINT NOT NULL,
+  `IsDeleted` TINYINT DEFAULT NULL,
   `Version` BIGINT DEFAULT NULL,
-  `ObjectId` BIGINT NOT NULL
+  `ObjectId` BIGINT DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
