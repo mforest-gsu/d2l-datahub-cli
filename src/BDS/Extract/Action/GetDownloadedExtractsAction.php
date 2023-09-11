@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace D2L\DataHub\BDS\Extract\Action;
 
 use D2L\DataHub\BDS\Extract\Model\BDSExtractOptions;
-use D2L\DataHub\BDS\Extract\Utils\FileList;
+use D2L\DataHub\Utils\FileList;
 use mjfk23\Logger\LoggerAwareTrait;
 use Psr\Log\LoggerAwareInterface;
 

@@ -6,6 +6,7 @@ namespace D2L\DataHub\BDS\Schema\Action;
 
 use D2L\DataHub\BDS\Schema\Model\BDSSchema;
 use D2L\DataHub\BDS\Schema\Model\BDSSchemaOptions;
+use D2L\DataHub\Utils\FileIO;
 use mjfk23\Logger\LoggerAwareTrait;
 use Psr\Log\LoggerAwareInterface;
 
@@ -39,8 +40,8 @@ class GetDatasetSchemaAction implements LoggerAwareInterface
     public function execute(string $bdsName): BDSSchema
     {
         $bdsSchemaPath = "{$this->options->datasetsDir}/{$bdsName}.json";
-        $bdsSchemaContents = is_file($bdsSchemaPath) ? file_get_contents($bdsSchemaPath) : false;
-        $bdsSchemaContents = is_string($bdsSchemaContents) ? @json_decode($bdsSchemaContents, true) : null;
+        $bdsSchemaContents = is_file($bdsSchemaPath) ? FileIO::getContents($bdsSchemaPath) : false;
+        $bdsSchemaContents = is_string($bdsSchemaContents) ? FileIO::jsonDecode($bdsSchemaContents) : null;
         if (!is_array($bdsSchemaContents)) {
             throw new \RuntimeException();
         }

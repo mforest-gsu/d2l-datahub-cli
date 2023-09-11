@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace D2L\DataHub\BDS\Extract\Utils;
+namespace D2L\DataHub\Utils;
 
 final class FileList
 {

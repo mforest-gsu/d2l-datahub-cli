@@ -6,6 +6,7 @@ namespace D2L\DataHub\BDS\Schema\Action;
 
 use D2L\DataHub\BDS\Schema\Model\BDSSchema;
 use D2L\DataHub\BDS\Schema\Model\BDSSchemaOptions;
+use D2L\DataHub\Utils\FileIO;
 use mjfk23\Logger\LoggerAwareTrait;
 use Psr\Log\LoggerAwareInterface;
 
@@ -71,14 +72,8 @@ class SaveDatasetSchemaAction implements LoggerAwareInterface
     ): void {
         $start = microtime(true);
         $schemaFile = "{$this->options->datasetsDir}/{$fileName}.json";
-        $schemaFileContents = json_encode($datasetSchema, JSON_PRETTY_PRINT);
-        if ($schemaFileContents === false) {
-            throw new \RuntimeException("Unable to serialize dataset schema");
-        }
-        $bytes = file_put_contents($schemaFile, $schemaFileContents);
-        if ($bytes === false) {
-            throw new \RuntimeException("Unable to write to file: {$schemaFile}");
-        }
+        $schemaFileContents = FileIO::jsonEncode($datasetSchema);
+        $bytes = FileIO::putContents($schemaFile, $schemaFileContents);
         $this->logger?->debug($this->formatLogResults([
             "Path" => $schemaFile,
             "Bytes" => $bytes,

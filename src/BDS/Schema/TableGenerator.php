@@ -7,6 +7,7 @@ namespace D2L\DataHub\BDS\Schema;
 use D2L\DataHub\BDS\Schema\Model\BDSSchema;
 use D2L\DataHub\BDS\Schema\Model\BDSSchemaNameMap;
 use D2L\DataHub\BDS\Schema\Model\BDSSchemaOptions;
+use D2L\DataHub\Utils\FileIO;
 
 abstract class TableGenerator
 {
@@ -52,7 +53,10 @@ abstract class TableGenerator
      * @param BDSSchema $dataset
      * @return string
      */
-    abstract protected function generateTable(BDSSchema $dataset, string $tableName): string;
+    abstract protected function generateTable(
+        BDSSchema $dataset,
+        string $tableName
+    ): string;
 
 
     /**
@@ -66,13 +70,9 @@ abstract class TableGenerator
         string $contents,
         ?string $fileFormat = null
     ): int {
-        $bytesWritten = file_put_contents(
+        return FileIO::putContents(
             "{$this->options->tablesDir}/" . sprintf($fileFormat ?? static::$fileFormat, $tableName),
             $contents
         );
-        if ($bytesWritten === false) {
-            throw new \RuntimeException();
-        }
-        return $bytesWritten;
     }
 }

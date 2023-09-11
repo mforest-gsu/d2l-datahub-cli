@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace D2L\DataHub\BDS\Extract\Action;
 
 use D2L\DataHub\BDS\Extract\Model\BDSExtractOptions;
+use D2L\DataHub\Utils\FileIO;
 use mjfk23\D2LAPI\DataHub\DataHubAPI;
 use mjfk23\D2LAPI\DataHub\Model\BDSExtractInfo;
 use mjfk23\D2LAPI\DataHub\Model\BDSInfo;
@@ -65,8 +66,8 @@ class GetAvailableDatasetsAction implements LoggerAwareInterface
     private function getBDS(): array
     {
         $cachePath = "{$this->options->downloadsDir}/bds.json";
-        $cacheContents = is_file($cachePath) ? file_get_contents($cachePath) : false;
-        $bdsCache = is_string($cacheContents) ? @json_decode($cacheContents, true) : null;
+        $cacheContents = is_file($cachePath) ? FileIO::getContents($cachePath) : false;
+        $bdsCache = is_string($cacheContents) ? FileIO::jsonDecode($cacheContents) : null;
         $bdsCacheExpires = is_array($bdsCache) ? ($bdsCache['expires'] ?? null) : null;
         $bdsCacheItems = is_array($bdsCache) ? ($bdsCache['items'] ?? null) : null;
 
@@ -78,13 +79,10 @@ class GetAvailableDatasetsAction implements LoggerAwareInterface
         } else {
             $bds = $this->dataHubAPI->getBDS();
 
-            file_put_contents($cachePath, json_encode(
-                [
-                    'expires' => time() + 600,
-                    'items' => $bds,
-                ],
-                JSON_PRETTY_PRINT
-            ));
+            FileIO::putContents($cachePath, FileIO::jsonEncode([
+                'expires' => time() + 600,
+                'items' => $bds,
+            ]));
         }
 
         return $bds;

@@ -8,6 +8,7 @@ use D2L\DataHub\BDS\Schema\Model\BDSSchema;
 use D2L\DataHub\BDS\Schema\Model\BDSSchemaColumn;
 use D2L\DataHub\BDS\Schema\Model\BDSSchemaNameMap;
 use D2L\DataHub\BDS\Schema\Model\BDSSchemaOptions;
+use D2L\DataHub\Utils\FileIO;
 
 class ModuleParser
 {
@@ -42,16 +43,11 @@ class ModuleParser
      */
     private function getDocument(string $moduleName): \DOMDocument
     {
-        $contents = file_get_contents("{$this->options->modulesDir}/{$moduleName}.html");
-        if ($contents === false) {
-            throw new \RuntimeException();
-        }
-
+        $contents = FileIO::getContents("{$this->options->modulesDir}/{$moduleName}.html");
         $document = new \DOMDocument();
         if (!@$document->loadHTML($contents)) {
             throw new \RuntimeException();
         }
-
         return $document;
     }
 
