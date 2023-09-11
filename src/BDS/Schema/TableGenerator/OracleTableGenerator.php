@@ -66,12 +66,14 @@ class OracleTableGenerator extends TableGenerator
         $primaryKeys = [];
 
         foreach ($dataset->columns as $column) {
-            $dataType = $this->getDataType($column);
-            $canBeNull = $column->canBeNull ? "DEFAULT NULL" : "NOT NULL";
             $columnName = match (strtolower($column->name)) {
                 "group", "comment", "order" => "D2L" . $column->name,
                 default => $column->name
             };
+            $dataType = $this->getDataType($column);
+            //$canBeNull = $column->canBeNull ? "DEFAULT NULL" : "NOT NULL";
+            $canBeNull = $column->pk ? "NOT NULL" : "DEFAULT NULL";
+
             $columns[] = "  {$columnName} {$dataType} {$canBeNull}";
             if ($column->pk) {
                 $primaryKeys[] = "{$columnName}";
@@ -91,42 +93,27 @@ class OracleTableGenerator extends TableGenerator
      */
     private function getDataType(BDSSchemaColumn $column): string
     {
-        switch (strtoupper($column->dataType)) {
-            case 'BIGINT':
-                $dataType = 'NUMBER(20)';
-                break;
-            case 'BIT':
-                $dataType = 'NUMBER(1)';
-                break;
-            case 'DATETIME2':
-                $dataType = 'DATE';
-                break;
-            case 'DECIMAL':
-                $dataType = 'NUMBER';
-                if ($column->columnSize !== '') {
-                    $dataType .= '(' . $column->columnSize . ')';
-                }
-                break;
-            case 'FLOAT':
-                $dataType = 'FLOAT';
-                if ($column->columnSize !== '') {
-                    $dataType .= '(' . $column->columnSize . ')';
-                }
-                break;
-            case 'INT':
-                $dataType = 'NUMBER(10)';
-                break;
-            case 'NVARCHAR':
-                $dataType = 'NVARCHAR2' . '(' . min(max(1, intval($column->columnSize)), 4000) . ')';
-                break;
-            case 'SMALLINT':
-                $dataType = 'NUMBER(5)';
-                break;
-            default:
-                $dataType = 'VARCHAR2' . '(' . min(max(1, intval($column->columnSize)), 4000) . ')';
-                break;
-        }
+        $columnSize = ($column->columnSize !== '')
+            ? match ($column->dataType) {
+                'bigint'              => '(20)',
+                'bit'                 => '(1)',
+                'decimal', 'float'    => "({$column->columnSize})",
+                'int'                 => '(10)',
+                'nvarchar'            => '(' . min(intval(1.25 * max(1, intval($column->columnSize))), 4000) . ')',
+                'smallint'            => '(5)',
+                'varchar'             => '(' . min(intval(1.25 * max(1, intval($column->columnSize))), 4000) . ' CHAR)',
+                'uniqueidentifier'    => '(36)',
+                default               => ''
+            }
+            : '';
 
-        return $dataType;
+        return match ($column->dataType) {
+            'bigint', 'bit', 'int', 'smallint' => 'NUMBER',
+            'datetime2'                        => 'TIMESTAMP WITH LOCAL TIME ZONE',
+            'decimal'                          => 'DECIMAL',
+            'float'                            => 'FLOAT',
+            'nvarchar'                         => 'NVARCHAR2',
+            default                            => 'VARCHAR2'
+        } . $columnSize;
     }
 }

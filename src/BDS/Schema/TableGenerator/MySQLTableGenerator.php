@@ -41,7 +41,7 @@ class MySQLTableGenerator extends TableGenerator
 
         foreach ($dataset->columns as $column) {
             $dataType = $this->getDataType($column);
-            $canBeNull = $column->canBeNull ? "DEFAULT NULL" : "NOT NULL";
+            $canBeNull = $column->pk && !$column->canBeNull ? "NOT NULL" : "DEFAULT NULL";
             $columns[] = "  `{$column->name}` {$dataType} {$canBeNull}";
             if ($column->pk) {
                 $primaryKeys[] = $column->name;
@@ -82,11 +82,11 @@ class MySQLTableGenerator extends TableGenerator
                 break;
             default:
                 $dataType = 'VARCHAR';
-                $columnSize = $column->columnSize;
-                if ($columnSize === '') {
-                    $columnSize = '128';
+                $columnSize = intval($column->columnSize);
+                if ($columnSize < 1) {
+                    $columnSize = 128;
                 }
-                if (intval($columnSize) >= 10000) {
+                if ($columnSize >= 10000) {
                     $dataType = 'TEXT';
                 }
                 $dataType .= '(' . $columnSize . ')';
