@@ -1,8 +1,8 @@
 #!/bin/bash
 
 DB_NAME=${1}
-DAT_FILE=${2}
-PAR_FILE=${3}
+PAR_FILE=${2}
+DAT_FILE=${3}
 SQL_FILE=${4}
 
 # Create named pipe for uncompressed data file
