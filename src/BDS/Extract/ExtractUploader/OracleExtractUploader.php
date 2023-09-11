@@ -20,5 +20,14 @@ class OracleExtractUploader extends ExtractUploader
         string $extractName,
         string $extractPath
     ): void {
+        $processPath = dirname($extractPath);
+        exec(implode(" ", [
+            escapeshellcmd("{$this->options->appDir}/bin/uploaders/oracle-upload"),
+            escapeshellarg($this->options->extractDBName),
+            escapeshellarg("{$processPath}/{$extractName}.par"),
+            escapeshellarg("{$processPath}/{$extractName}.dat"),
+            escapeshellarg("{$processPath}/{$extractName}.sql"),
+            ">> /dev/null 2>&1"
+        ]));
     }
 }
