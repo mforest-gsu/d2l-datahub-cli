@@ -36,10 +36,7 @@ class GenerateSchemaCommand extends Command
         private SaveDatasetSchemaAction $saveDatasetSchema,
         private GenerateSQLTableSchemaAction $generateSQLTableSchema
     ) {
-        parent::__construct(
-            logStartFinish: false,
-            logError: false,
-        );
+        parent::__construct();
     }
 
 

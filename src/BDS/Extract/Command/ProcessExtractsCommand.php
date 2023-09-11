@@ -36,10 +36,7 @@ class ProcessExtractsCommand extends Command
         private GetDatasetsToProcessAction $getDatasetsToProcess,
         private ProcessExtractsAction $processExtracts
     ) {
-        parent::__construct(
-            logStartFinish: false,
-            logError: false,
-        );
+        parent::__construct();
     }
 
 

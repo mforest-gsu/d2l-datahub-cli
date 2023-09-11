@@ -35,10 +35,7 @@ class UploadExtractsCommand extends Command
         private GetDatasetsToUploadAction $getDatasetsToUpload,
         private UploadExtractsAction $uploadExtracts
     ) {
-        parent::__construct(
-            logStartFinish: false,
-            logError: false,
-        );
+        parent::__construct();
     }
 
 

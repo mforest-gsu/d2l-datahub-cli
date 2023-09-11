@@ -31,10 +31,7 @@ class DownloadExtractsCommand extends Command
         private GetAvailableExtractsAction $getAvailableExtracts,
         private DownloadExtractsAction $downloadExtracts
     ) {
-        parent::__construct(
-            logStartFinish: true,
-            logError: true,
-        );
+        parent::__construct();
     }
 
 
