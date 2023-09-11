@@ -63,44 +63,45 @@ class GetDatasetsToProcessAction implements LoggerAwareInterface
         array &$processedExtracts
     ): array {
         $start = microtime(true);
-        $this->logger?->info(str_pad("", 51, "="));
-        $this->logger?->info("Build list of extracts to process");
-
         $full = $diff = 0;
         $extractsToProcess = [];
-        foreach ($downloadedExtracts as $extractName => $extractPath) {
-            list($bdsName,,, $bdsType) = explode("_", $extractName);
-            if (isset($processedExtracts[$extractName])) {
-                continue;
-            }
-            if (!in_array($bdsName, $selectedDatasets, true)) {
-                continue;
-            }
-            if (!($includeFull && $bdsType === 'Full') && !($includeDiff && $bdsType === 'Diff')) {
-                continue;
+
+        try {
+            foreach ($downloadedExtracts as $extractName => $extractPath) {
+                list($bdsName,,, $bdsType) = explode("_", $extractName);
+                if (isset($processedExtracts[$extractName])) {
+                    continue;
+                }
+                if (!in_array($bdsName, $selectedDatasets, true)) {
+                    continue;
+                }
+                if (!($includeFull && $bdsType === 'Full') && !($includeDiff && $bdsType === 'Diff')) {
+                    continue;
+                }
+
+                if (!isset($extractsToProcess[$bdsName])) {
+                    $extractsToProcess[$bdsName] = [
+                        $this->getDatasetSchemaAction->execute($bdsName),
+                        []
+                    ];
+                }
+                $extractsToProcess[$bdsName][1][$extractName] = $extractPath;
+                if ($bdsType === 'Full') {
+                    $full++;
+                } else {
+                    $diff++;
+                }
             }
 
-            if (!isset($extractsToProcess[$bdsName])) {
-                $extractsToProcess[$bdsName] = [
-                    $this->getDatasetSchemaAction->execute($bdsName),
-                    []
-                ];
-            }
-            $extractsToProcess[$bdsName][1][$extractName] = $extractPath;
-            if ($bdsType === 'Full') {
-                $full++;
-            } else {
-                $diff++;
-            }
+            return $extractsToProcess;
+        } finally {
+            $this->logger?->info("Datasets to process - " . $this->formatLogResults([
+                "Datasets" => count($extractsToProcess),
+                "Extracts" => $full + $diff,
+                "Full" => $full,
+                "Diff" => $diff,
+                "Elapsed" => $this->getElapsedTime($start)
+            ]));
         }
-
-        $this->logger?->info($this->formatLogResults([
-            "Datasets" => count($extractsToProcess),
-            "Extracts" => $full + $diff,
-            "Full" => $full,
-            "Diff" => $diff,
-            "Elapsed" => $this->getElapsedTime($start)
-        ]));
-        return $extractsToProcess;
     }
 }

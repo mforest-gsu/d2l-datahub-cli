@@ -163,8 +163,6 @@ class UploadExtractsCommand extends Command
             $extractUploader
         );
 
-        $this->logger?->info(str_pad("", 51, "="));
-
         return static::SUCCESS;
     }
 }

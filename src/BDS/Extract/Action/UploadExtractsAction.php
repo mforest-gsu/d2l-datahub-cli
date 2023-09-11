@@ -39,37 +39,37 @@ class UploadExtractsAction implements LoggerAwareInterface
         ExtractUploader $extractUploader
     ): void {
         $start = microtime(true);
-        $this->logger?->info(str_pad("", 51, "="));
-        $this->logger?->info("Upload extracts");
-
         $full = $diff = 0;
-        foreach ($datasetsToUpload as $extracts) {
-            /** @var array<string,string> $extracts */
-            foreach ($extracts as $extractName => $extractPath) {
-                $extractStart = microtime(true);
-                list(,,, $bdsType) = explode("_", $extractName);
 
-                $extractUploader->uploadExtract($extractName, $extractPath);
+        try {
+            foreach ($datasetsToUpload as $extracts) {
+                /** @var array<string,string> $extracts */
+                foreach ($extracts as $extractName => $extractPath) {
+                    $extractStart = microtime(true);
+                    list(,,, $bdsType) = explode("_", $extractName);
 
-                if ($bdsType === 'Full') {
-                    $full++;
-                } else {
-                    $diff++;
+                    $extractUploader->uploadExtract($extractName, $extractPath);
+
+                    if ($bdsType === 'Full') {
+                        $full++;
+                    } else {
+                        $diff++;
+                    }
+
+                    $this->logger?->info($this->formatLogResults([
+                        "Extract" => $extractName,
+                        "Elapsed" => $this->getElapsedTime($extractStart)
+                    ]));
                 }
-
-                $this->logger?->info($this->formatLogResults([
-                    "Extract" => $extractName,
-                    "Elapsed" => $this->getElapsedTime($extractStart)
-                ]));
             }
+        } finally {
+            $this->logger?->info("Upload extracts - " . $this->formatLogResults([
+                "Datasets" => count($datasetsToUpload),
+                "Extracts" => $full + $diff,
+                "Full" => $full,
+                "Diff" => $diff,
+                "Elapsed" => $this->getElapsedTime($start)
+            ]));
         }
-
-        $this->logger?->info($this->formatLogResults([
-            "Datasets" => count($datasetsToUpload),
-            "Extracts" => $full + $diff,
-            "Full" => $full,
-            "Diff" => $diff,
-            "Elapsed" => $this->getElapsedTime($start)
-        ]));
     }
 }

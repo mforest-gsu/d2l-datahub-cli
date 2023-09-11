@@ -39,20 +39,21 @@ class GenerateDatasetSchemaAction implements LoggerAwareInterface
     public function execute(array &$modules): array
     {
         $start = microtime(true);
-        $this->logger?->info(str_pad("", 51, "="));
-        $this->logger?->info("Generate dataset schema");
 
-        $datasets = [];
-        foreach ($modules as $moduleName) {
-            $datasets += $this->generateModuleDatasetSchema($moduleName);
+        try {
+            $datasets = [];
+            foreach ($modules as $moduleName) {
+                $datasets += $this->generateModuleDatasetSchema($moduleName);
+            }
+            ksort($datasets);
+
+            return $datasets;
+        } finally {
+            $this->logger?->info("Generate dataset schema - " . $this->formatLogResults([
+                "Datasets" => count($datasets),
+                "Elapsed" => $this->getElapsedTime($start)
+            ]));
         }
-        ksort($datasets);
-
-        $this->logger?->info($this->formatLogResults([
-            "Datasets" => count($datasets),
-            "Elapsed" => $this->getElapsedTime($start)
-        ]));
-        return $datasets;
     }
 
 

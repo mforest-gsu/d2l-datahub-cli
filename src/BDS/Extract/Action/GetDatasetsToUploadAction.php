@@ -53,21 +53,12 @@ class GetDatasetsToUploadAction implements LoggerAwareInterface
         array &$uploadedExtracts
     ): array {
         $start = microtime(true);
-        $this->logger?->info(str_pad("", 51, "="));
-        $this->logger?->info("Build list of extracts to upload");
-
+        $full = $diff = 0;
         $fullExtracts = [];
-        foreach (array_keys($uploadedExtracts) as $extractName) {
-            if (str_contains($extractName, '_Full')) {
-                list($bdsName) = explode("_", $extractName);
-                if ($extractName > ($fullExtracts[$bdsName] ?? '')) {
-                    $fullExtracts[$bdsName] = $extractName;
-                }
-            }
-        }
+        $extractsToUpload = [];
 
-        if ($includeFull) {
-            foreach (array_keys($processedExtracts) as $extractName) {
+        try {
+            foreach (array_keys($uploadedExtracts) as $extractName) {
                 if (str_contains($extractName, '_Full')) {
                     list($bdsName) = explode("_", $extractName);
                     if ($extractName > ($fullExtracts[$bdsName] ?? '')) {
@@ -75,44 +66,53 @@ class GetDatasetsToUploadAction implements LoggerAwareInterface
                     }
                 }
             }
+
+            if ($includeFull) {
+                foreach (array_keys($processedExtracts) as $extractName) {
+                    if (str_contains($extractName, '_Full')) {
+                        list($bdsName) = explode("_", $extractName);
+                        if ($extractName > ($fullExtracts[$bdsName] ?? '')) {
+                            $fullExtracts[$bdsName] = $extractName;
+                        }
+                    }
+                }
+            }
+
+            foreach ($processedExtracts as $extractName => $extractPath) {
+                list($bdsName,,, $bdsType) = explode("_", $extractName);
+                if (isset($uploadedExtracts[$extractName])) {
+                    continue;
+                }
+                if (!in_array($bdsName, $selectedDatasets, true)) {
+                    continue;
+                }
+                if (!($includeFull && $bdsType === 'Full') && !($includeDiff && $bdsType === 'Diff')) {
+                    continue;
+                }
+                if ($extractName < ($fullExtracts[$bdsName] ?? '')) {
+                    continue;
+                }
+
+                if (!isset($extractsToUpload[$bdsName])) {
+                    $extractsToUpload[$bdsName] = [];
+                }
+                $extractsToUpload[$bdsName][$extractName] = $extractPath;
+                if ($bdsType === 'Full') {
+                    $full++;
+                } else {
+                    $diff++;
+                }
+            }
+
+            return $extractsToUpload;
+        } finally {
+            $this->logger?->info("Datasets to upload - " . $this->formatLogResults([
+                "Datasets" => count($extractsToUpload),
+                "Extracts" => $full + $diff,
+                "Full" => $full,
+                "Diff" => $diff,
+                "Elapsed" => $this->getElapsedTime($start)
+            ]));
         }
-
-        $full = $diff = 0;
-        $extractsToUpload = [];
-        foreach ($processedExtracts as $extractName => $extractPath) {
-            list($bdsName,,, $bdsType) = explode("_", $extractName);
-            if (isset($uploadedExtracts[$extractName])) {
-                continue;
-            }
-            if (!in_array($bdsName, $selectedDatasets, true)) {
-                continue;
-            }
-            if (!($includeFull && $bdsType === 'Full') && !($includeDiff && $bdsType === 'Diff')) {
-                continue;
-            }
-            if ($extractName < ($fullExtracts[$bdsName] ?? '')) {
-                continue;
-            }
-
-            if (!isset($extractsToUpload[$bdsName])) {
-                $extractsToUpload[$bdsName] = [];
-            }
-            $extractsToUpload[$bdsName][$extractName] = $extractPath;
-            if ($bdsType === 'Full') {
-                $full++;
-            } else {
-                $diff++;
-            }
-        }
-
-        $this->logger?->info($this->formatLogResults([
-            "Datasets" => count($extractsToUpload),
-            "Extracts" => $full + $diff,
-            "Full" => $full,
-            "Diff" => $diff,
-            "Elapsed" => $this->getElapsedTime($start)
-        ]));
-
-        return $extractsToUpload;
     }
 }

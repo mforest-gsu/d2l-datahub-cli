@@ -39,15 +39,15 @@ class GetProcessedExtractsAction implements LoggerAwareInterface
     public function execute(string $fileExtension): array
     {
         $start = microtime(true);
-        $this->logger?->info(str_pad("", 51, "="));
-        $this->logger?->info("Fetch list of processed extracts");
 
-        $extracts = FileList::get($this->options->processDir, $fileExtension);
-
-        $this->logger?->info($this->formatLogResults([
-            "Extracts" => count($extracts),
-            "Elapsed" => $this->getElapsedTime($start)
-        ]));
-        return $extracts;
+        try {
+            $extracts = FileList::get($this->options->processDir, $fileExtension);
+            return $extracts;
+        } finally {
+            $this->logger?->info("Processed extracts - " . $this->formatLogResults([
+                "Extracts" => count($extracts ?? []),
+                "Elapsed" => $this->getElapsedTime($start)
+            ]));
+        }
     }
 }

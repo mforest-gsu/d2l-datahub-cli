@@ -164,8 +164,6 @@ class ProcessExtractsCommand extends Command
             $extractProcessor
         );
 
-        $this->logger?->info(str_pad("", 51, "="));
-
         return static::SUCCESS;
     }
 }

@@ -38,17 +38,17 @@ class DownloadModulesAction implements LoggerAwareInterface
     public function execute(array &$modules): void
     {
         $start = microtime(true);
-        $this->logger?->info(str_pad("", 51, "="));
-        $this->logger?->info("Download modules");
 
-        foreach ($modules as $moduleName) {
-            $this->downloadModule($moduleName);
+        try {
+            foreach ($modules as $moduleName) {
+                $this->downloadModule($moduleName);
+            }
+        } finally {
+            $this->logger?->info("Download modules - " . $this->formatLogResults([
+                "Modules" => count($modules),
+                "Elapsed" => $this->getElapsedTime($start)
+            ]));
         }
-
-        $this->logger?->info($this->formatLogResults([
-            "Modules" => count($modules),
-            "Elapsed" => $this->getElapsedTime($start)
-        ]));
     }
 
 

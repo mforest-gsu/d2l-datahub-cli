@@ -50,36 +50,36 @@ class GetAvailableExtractsAction implements LoggerAwareInterface
         bool $includeDiff
     ): array {
         $start = microtime(true);
-        $this->logger?->info(str_pad("", 51, "="));
-        $this->logger?->info("Fetch available extracts");
 
-        $total = $full = $diff = 0;
-        $extracts = [];
+        try {
+            $total = $full = $diff = 0;
+            $extracts = [];
 
-        foreach ($availableDatasets as $datasetName => $dataset) {
-            list($totalAdded, $fullAdded, $diffAdded) = $this->addDatasetExtractsToList(
-                $datasetName,
-                $dataset,
-                $includeFull,
-                $includeDiff,
-                $downloadedExtracts,
-                $extracts
-            );
+            foreach ($availableDatasets as $datasetName => $dataset) {
+                list($totalAdded, $fullAdded, $diffAdded) = $this->addDatasetExtractsToList(
+                    $datasetName,
+                    $dataset,
+                    $includeFull,
+                    $includeDiff,
+                    $downloadedExtracts,
+                    $extracts
+                );
 
-            $full += $fullAdded;
-            $diff += $diffAdded;
-            $total += $totalAdded;
+                $full += $fullAdded;
+                $diff += $diffAdded;
+                $total += $totalAdded;
+            }
+
+            return $extracts;
+        } finally {
+            $this->logger?->info("Available extracts - " . $this->formatLogResults([
+                "Extracts" => $total,
+                "Selected" => $full + $diff,
+                "Full" => $full,
+                "Diff" => $diff,
+                "Elapsed" => $this->getElapsedTime($start)
+            ]));
         }
-
-        $this->logger?->info($this->formatLogResults([
-            "Extracts" => $total,
-            "Selected" => $full + $diff,
-            "Full" => $full,
-            "Diff" => $diff,
-            "Elapsed" => $this->getElapsedTime($start)
-        ]));
-
-        return $extracts;
     }
 
 

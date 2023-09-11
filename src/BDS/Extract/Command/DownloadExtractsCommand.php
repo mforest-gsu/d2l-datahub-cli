@@ -118,8 +118,6 @@ class DownloadExtractsCommand extends Command
 
         $this->downloadExtracts->execute($extractsToDownload);
 
-        $this->logger?->info(str_pad("", 51, "="));
-
         return static::SUCCESS;
     }
 }

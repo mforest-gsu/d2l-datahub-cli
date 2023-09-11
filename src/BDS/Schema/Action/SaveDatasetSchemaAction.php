@@ -40,24 +40,24 @@ class SaveDatasetSchemaAction implements LoggerAwareInterface
     public function execute(array &$datasetSchema): void
     {
         $start = microtime(true);
-        $this->logger?->info(str_pad("", 51, "="));
-        $this->logger?->info("Save dataset schema");
 
-        foreach ($datasetSchema as $dataset) {
+        try {
+            foreach ($datasetSchema as $dataset) {
+                $this->saveDataset(
+                    str_replace(' ', '', $dataset->name),
+                    ["{$dataset->name}" => $dataset]
+                );
+            }
             $this->saveDataset(
-                str_replace(' ', '', $dataset->name),
-                ["{$dataset->name}" => $dataset]
+                'all',
+                $datasetSchema
             );
+        } finally {
+            $this->logger?->info("Save dataset schema - " . $this->formatLogResults([
+                "Datasets" => count($datasetSchema),
+                "Elapsed" => $this->getElapsedTime($start)
+            ]));
         }
-        $this->saveDataset(
-            'all',
-            $datasetSchema
-        );
-
-        $this->logger?->info($this->formatLogResults([
-            "Datasets" => count($datasetSchema),
-            "Elapsed" => $this->getElapsedTime($start)
-        ]));
     }
 
 

@@ -45,18 +45,19 @@ class GetAvailableDatasetsAction implements LoggerAwareInterface
     public function execute(array &$selectedDatasets): array
     {
         $start = microtime(true);
-        $this->logger?->info(str_pad("", 51, "="));
-        $this->logger?->info("Fetch available datasets");
 
-        $datasets = $this->getBDS();
-        list($total, $selected) = $this->filterBDS($datasets, $selectedDatasets);
+        try {
+            $datasets = $this->getBDS();
+            list($total, $selected) = $this->filterBDS($datasets, $selectedDatasets);
 
-        $this->logger?->info($this->formatLogResults([
-            "Datasets" => $total,
-            "Selected" => $selected,
-            "Elapsed" => $this->getElapsedTime($start)
-        ]));
-        return $datasets;
+            return $datasets;
+        } finally {
+            $this->logger?->info("Available datasets - " . $this->formatLogResults([
+                "Datasets" => $total ?? 0,
+                "Selected" => $selected ?? 0,
+                "Elapsed" => $this->getElapsedTime($start)
+            ]));
+        }
     }
 
 

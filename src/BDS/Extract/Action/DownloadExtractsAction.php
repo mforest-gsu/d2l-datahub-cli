@@ -42,25 +42,25 @@ class DownloadExtractsAction implements LoggerAwareInterface
     public function execute(array &$extracts): void
     {
         $start = microtime(true);
-        $this->logger?->info(str_pad("", 51, "="));
-        $this->logger?->info("Download extracts");
-
         $full = $diff = 0;
-        foreach ($extracts as $extractName => $extract) {
-            $this->downloadExtract($extractName, $extract);
-            if ($extract->BdsType === 'Full') {
-                $full++;
-            } else {
-                $diff++;
-            }
-        }
 
-        $this->logger?->info($this->formatLogResults([
-            "Extracts" => count($extracts),
-            "Full" => $full,
-            "Diff" => $diff,
-            "Elapsed" => $this->getElapsedTime($start)
-        ]));
+        try {
+            foreach ($extracts as $extractName => $extract) {
+                $this->downloadExtract($extractName, $extract);
+                if ($extract->BdsType === 'Full') {
+                    $full++;
+                } else {
+                    $diff++;
+                }
+            }
+        } finally {
+            $this->logger?->info("Download extracts - " . $this->formatLogResults([
+                "Extracts" => count($extracts),
+                "Full" => $full,
+                "Diff" => $diff,
+                "Elapsed" => $this->getElapsedTime($start)
+            ]));
+        }
     }
 
 

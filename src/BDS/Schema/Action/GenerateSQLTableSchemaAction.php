@@ -42,20 +42,20 @@ class GenerateSQLTableSchemaAction implements LoggerAwareInterface
      */
     public function execute(array &$datasetSchema): void
     {
-        $tableGenerator = ($this->tableGenFactory)($this->options);
-
         $start = microtime(true);
-        $this->logger?->info(str_pad("", 51, "="));
-        $this->logger?->info("Generate table schema: " . $tableGenerator::class);
 
-        foreach ($datasetSchema as $dataset) {
-            $this->generateTable($tableGenerator, $dataset);
+        try {
+            $tableGenerator = ($this->tableGenFactory)($this->options);
+            foreach ($datasetSchema as $dataset) {
+                $this->generateTable($tableGenerator, $dataset);
+            }
+        } finally {
+            $this->logger?->info("Generate table schema - " . $this->formatLogResults([
+                "Generator" => is_object($tableGenerator ?? null) ? $tableGenerator::class : '',
+                "Tables" => count($datasetSchema),
+                "Elapsed" => $this->getElapsedTime($start)
+            ]));
         }
-
-        $this->logger?->info($this->formatLogResults([
-            "Tables" => count($datasetSchema),
-            "Elapsed" => $this->getElapsedTime($start)
-        ]));
     }
 
 

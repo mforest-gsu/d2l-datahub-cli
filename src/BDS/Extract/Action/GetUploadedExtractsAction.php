@@ -39,15 +39,15 @@ class GetUploadedExtractsAction implements LoggerAwareInterface
     public function execute(string $fileExtension = '.txt'): array
     {
         $start = microtime(true);
-        $this->logger?->info(str_pad("", 51, "="));
-        $this->logger?->info("Fetch list of uploaded extracts");
 
-        $extracts = FileList::get($this->options->uploadsDir, $fileExtension);
-
-        $this->logger?->info($this->formatLogResults([
-            "Extracts" => count($extracts),
-            "Elapsed" => $this->getElapsedTime($start)
-        ]));
-        return $extracts;
+        try {
+            $extracts = FileList::get($this->options->uploadsDir, $fileExtension);
+            return $extracts;
+        } finally {
+            $this->logger?->info("Uploaded extracts - " . $this->formatLogResults([
+                "Extracts" => count($extracts ?? []),
+                "Elapsed" => $this->getElapsedTime($start)
+            ]));
+        }
     }
 }

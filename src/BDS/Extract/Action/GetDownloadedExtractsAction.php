@@ -37,15 +37,15 @@ class GetDownloadedExtractsAction implements LoggerAwareInterface
     public function execute(): array
     {
         $start = microtime(true);
-        $this->logger?->info(str_pad("", 51, "="));
-        $this->logger?->info("Fetch list of downloaded extracts");
 
-        $extracts = FileList::get($this->options->downloadsDir, '.zip');
-
-        $this->logger?->info($this->formatLogResults([
-            "Extracts" => count($extracts),
-            "Elapsed" => $this->getElapsedTime($start)
-        ]));
-        return $extracts;
+        try {
+            $extracts = FileList::get($this->options->downloadsDir, '.zip');
+            return $extracts;
+        } finally {
+            $this->logger?->info("Downloaded extracts - " . $this->formatLogResults([
+                "Extracts" => count($extracts ?? []),
+                "Elapsed" => $this->getElapsedTime($start)
+            ]));
+        }
     }
 }

@@ -40,42 +40,44 @@ class ProcessExtractsAction implements LoggerAwareInterface
         ExtractProcessor $extractProcessor
     ): void {
         $start = microtime(true);
-        $this->logger?->info(str_pad("", 51, "="));
-        $this->logger?->info("Process extracts");
-
         $full = $diff = 0;
-        foreach ($datasetsToProcess as list($schema, $extracts)) {
-            foreach ($extracts as $extractName => $extractPath) {
-                $extractStart = microtime(true);
-                list(,,, $bdsType) = explode("_", $extractName);
 
-                $records = $extractProcessor->processExtract(
-                    $schema,
-                    $bdsType,
-                    $extractName,
-                    $extractPath
-                );
+        try {
+            $this->logger?->info(str_pad("", 51, "="));
+            $this->logger?->info("Process extracts");
+            foreach ($datasetsToProcess as list($schema, $extracts)) {
+                foreach ($extracts as $extractName => $extractPath) {
+                    $extractStart = microtime(true);
+                    list(,,, $bdsType) = explode("_", $extractName);
 
-                if ($bdsType === 'Full') {
-                    $full++;
-                } else {
-                    $diff++;
+                    $records = $extractProcessor->processExtract(
+                        $schema,
+                        $bdsType,
+                        $extractName,
+                        $extractPath
+                    );
+
+                    if ($bdsType === 'Full') {
+                        $full++;
+                    } else {
+                        $diff++;
+                    }
+
+                    $this->logger?->info($this->formatLogResults([
+                        "Extract" => $extractName,
+                        "Records" => $records,
+                        "Elapsed" => $this->getElapsedTime($extractStart)
+                    ]));
                 }
-
-                $this->logger?->info($this->formatLogResults([
-                    "Extract" => $extractName,
-                    "Records" => $records,
-                    "Elapsed" => $this->getElapsedTime($extractStart)
-                ]));
             }
+        } finally {
+            $this->logger?->info("Process extracts - " . $this->formatLogResults([
+                "Datasets" => count($datasetsToProcess),
+                "Extracts" => $full + $diff,
+                "Full" => $full,
+                "Diff" => $diff,
+                "Elapsed" => $this->getElapsedTime($start)
+            ]));
         }
-
-        $this->logger?->info($this->formatLogResults([
-            "Datasets" => count($datasetsToProcess),
-            "Extracts" => $full + $diff,
-            "Full" => $full,
-            "Diff" => $diff,
-            "Elapsed" => $this->getElapsedTime($start)
-        ]));
     }
 }
