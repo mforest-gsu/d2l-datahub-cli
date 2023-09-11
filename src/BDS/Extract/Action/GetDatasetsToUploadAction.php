@@ -56,6 +56,27 @@ class GetDatasetsToUploadAction implements LoggerAwareInterface
         $this->logger?->info(str_pad("", 51, "="));
         $this->logger?->info("Build list of extracts to upload");
 
+        $fullExtracts = [];
+        foreach (array_keys($uploadedExtracts) as $extractName) {
+            if (str_contains($extractName, '_Full')) {
+                list($bdsName) = explode("_", $extractName);
+                if ($extractName > ($fullExtracts[$bdsName] ?? '')) {
+                    $fullExtracts[$bdsName] = $extractName;
+                }
+            }
+        }
+
+        if ($includeFull) {
+            foreach (array_keys($processedExtracts) as $extractName) {
+                if (str_contains($extractName, '_Full')) {
+                    list($bdsName) = explode("_", $extractName);
+                    if ($extractName > ($fullExtracts[$bdsName] ?? '')) {
+                        $fullExtracts[$bdsName] = $extractName;
+                    }
+                }
+            }
+        }
+
         $full = $diff = 0;
         $extractsToUpload = [];
         foreach ($processedExtracts as $extractName => $extractPath) {
@@ -67,6 +88,9 @@ class GetDatasetsToUploadAction implements LoggerAwareInterface
                 continue;
             }
             if (!($includeFull && $bdsType === 'Full') && !($includeDiff && $bdsType === 'Diff')) {
+                continue;
+            }
+            if ($extractName < ($fullExtracts[$bdsName] ?? '')) {
                 continue;
             }
 
