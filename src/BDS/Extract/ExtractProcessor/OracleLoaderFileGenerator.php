@@ -10,52 +10,19 @@ use D2L\DataHub\Utils\FileIO;
 class OracleLoaderFileGenerator
 {
     /**
-     * @param string $control
-     * @param string $log
-     * @param string $bad
-     * @param string $discard
-     * @param int $errors
-     * @param int $dateCache
-     * @return void
-     */
-    public static function generateParFile(
-        string $parPath,
-        string $control,
-        string $log,
-        string $bad,
-        string $discard,
-        int $errors = 10000,
-        int $dateCache = 0
-    ): void {
-        FileIO::putContents($parPath, [
-            "direct=true",
-            "control={$control}",
-            "log={$log}",
-            "bad={$bad}",
-            "discard={$discard}",
-            "errors={$errors}",
-            "date_cache={$dateCache}",
-        ]);
-    }
-
-
-    /**
      * @param string $ctlPath
-     * @param string $datPath
      * @param string $tableName
      * @param BDSSchemaColumn[] $columns
      * @return void
      */
     public static function generateCtlFile(
         string $ctlPath,
-        string $datPath,
         string $tableName,
         array $columns
     ): void {
         FileIO::putContents($ctlPath, [
             "LOAD DATA",
             "CHARACTERSET UTF8",
-            "INFILE \"{$datPath}\"",
             "TRUNCATE INTO TABLE {$tableName}",
             "FIELDS TERMINATED BY \",\"",
             "OPTIONALLY ENCLOSED BY '\"'",

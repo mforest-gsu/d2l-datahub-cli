@@ -70,8 +70,6 @@ class OracleExtractProcessor extends ExtractProcessor
         string $extractName,
         string $extractPath
     ): int {
-        $parPrefix = "{$this->options->uploadsDir}/{$extractName}";
-        $parPath = $this->getProcessPath($extractName, '.par');
         $ctlPath = $this->getProcessPath($extractName, '.ctl');
         $sqlPath = $this->getProcessPath($extractName, '.sql');
         $datPath = $this->getProcessPath($extractName, '.dat');
@@ -86,19 +84,8 @@ class OracleExtractProcessor extends ExtractProcessor
         );
 
         if ($rows > 0) {
-            OracleLoaderFileGenerator::generateParFile(
-                $parPath,
-                $ctlPath,
-                "{$parPrefix}.txt",
-                "{$parPrefix}.bad.txt",
-                "{$parPrefix}.discard.txt",
-                10000,
-                0
-            );
-
             OracleLoaderFileGenerator::generateCtlFile(
                 $ctlPath,
-                $datPath,
                 ($bdsType === 'Full') ? $tableName : $tableName . '_LOAD',
                 $columns
             );
