@@ -26,7 +26,7 @@ class MySQLTableGenerator extends TableGenerator
             . "DROP TABLE IF EXISTS `{$tableName}`;\n\n"
             . "CREATE TABLE `{$tableName}` (\n"
             . "  {$tableCols}\n"
-            . ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;\n";
+            . ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;";
     }
 
 

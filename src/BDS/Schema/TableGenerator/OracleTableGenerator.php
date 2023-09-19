@@ -52,7 +52,7 @@ class OracleTableGenerator extends TableGenerator
             . "  {$tableCols}\n"
             . ");\n"
             . "{$indexCols}"
-            . "QUIT;\n";
+            . "QUIT;";
     }
 
 
