@@ -81,7 +81,7 @@ class GetAvailableDatasetsAction implements LoggerAwareInterface
             $bds = $this->dataHubAPI->getBDS();
 
             FileIO::putContents($cachePath, FileIO::jsonEncode([
-                'expires' => time() + 600,
+                'expires' => time() + 7200,
                 'items' => $bds,
             ]));
         }
