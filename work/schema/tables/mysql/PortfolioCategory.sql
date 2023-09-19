@@ -10,4 +10,3 @@ CREATE TABLE `PortfolioCategory` (
   `LastModifiedBy` INT DEFAULT NULL,
   UNIQUE KEY (`CategoryId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-

@@ -15,4 +15,3 @@ CREATE TABLE `AssignmentSubmissionDetail` (
   `IsPreview` TINYINT DEFAULT NULL,
   UNIQUE KEY (`SubmissionId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-

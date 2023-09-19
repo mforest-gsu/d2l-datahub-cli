@@ -14,4 +14,3 @@ CREATE TABLE `QuizUserAnswer` (
   `ObjectId` BIGINT NOT NULL,
   UNIQUE KEY (`AttemptId`, `ObjectId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-

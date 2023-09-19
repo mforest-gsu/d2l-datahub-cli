@@ -7,4 +7,3 @@ CREATE TABLE `OrganizationalUnitParent` (
   `DateDeleted` DATETIME DEFAULT NULL,
   UNIQUE KEY (`OrgUnitId`, `ParentOrgUnitId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-

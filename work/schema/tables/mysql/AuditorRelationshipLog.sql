@@ -9,4 +9,3 @@ CREATE TABLE `AuditorRelationshipLog` (
   `ModifiedDate` DATETIME NOT NULL,
   UNIQUE KEY (`AuditorId`, `UserToAuditId`, `OrgUnitId`, `ModifiedDate`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-

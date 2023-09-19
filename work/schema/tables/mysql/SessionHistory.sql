@@ -11,4 +11,3 @@ CREATE TABLE `SessionHistory` (
   `HistoryID` BIGINT NOT NULL,
   UNIQUE KEY (`HistoryID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-

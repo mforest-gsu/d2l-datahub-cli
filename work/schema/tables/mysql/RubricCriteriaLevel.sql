@@ -10,4 +10,3 @@ CREATE TABLE `RubricCriteriaLevel` (
   `IsDeleted` TINYINT DEFAULT NULL,
   UNIQUE KEY (`RubricId`, `CriterionId`, `LevelId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-

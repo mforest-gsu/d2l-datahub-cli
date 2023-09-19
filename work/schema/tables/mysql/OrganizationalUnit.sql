@@ -17,4 +17,3 @@ CREATE TABLE `OrganizationalUnit` (
   `OrgUnitTypeId` INT DEFAULT NULL,
   UNIQUE KEY (`OrgUnitId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-

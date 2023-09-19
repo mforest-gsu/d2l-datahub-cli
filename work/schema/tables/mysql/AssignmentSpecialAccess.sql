@@ -13,4 +13,3 @@ CREATE TABLE `AssignmentSpecialAccess` (
   `EndDateAvailabilityType` VARCHAR(2) DEFAULT NULL,
   UNIQUE KEY (`DropboxId`, `UserId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-

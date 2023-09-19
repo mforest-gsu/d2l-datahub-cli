@@ -21,4 +21,3 @@ CREATE TABLE `QuizSurveySection` (
   `Version` BIGINT DEFAULT NULL,
   UNIQUE KEY (`SectionId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-

@@ -10,4 +10,3 @@ CREATE TABLE `ChatSessionLog` (
   `MessageId` BIGINT NOT NULL,
   UNIQUE KEY (`MessageId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-

@@ -11,4 +11,3 @@ CREATE TABLE `ActivityFeedCommentObject` (
   `Version` BIGINT DEFAULT NULL,
   UNIQUE KEY (`CommentId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-

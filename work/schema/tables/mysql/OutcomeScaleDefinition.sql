@@ -13,4 +13,3 @@ CREATE TABLE `OutcomeScaleDefinition` (
   `RegistryId` VARCHAR(16) DEFAULT NULL,
   UNIQUE KEY (`ScaleId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-

@@ -18,4 +18,3 @@ CREATE TABLE `CalendarEvent` (
   `ObjectLookupId2` BIGINT DEFAULT NULL,
   UNIQUE KEY (`ScheduleId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-

@@ -15,4 +15,3 @@ CREATE TABLE `AwardIssued` (
   `Evidence` VARCHAR(1000) DEFAULT NULL,
   UNIQUE KEY (`IssuedId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-

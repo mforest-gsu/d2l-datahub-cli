@@ -13,4 +13,3 @@ CREATE TABLE `SurveyUserAnswerResponse` (
   `FileSetId` BIGINT DEFAULT NULL,
   UNIQUE KEY (`AttemptId`, `QuestionId`, `QuestionVersionId`, `AnswerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-

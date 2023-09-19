@@ -6,4 +6,3 @@ CREATE TABLE `PreRequisiteConditionMet` (
   `DateMet` DATETIME DEFAULT NULL,
   UNIQUE KEY (`PreRequisiteId`, `UserId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-

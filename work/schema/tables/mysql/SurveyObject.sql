@@ -27,4 +27,3 @@ CREATE TABLE `SurveyObject` (
   `CategoryName` VARCHAR(256) DEFAULT NULL,
   UNIQUE KEY (`SurveyId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-

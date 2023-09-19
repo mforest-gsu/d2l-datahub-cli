@@ -15,4 +15,3 @@ CREATE TABLE `CompetencyActivityResult` (
   `Version` BIGINT DEFAULT NULL,
   UNIQUE KEY (`ActivityId`, `OrgUnitId`, `UserId`, `LearningObjectId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-

@@ -10,4 +10,3 @@ CREATE TABLE `GradeSchemeRange` (
   `Version` BIGINT DEFAULT NULL,
   UNIQUE KEY (`GradeSchemeRangeId`, `GradeSchemeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-

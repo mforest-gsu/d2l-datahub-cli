@@ -17,4 +17,3 @@ CREATE TABLE `LTILinkMigrationAudit` (
   `MigrationType` VARCHAR(2) DEFAULT NULL,
   UNIQUE KEY (`LTIMigrationId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-

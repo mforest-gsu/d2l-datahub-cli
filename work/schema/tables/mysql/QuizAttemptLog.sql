@@ -10,4 +10,3 @@ CREATE TABLE `QuizAttemptLog` (
   `IPAddress` VARCHAR(15) DEFAULT NULL,
   UNIQUE KEY (`LogId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-

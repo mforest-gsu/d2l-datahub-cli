@@ -15,4 +15,3 @@ CREATE TABLE `QuestionLibrary` (
   `AllowsAttachments` TINYINT DEFAULT NULL,
   UNIQUE KEY (`QuestionId`, `QuestionVersionId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-

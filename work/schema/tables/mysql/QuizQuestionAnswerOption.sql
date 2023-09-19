@@ -10,4 +10,3 @@ CREATE TABLE `QuizQuestionAnswerOption` (
   `AnswerOptionId` BIGINT NOT NULL,
   UNIQUE KEY (`AnswerId`, `QuestionId`, `QuestionVersionId`, `QuizObjectId`, `AnswerOptionId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-

@@ -13,4 +13,3 @@ CREATE TABLE `SurveyQuestionAnswer` (
   `SurveyObjectId` BIGINT NOT NULL,
   UNIQUE KEY (`AnswerId`, `QuestionId`, `QuestionVersionId`, `SurveyObjectId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
