@@ -13,12 +13,9 @@ class MySQLExtractUploader extends ExtractUploader
 
     /**
      * @param string $extractName
-     * @param string $extractPath
      * @return void
      */
-    public function uploadExtract(
-        string $extractName,
-        string $extractPath
-    ): void {
+    public function uploadExtract(string $extractName): void
+    {
     }
 }

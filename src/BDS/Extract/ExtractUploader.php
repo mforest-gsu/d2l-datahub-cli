@@ -23,11 +23,7 @@ abstract class ExtractUploader
 
     /**
      * @param string $extractName
-     * @param string $extractPath
      * @return void
      */
-    abstract public function uploadExtract(
-        string $extractName,
-        string $extractPath
-    ): void;
+    abstract public function uploadExtract(string $extractName): void;
 }

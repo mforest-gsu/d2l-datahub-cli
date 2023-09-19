@@ -4,7 +4,7 @@ DB_NAME=${1}
 SQL_FILE=${2}
 UPLOAD_FILE=${3}
 
-# Pipe uncompressed SQL file into MySQL. Options should be set in ~/.my.cnf
+# Pipe uncompressed SQL file into MySQL. Credentials are set in ~/.my.cnf
 if [ -s "${SQL_FILE}" ]
 then
   gzip -cd "${SQL_FILE}" | mysql ${DB_NAME} >> ${UPLOAD_FILE} 2>&1

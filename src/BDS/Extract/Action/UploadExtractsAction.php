@@ -43,12 +43,11 @@ class UploadExtractsAction implements LoggerAwareInterface
 
         try {
             foreach ($datasetsToUpload as $extracts) {
-                /** @var array<string,string> $extracts */
-                foreach ($extracts as $extractName => $extractPath) {
+                foreach (array_keys($extracts) as $extractName) {
                     $extractStart = microtime(true);
                     list(,,, $bdsType) = explode("_", $extractName);
 
-                    $extractUploader->uploadExtract($extractName, $extractPath);
+                    $extractUploader->uploadExtract($extractName);
 
                     if ($bdsType === 'Full') {
                         $full++;
