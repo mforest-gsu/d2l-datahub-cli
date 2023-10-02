@@ -72,4 +72,59 @@ final class FileIO
         }
         return $contents;
     }
+
+
+    /**
+     * @param string $path
+     * @return array{0:\ZipArchive,1:resource}
+     */
+    public static function openZipFile(string $path): array
+    {
+        $zipFile = new \ZipArchive();
+        if ($zipFile->open($path) !== true) {
+            throw new \RuntimeException("Unable to open zip file: {$path}");
+        }
+
+        $zipFileStream = $zipFile->getStream(strval($zipFile->getNameIndex(0)));
+        if (!is_resource($zipFileStream)) {
+            throw new \RuntimeException("Unable to open zip file: {$path}");
+        }
+
+        // Strip byte order mark (BOM)
+        fread($zipFileStream, 3);
+
+        return [$zipFile, $zipFileStream];
+    }
+
+
+    /**
+     * @param string $path
+     * @param string $mode
+     * @return resource
+     */
+    public static function openGzipFile(
+        string $path,
+        string $mode = 'w9'
+    ): mixed {
+        $gzipFile = gzopen($path, $mode);
+        return is_resource($gzipFile)
+            ? $gzipFile
+            : throw new \RuntimeException("Unable to open gzip file: {$path}");
+    }
+
+
+    /**
+     * @param string $path
+     * @param string $mode
+     * @return resource
+     */
+    public static function openFile(
+        string $path,
+        string $mode
+    ): mixed {
+        $file = fopen($path, $mode);
+        return is_resource($file)
+            ? $file
+            : throw new \RuntimeException("Unable to open file: {$path}");
+    }
 }

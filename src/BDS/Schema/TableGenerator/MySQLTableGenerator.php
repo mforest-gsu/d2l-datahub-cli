@@ -6,11 +6,26 @@ namespace D2L\DataHub\BDS\Schema\TableGenerator;
 
 use D2L\DataHub\BDS\Schema\Model\BDSSchema;
 use D2L\DataHub\BDS\Schema\Model\BDSSchemaColumn;
-use D2L\DataHub\BDS\Schema\TableGenerator;
 
 class MySQLTableGenerator extends TableGenerator
 {
-    protected static string $fileFormat = "mysql/%s.sql";
+    /**
+     * @param BDSSchema $dataset
+     * @return int
+     */
+    public function generate(BDSSchema $dataset): int
+    {
+        $tableName = $this->getTableName($dataset);
+
+        return
+            $this->saveTable(
+                $tableName,
+                $this->generateTable($dataset, $tableName)
+            ) + $this->saveTable(
+                $tableName . '_LOAD',
+                $this->generateTable($dataset, $tableName . '_LOAD')
+            );
+    }
 
 
     /**

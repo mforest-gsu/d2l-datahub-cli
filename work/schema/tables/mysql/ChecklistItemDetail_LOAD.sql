@@ -1,0 +1,15 @@
+DROP TABLE IF EXISTS `ChecklistItemDetail_LOAD`;
+
+CREATE TABLE `ChecklistItemDetail_LOAD` (
+  `ItemId` BIGINT NOT NULL,
+  `CategoryId` BIGINT DEFAULT NULL,
+  `Name` VARCHAR(512) DEFAULT NULL,
+  `Description` VARCHAR(1000) DEFAULT NULL,
+  `DescriptionIsHtml` TINYINT DEFAULT NULL,
+  `DueDate` DATETIME DEFAULT NULL,
+  `ScheduleId` INT DEFAULT NULL,
+  `SortOrder` INT DEFAULT NULL,
+  `IsAutoChecked` TINYINT DEFAULT NULL,
+  `LastModifiedUtc` DATETIME DEFAULT NULL,
+  UNIQUE KEY (`ItemId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

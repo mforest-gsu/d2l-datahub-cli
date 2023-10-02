@@ -4,216 +4,222 @@ declare(strict_types=1);
 
 namespace D2L\DataHub\BDS\Extract\ExtractProcessor;
 
-use D2L\DataHub\BDS\Extract\ExtractProcessor;
+use D2L\DataHub\BDS\Extract\ExtractProcessor\ExtractProcessor;
+use D2L\DataHub\BDS\Extract\Model\BDSExtractProcessInfo;
+use D2L\DataHub\BDS\Extract\Model\BDSProcessInfo;
 use D2L\DataHub\BDS\Schema\Model\BDSSchema;
 use D2L\DataHub\BDS\Schema\Model\BDSSchemaColumn;
-use RuntimeException;
+use D2L\DataHub\Utils\FileIO;
 
 class MySQLExtractProcessor extends ExtractProcessor
 {
-    public static string $processFileExtension = '.sql.gz';
+    /** @var int */
+    protected const BUFFER_SIZE = 10000;
 
 
     /**
-     * @param BDSSchema $schema
-     * @param string $bdsType
-     * @param string $extractName
-     * @param string $extractPath
-     * @return int
+     * @inheritdoc
      */
-    public function processExtract(
-        BDSSchema $schema,
-        string $bdsType,
-        string $extractName,
-        string $extractPath
-    ): int {
-        $error = false;
-        $total = 0;
-        $bufferSize = 10000;
-        $processPath = $this->getProcessPath($extractName);
-        $tableName = $this->getTableName($schema);
-
-        try {
-            // Open input and output files
-            list($zipFile, $extractFile) = $this->openExtractFile($extractPath);
-            $processFile = $this->openProcessFile($processPath);
-
-            // Read first line in file and map column positions to dataset fields
-            $columns = $this->getColumns($schema, $extractFile);
-
-            $header = $this->getHeader($tableName, $columns);
-            $footer = $this->getFooter($columns);
-            $formatters = $this->getColumnFormatters($columns);
-            $rowEnd = ",\n  ";
-
-            if ($bdsType === 'Full') {
-                gzwrite($processFile, "TRUNCATE `{$tableName}`;\n\n");
-            }
-
-            // For each row in extract
-            while ($row = fgetcsv(stream: $extractFile, escape: '"')) {
-                if ($total % $bufferSize === 0) {
-                    if ($total > 0) {
-                        gzwrite($processFile, $footer);
-                    }
-                    gzwrite($processFile, $header);
-                } else {
-                    gzwrite($processFile, $rowEnd);
-                }
-
-                foreach ($row as $i => $v) {
-                    $row[$i] = ($formatters[$i])($v);
-                }
-                gzwrite($processFile, "(" . implode(",", $row) . ")");
-
-                $total++;
-            }
-
-            if ($total > 0) {
-                gzwrite($processFile, $footer);
-            }
-        } catch (\Throwable $t) {
-            $error = true;
-            throw new RuntimeException("Error processing {$extractPath}", 0, $t);
-        } finally {
-            // Close extract file
-            if (is_resource($extractFile ?? null)) {
-                @fclose($extractFile);
-            }
-            if (($zipFile ?? null) instanceof \ZipArchive) {
-                @$zipFile->close();
-            }
-
-            // Close process file
-            if (is_resource($processFile ?? null)) {
-                @gzclose($processFile);
-            }
-
-            unset($zipFile, $extractFile, $processFile);
-
-            if ($error === true) {
-                // Remove process file if there was an error
-                @unlink($processPath);
-            } elseif ($total < 1) {
-                // Create zero byte file if there are no records to process
-                @unlink($processPath);
-                @touch($processPath);
-            }
-        }
-
-        return $total;
-    }
-
-
-    /**
-     * @param string $tableName
-     * @param array<int,BDSSchemaColumn> $columns
-     * @return string
-     */
-    private function getHeader(
-        string $tableName,
-        array &$columns
-    ): string {
-        $columnNames = implode(", ", array_map(fn ($column) => "`{$column->name}`", $columns));
-
-        return ""
-            . "INSERT INTO `{$tableName}`\n"
-            . "  ({$columnNames})\n"
-            . "VALUES\n"
-            . "  ";
-    }
-
-
-    /**
-     * @param array<int,BDSSchemaColumn> $columns
-     * @return string
-     */
-    private function getFooter(array &$columns): string
-    {
-        $columnAssignments = implode(
-            ",\n",
-            array_map(
-                fn ($column) =>  "  `{$column->name}`=new.`{$column->name}`",
-                $columns
-            )
+    protected function processFullDiff(
+        BDSExtractProcessInfo $processInfo,
+        mixed $csvFile
+    ): array {
+        return $this->generateDataFile(
+            processInfo: $processInfo,
+            csvFile: $csvFile,
+            globalHeader: "TRUNCATE TABLE `{$processInfo->tableName}_LOAD`;",
+            chunkHeader: implode("\n", [
+                "INSERT IGNORE INTO `{$processInfo->tableName}_LOAD`",
+                "  (",
+                implode(",\n", array_map(fn ($c) => "    `{$c->name}`", $processInfo->columns)),
+                "  )",
+                "VALUES"
+            ]),
+            chunkFooter: ";",
+            globalFooter: implode("\n", [
+                "DELETE FROM",
+                "  `{$processInfo->tableName}` t",
+                "WHERE",
+                "  EXISTS(",
+                "    SELECT",
+                "      1",
+                "    FROM",
+                "      `{$processInfo->tableName}_LOAD` s",
+                "    WHERE",
+                implode(" AND\n", array_map(
+                    fn ($c) => "      s.{$c->name} = t.{$c->name}",
+                    array_filter($processInfo->columns, fn ($c) => $c->pk)
+                )),
+                "  )",
+                ";",
+            ]),
         );
-
-        return ""
-            . "\n"
-            . "AS new ON DUPLICATE KEY UPDATE\n"
-            . $columnAssignments
-            . "\n;"
-            . "\n";
     }
 
 
     /**
-     * @param array<int,BDSSchemaColumn> $columns
-     * @return array<int,(callable(string $v): string)>
+     * @inheritdoc
      */
-    private function getColumnFormatters(array &$columns): array
-    {
-        return array_map(
-            fn ($column) => $column->canBeNull
-                ? match (strtoupper($column->dataType)) {
-                    'BIGINT', 'INT', 'FLOAT', 'DECIMAL' => fn (string $v): string => $v === ''
-                        ? 'NULL'
-                        : $this->formatNumeric($v),
-                    'BIT' => fn (string $v): string => $v === '' ? 'NULL' : $this->formatBoolean($v),
-                    'DATETIME2' => fn (string $v): string => $v === '' ? 'NULL' : $this->formatDatetime($v),
-                    default => fn (string $v): string => $v === '' ? 'NULL' : $this->formatString($v),
-                }
-                : match (strtoupper($column->dataType)) {
-                    'BIGINT', 'INT', 'FLOAT', 'DECIMAL' => fn (string $v): string => $this->formatNumeric($v),
-                    'BIT' => fn (string $v): string => $this->formatBoolean($v),
-                    'DATETIME2' => fn (string $v): string => $this->formatDatetime($v),
-                    default => fn (string $v): string => $this->formatString($v),
+    protected function processFull(
+        BDSExtractProcessInfo $processInfo,
+        mixed $csvFile
+    ): array {
+        return $this->generateDataFile(
+            processInfo: $processInfo,
+            csvFile: $csvFile,
+            globalHeader: implode("\n", [
+                "TRUNCATE TABLE `{$processInfo->tableName}`;"
+            ]),
+            chunkHeader: implode("\n", [
+                "INSERT IGNORE INTO `{$processInfo->tableName}`",
+                "  (",
+                implode(",\n", array_map(fn ($c) => "    `{$c->name}`", $processInfo->columns)),
+                "  )",
+                "VALUES"
+            ]),
+            chunkFooter: ";"
+        );
+    }
+
+
+    /**
+     * @inheritdoc
+     */
+    protected function processDiff(
+        BDSExtractProcessInfo $processInfo,
+        mixed $csvFile
+    ): array {
+        return $this->generateDataFile(
+            processInfo: $processInfo,
+            csvFile: $csvFile,
+            chunkHeader: implode("\n", [
+                "INSERT INTO `{$processInfo->tableName}`",
+                "  (",
+                implode(",\n", array_map(
+                    fn ($c) => "    `{$c->name}`",
+                    $processInfo->columns
+                )),
+                "  )",
+                "VALUES"
+            ]),
+            chunkFooter: implode("\n", [
+                "AS new ON DUPLICATE KEY UPDATE",
+                implode(",\n", array_map(
+                    fn ($c) =>  "  `{$c->name}`=new.`{$c->name}`",
+                    $processInfo->columns
+                )) . "\n",
+                ";"
+            ])
+        );
+    }
+
+
+    /**
+     * @inheritdoc
+     */
+    protected function getFormatter(
+        BDSExtractProcessInfo $processInfo,
+        BDSSchemaColumn $column
+    ): \Closure {
+        return match ($column->dataType) {
+            'bit' => fn ($v) => ($v === '')
+                ? 'NULL'
+                : match (strtoupper($v)) {
+                    "1", "T", "TRUE" => "1",
+                    default => "0"
                 },
-            $columns
-        );
-    }
-
-
-    /**
-     * @param string $v
-     * @return string
-     */
-    private function formatNumeric(string $v): string
-    {
-        return "'{$v}'";
-    }
-
-
-    /**
-     * @param string $v
-     * @return string
-     */
-    private function formatBoolean(string $v): string
-    {
-        return match (strtoupper($v)) {
-            "1", "T", "TRUE", "Y", "YES" => "'1'",
-            default => "'0'"
+            'datetime2' => function ($v): string {
+                if ($v === '') {
+                    return 'NULL';
+                }
+                $dateValue = @strtotime($v);
+                return is_int($dateValue) ? date('Y-m-d H:i:s', $dateValue) : 'NULL';
+            },
+            'nvarchar', 'varchar' => fn ($v) => ($v === '')
+                ? 'NULL'
+                : "'" . preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0', $v) . "'",
+            default => fn ($v) => $v === ''
+                ? 'NULL'
+                : "'{$v}'",
         };
     }
 
 
     /**
-     * @param string $v
-     * @return string
+     * @param BDSExtractProcessInfo $processInfo
+     * @param resource $csvFile
+     * @param string $globalHeader
+     * @param string $chunkHeader
+     * @param string $chunkFooter
+     * @param string $globalFooter
+     * @return array{0:int,1:array<string,string>}
      */
-    private function formatDatetime(string $v): string
-    {
-        $dateValue = @strtotime($v);
-        return is_int($dateValue) ? date('Y-m-d H:i:s', $dateValue) : throw new \RuntimeException();
-    }
+    protected function generateDataFile(
+        BDSExtractProcessInfo $processInfo,
+        mixed $csvFile,
+        string $globalHeader = "",
+        string $chunkHeader = "",
+        string $chunkFooter = "",
+        string $globalFooter = ""
+    ): array {
+        $totalRows = 0;
+        $dataFilePath = "{$this->options->processDir}/{$processInfo->extractName}.sql.gz";
 
+        $globalHeader = ($globalHeader !== '') ? "{$globalHeader}\n" : "";
+        $chunkHeader = "{$chunkHeader}\n";
+        $rowEnd = ",\n";
+        $chunkFooter = "\n{$chunkFooter}\n";
+        $globalFooter = ($globalFooter !== '') ? "\n{$globalFooter}\n" : "";
 
-    /**
-     * @param string $v
-     * @return string
-     */
-    private function formatString(string $v): string
-    {
-        return "'" . preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0', $v) . "'";
+        try {
+            // Open output data file
+            $dataFile = FileIO::openGzipFile($dataFilePath);
+
+            // Write global header, if it's set
+            if ($globalHeader !== '') {
+                gzwrite($dataFile, $globalHeader . "\n");
+            }
+
+            // For each row in extract
+            while ($row = fgetcsv(stream: $csvFile, escape: '"')) {
+                // If at end of current chunk
+                if ($totalRows % self::BUFFER_SIZE === 0) {
+                    // Close out previous chunk, if it exists
+                    if ($totalRows > 0) {
+                        gzwrite($dataFile, $chunkFooter);
+                    }
+                    // Start new chunk
+                    gzwrite($dataFile, $chunkHeader);
+                } else {
+                    // End previous row
+                    gzwrite($dataFile, $rowEnd);
+                }
+
+                // Write current row
+                foreach ($row as $i => $v) {
+                    $row[$i] = ($processInfo->formatters[$i])($v);
+                }
+                gzwrite($dataFile, "  (" . implode(",", $row) . ")");
+                $totalRows++;
+            }
+
+            // Close out last chunk, if it exists
+            if ($totalRows > 0) {
+                gzwrite($dataFile, $chunkFooter);
+            }
+
+            // Write global footer, if it's set
+            if ($globalFooter !== '') {
+                gzwrite($dataFile, $globalFooter . "\n");
+            }
+        } finally {
+            // Close output data file
+            if (is_resource($dataFile ?? null)) {
+                @gzclose($dataFile);
+            }
+            unset($dataFile);
+        }
+
+        return [$totalRows, ['data' => $dataFilePath]];
     }
 }

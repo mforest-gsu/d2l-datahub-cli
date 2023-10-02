@@ -40,7 +40,7 @@ class BDSSchemaNameMap
             ?? (
                 isset($this->getSchemaToAPIMap()[$name])
                 ? $name
-                : throw new \RuntimeException()
+                : throw new \RuntimeException("Unable to get schema name: {$name}")
             );
     }
 
@@ -72,7 +72,7 @@ class BDSSchemaNameMap
             ?? (
                 isset($this->getTableToAPIMap()[$name])
                 ? $name
-                : throw new \RuntimeException()
+                : throw new \RuntimeException("Unable to get table name: {$name}")
             );
     }
 

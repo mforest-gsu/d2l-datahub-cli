@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS `ChecklistCategoryDetail_LOAD`;
+
+CREATE TABLE `ChecklistCategoryDetail_LOAD` (
+  `CategoryId` BIGINT NOT NULL,
+  `ChecklistId` BIGINT DEFAULT NULL,
+  `Name` VARCHAR(512) DEFAULT NULL,
+  `Description` VARCHAR(1000) DEFAULT NULL,
+  `DescriptionIsHtml` TINYINT DEFAULT NULL,
+  `SortOrder` INT DEFAULT NULL,
+  `LastModifiedUtc` DATETIME DEFAULT NULL,
+  UNIQUE KEY (`CategoryId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

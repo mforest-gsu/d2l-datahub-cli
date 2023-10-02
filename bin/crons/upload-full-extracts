@@ -1,0 +1,59 @@
+#!/bin/bash
+
+source "$(realpath "$(dirname ${0})"/../env)"
+
+trap cleanup EXIT
+
+################################################################################
+
+EXTRACTS=()
+
+NEXT=0
+while (( ${NEXT} < ${#DATASETS[@]} ));
+do
+  sleep 0.25
+
+  for i in ${!PIDLIST[@]};
+  do
+    if (( ${NEXT} >= ${#DATASETS[@]} ))
+    then
+      break
+    fi
+  
+    PID=${PIDLIST[$i]}
+    DATASET=${DATASETS[$NEXT]}
+
+    kill -0 "${PID}" >/dev/null 2>&1
+    RETVAL=$?
+
+    if (( ${RETVAL} != 0 ))
+    then
+      EXTRACT=$(${CMD} extracts:list:processed --skip-fulldiff --skip-diff "${DATASET}" | head -1)
+
+      if [ -n "${EXTRACT}" ]
+      then
+        for PREV in $(${CMD} extracts:list:processed --skip-full "${DATASET}")
+        do
+          if [[ "${PREV}" < "${EXTRACT}" ]]
+          then
+            touch "${EXTRACT_UPLOADS_DIR}/${PREV}.json"
+          fi
+        done
+
+        ${CMD} extracts:upload "${EXTRACT}" &
+
+        PIDLIST[$i]=$!
+      fi
+
+      NEXT=$((NEXT + 1))
+    fi
+  done
+done
+
+wait
+
+################################################################################
+
+trap - EXIT
+
+exit 0

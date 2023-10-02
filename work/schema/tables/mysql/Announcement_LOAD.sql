@@ -1,0 +1,21 @@
+DROP TABLE IF EXISTS `Announcement_LOAD`;
+
+CREATE TABLE `Announcement_LOAD` (
+  `AnnouncementId` BIGINT NOT NULL,
+  `OrgUnitId` BIGINT DEFAULT NULL,
+  `Title` VARCHAR(400) DEFAULT NULL,
+  `StartDate` DATETIME DEFAULT NULL,
+  `EndDate` DATETIME DEFAULT NULL,
+  `IsGlobal` TINYINT DEFAULT NULL,
+  `IsDraft` TINYINT DEFAULT NULL,
+  `NumAttachments` INT DEFAULT NULL,
+  `DeletedDate` DATETIME DEFAULT NULL,
+  `DeletedByUserId` INT DEFAULT NULL,
+  `LastModified` DATETIME DEFAULT NULL,
+  `LastModifiedBy` INT DEFAULT NULL,
+  `CreatedBy` INT DEFAULT NULL,
+  `IsAuthorInfoShown` TINYINT DEFAULT NULL,
+  `CreatedDate` DATETIME DEFAULT NULL,
+  `ResultId` BIGINT DEFAULT NULL,
+  UNIQUE KEY (`AnnouncementId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

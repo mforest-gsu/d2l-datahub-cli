@@ -1,0 +1,37 @@
+#!/bin/bash
+
+set -a
+APP_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")/../")"
+APP_ENV="${1}"
+
+ENV_FILES=(".env" ".env.local")
+if [ -n "${APP_ENV}" ]
+then
+  ENV_FILES+=(".env.${APP_ENV}" ".env.${APP_ENV}.local")
+fi
+
+for ENV_FILE in ${ENV_FILES[@]}
+do
+  if [ -f "${APP_DIR}/${ENV_FILE}" ]
+  then
+    source "${APP_DIR}/${ENV_FILE}"
+  fi
+done
+set +a
+
+CMD="env APP_ENV=${APP_ENV} ${APP_DIR}/bin/console"
+
+PIDLIST=()
+for cpu in $(cat /proc/cpuinfo | sed -n "s/^processor\s*: \([0-9][0-9]*\)$/\1/p");
+do
+  PIDLIST+=("")
+done
+
+DATASETS=($(cat "${EXTRACT_DATASET_FILE}" 2>/dev/null))
+
+function cleanup() {
+  for i in ${!PIDLIST[@]};
+  do
+    kill ${PIDLIST[$i]} 2>/dev/null
+  done
+}

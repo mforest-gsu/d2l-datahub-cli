@@ -1,0 +1,20 @@
+DROP TABLE IF EXISTS `CalendarEvent_LOAD`;
+
+CREATE TABLE `CalendarEvent_LOAD` (
+  `ScheduleId` BIGINT NOT NULL,
+  `OrgUnitId` BIGINT DEFAULT NULL,
+  `UserId` BIGINT DEFAULT NULL,
+  `Title` VARCHAR(256) DEFAULT NULL,
+  `StartDate` DATETIME DEFAULT NULL,
+  `EndDate` DATETIME DEFAULT NULL,
+  `TimeZoneIdentifier` VARCHAR(256) DEFAULT NULL,
+  `IsAllDayEvent` TINYINT DEFAULT NULL,
+  `RecurrenceType` VARCHAR(7) DEFAULT NULL,
+  `RecurrenceInterval` INT DEFAULT NULL,
+  `CreatedByUserId` INT DEFAULT NULL,
+  `LastModified` DATETIME DEFAULT NULL,
+  `EventObjectTypeName` VARCHAR(200) DEFAULT NULL,
+  `ObjectLookupId1` BIGINT DEFAULT NULL,
+  `ObjectLookupId2` BIGINT DEFAULT NULL,
+  UNIQUE KEY (`ScheduleId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

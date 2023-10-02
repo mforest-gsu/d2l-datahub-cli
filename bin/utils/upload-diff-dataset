@@ -1,0 +1,9 @@
+#!/bin/bash
+
+source "$(realpath "$(dirname ${0})"/../env)"
+
+EXTRACTS=($(${CMD} extracts:list:processed --skip-full "${2}"))
+for EXTRACT in ${EXTRACTS[@]}
+do
+  ${CMD} extracts:upload "${EXTRACT}"
+done

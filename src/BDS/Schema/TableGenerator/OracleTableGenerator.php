@@ -6,13 +6,9 @@ namespace D2L\DataHub\BDS\Schema\TableGenerator;
 
 use D2L\DataHub\BDS\Schema\Model\BDSSchema;
 use D2L\DataHub\BDS\Schema\Model\BDSSchemaColumn;
-use D2L\DataHub\BDS\Schema\TableGenerator;
 
 class OracleTableGenerator extends TableGenerator
 {
-    protected static string $fileFormat = "oracle/%s.sql";
-
-
     /**
      * @param BDSSchema $dataset
      * @return int

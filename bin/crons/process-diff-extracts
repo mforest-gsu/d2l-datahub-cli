@@ -1,0 +1,45 @@
+#!/bin/bash
+
+source "$(realpath "$(dirname ${0})"/../env)"
+
+trap cleanup EXIT
+
+################################################################################
+
+EXTRACTS=($(${CMD} extracts:list:downloaded --skip-full ${DATASETS[@]}))
+
+NEXT=0
+while (( ${NEXT} < ${#EXTRACTS[@]} ));
+do
+  sleep 0.25
+
+  for i in ${!PIDLIST[@]};
+  do
+    if (( ${NEXT} >= ${#EXTRACTS[@]} ))
+    then
+      break
+    fi
+
+    PID=${PIDLIST[$i]}
+    EXTRACT=${EXTRACTS[$NEXT]}
+
+    kill -0 "${PID}" >/dev/null 2>&1
+    RETVAL=$?
+
+    if (( ${RETVAL} != 0 ))
+    then
+      ${CMD} extracts:process "${EXTRACT}" &
+
+      PIDLIST[$i]=$!
+      NEXT=$((NEXT + 1))
+    fi
+  done
+done
+
+wait
+
+################################################################################
+
+trap - EXIT
+
+exit 0

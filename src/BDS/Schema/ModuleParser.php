@@ -46,7 +46,7 @@ class ModuleParser
         $contents = FileIO::getContents("{$this->options->modulesDir}/{$moduleName}.html");
         $document = new \DOMDocument();
         if (!@$document->loadHTML($contents)) {
-            throw new \RuntimeException();
+            throw new \RuntimeException("Unable to parse module contents");
         }
         return $document;
     }
@@ -60,22 +60,22 @@ class ModuleParser
     {
         $pageContent = $document->getElementById("fallbackPageContent");
         if ($pageContent === null) {
-            throw new \RuntimeException();
+            throw new \RuntimeException("Element 'fallbackPageContent' not found");
         }
 
         $main = $this->findChildrenByName($pageContent, 'main')[0] ?? null;
         if ($main === null) {
-            throw new \RuntimeException();
+            throw new \RuntimeException("Element 'main' not found");
         }
 
         $section = $this->findChildrenByName($main, 'section')[0] ?? null;
         if ($section === null) {
-            throw new \RuntimeException();
+            throw new \RuntimeException("Element 'section' not found");
         }
 
         $sectionDivs = $this->findChildrenByName($section, 'div');
         if (count($sectionDivs) < 1) {
-            throw new \RuntimeException();
+            throw new \RuntimeException("Element 'div' not found");
         }
 
         $mainColumn = null;
@@ -94,12 +94,12 @@ class ModuleParser
             }
         }
         if ($mainColumn === null) {
-            throw new \RuntimeException();
+            throw new \RuntimeException("Element 'div.mainColumn' not found");
         }
 
         $article = $this->findChildrenByName($mainColumn, 'article')[0] ?? null;
         if ($article === null) {
-            throw new \RuntimeException();
+            throw new \RuntimeException("Element 'article' not found");
         }
 
         return $article;

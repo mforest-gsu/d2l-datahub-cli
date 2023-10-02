@@ -1,0 +1,13 @@
+#!/bin/bash
+
+SQL_FILE=${1}
+TOT_ROWS=${2}
+DB_NAME=${3}
+
+if (( ${TOT_ROWS} > 0 ))
+then
+  # Pipe uncompressed SQL file into MySQL. Credentials are set in ~/.my.cnf
+  gzip -cd "${SQL_FILE}" | mysql "${DB_NAME}"
+fi
+
+exit 0

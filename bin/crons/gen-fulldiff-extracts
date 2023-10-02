@@ -1,0 +1,43 @@
+#!/bin/bash
+
+source "$(realpath "$(dirname ${0})"/../env)"
+
+trap cleanup EXIT
+
+################################################################################
+
+NEXT=0
+while (( ${NEXT} < ${#DATASETS[@]} ));
+do
+  sleep 0.25
+
+  for i in ${!PIDLIST[@]};
+  do
+    if (( ${NEXT} >= ${#DATASETS[@]} ))
+    then
+      break
+    fi
+
+    PID=${PIDLIST[$i]}
+    DATASET=${DATASETS[$NEXT]}
+
+    kill -0 "${PID}" >/dev/null 2>&1
+    RETVAL=$?
+
+    if (( ${RETVAL} != 0 ))
+    then
+      ${CMD} extracts:gen-fulldiff "${DATASET}" &
+
+      PIDLIST[$i]=$!
+      NEXT=$((NEXT + 1))
+    fi
+  done
+done
+
+wait
+
+################################################################################
+
+trap - EXIT
+
+exit 0

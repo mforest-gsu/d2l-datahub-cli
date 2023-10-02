@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS `LTILinkShared_LOAD`;
+
+CREATE TABLE `LTILinkShared_LOAD` (
+  `OuAvailabilitySetId` BIGINT DEFAULT NULL,
+  `OrgUnitId` INT DEFAULT NULL,
+  `SharingType` VARCHAR(9) DEFAULT NULL,
+  `DescendantTypeId` INT DEFAULT NULL,
+  `LastModified` DATETIME DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

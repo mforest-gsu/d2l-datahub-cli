@@ -49,7 +49,7 @@ class ModuleDownloader
     {
         $moduleURL = $this->modules->getModuleURL($moduleName);
         if ($moduleURL === null) {
-            throw new \RuntimeException();
+            throw new \RuntimeException("Invalid module URL");
         }
 
         $response = $this->httpClient->sendRequest(

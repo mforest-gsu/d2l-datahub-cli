@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace D2L\DataHub\BDS\Extract;
 
-use D2L\DataHub\BDS\Extract\Command\ProcessExtractsCommand;
-use D2L\DataHub\BDS\Extract\Command\UploadExtractsCommand;
+use D2L\DataHub\BDS\Extract\Command\ProcessExtractCommand;
+use D2L\DataHub\BDS\Extract\Command\UploadExtractCommand;
+use D2L\DataHub\BDS\Extract\ExtractProcessor\ExtractProcessor;
+use D2L\DataHub\BDS\Extract\ExtractUploader\ExtractUploader;
 use D2L\DataHub\BDS\Extract\Model\BDSExtractOptions;
 use mjfk23\Container\DefinitionSource;
 use mjfk23\Container\Env;
@@ -20,25 +22,25 @@ class BDSExtractDefinitions extends DefinitionSource
     {
         return [
             BDSExtractOptions::class => static::factory(fn() => BDSExtractOptions::create((array)$env)),
-            ProcessExtractsCommand::class => static::autowire(null, [
-                'extractProcessorFactory' => static::factory(function (ContainerInterface $c) {
+            ProcessExtractCommand::class => static::autowire(null, [
+                'processorFactory' => static::factory(function (ContainerInterface $c) {
                     return function (BDSExtractOptions $options) use ($c): ExtractProcessor {
-                        $extractProcessor = $c->get($options->extractProcessorClass);
-                        if (!$extractProcessor instanceof ExtractProcessor) {
-                            throw new \RuntimeException();
+                        $processor = $c->get($options->processorClass);
+                        if (!$processor instanceof ExtractProcessor) {
+                            throw new \RuntimeException("Error creating instance of ExtractProcessor");
                         }
-                        return $extractProcessor;
+                        return $processor;
                     };
                 })
             ]),
-            UploadExtractsCommand::class => static::autowire(null, [
-                'extractUploaderFactory' => static::factory(function (ContainerInterface $c) {
+            UploadExtractCommand::class => static::autowire(null, [
+                'uploaderFactory' => static::factory(function (ContainerInterface $c) {
                     return function (BDSExtractOptions $options) use ($c): ExtractUploader {
-                        $extractUploader = $c->get($options->extractUploaderClass);
-                        if (!$extractUploader instanceof ExtractUploader) {
-                            throw new \RuntimeException();
+                        $uploader = $c->get($options->uploaderClass);
+                        if (!$uploader instanceof ExtractUploader) {
+                            throw new \RuntimeException("Error creating instance of ExtractUploader");
                         }
-                        return $extractUploader;
+                        return $uploader;
                     };
                 })
             ])

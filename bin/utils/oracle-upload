@@ -1,0 +1,53 @@
+#!/bin/bash
+
+CTL_FILE=${1}
+DAT_FILE=${2}
+SQL_FILE=${3}
+TOT_ROWS=${4}
+DB_NAME=${5}
+LOG_FILE=${6}
+BAD_FILE=${7}
+DIS_FILE=${8}
+PIP_FILE="${DAT_FILE}.pip"
+
+function cleanup()
+{
+  # Remove named pipe
+  rm -f "${PIP_FILE}"
+}
+
+trap cleanup EXIT
+
+# Clean up any files left over from a previous run
+rm -f \
+  "${PIP_FILE}" \
+  "${LOG_FILE}" \
+  "${BAD_FILE}" \
+  "${DIS_FILE}"
+
+if (( ${TOT_ROWS} > 0 ))
+then
+  # Create named pipe for uncompressed data file
+  mknod "${PIP_FILE}" p
+  gzip -cd "${DAT_FILE}" > "${PIP_FILE}" 2> /dev/null &
+
+  # Execute SQL*Loader. Credentials are configured in Oracle Wallet.
+  sqlldr \
+    direct=true \
+    control="${CTL_FILE}" \
+    data="${PIP_FILE}" \
+    log="${LOG_FILE}" \
+    bad="${BAD_FILE}" \
+    discard="/dev/null" \
+    errors=10000 \
+    date_cache=0 \
+    userid=/@${DB_NAME}
+
+  # Execute SQL file in SQL*Plus. Credentials are configured in Oracle Wallet.
+  sqlplus /@${DB_NAME} @"${SQL_FILE}"
+else
+  # If there are no rows to process, just create an empty LOG_FILE
+  touch ${LOG_FILE}
+fi
+
+exit 0

@@ -2,4 +2,4 @@
 vendor
 composer.lock
 !.gitignore
-!.env.example
+!.env.example*

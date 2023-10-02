@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace D2L\DataHub\BDS\Extract\ExtractProcessor;
 
-use D2L\DataHub\BDS\Extract\ExtractProcessor;
+use D2L\DataHub\BDS\Extract\ExtractProcessor\ExtractProcessor;
 use D2L\DataHub\BDS\Extract\Model\BDSExtractOptions;
-use D2L\DataHub\BDS\Schema\Model\BDSSchema;
+use D2L\DataHub\BDS\Extract\Model\BDSExtractProcessInfo;
 use D2L\DataHub\BDS\Schema\Model\BDSSchemaColumn;
 use D2L\DataHub\BDS\Schema\Model\BDSSchemaNameMap;
+use D2L\DataHub\Utils\FileIO;
 
 class OracleExtractProcessor extends ExtractProcessor
 {
-    public static string $processFileExtension = '.dat.gz';
-
     /** @var array<string,string> */
     private const SPECIAL_CHARS = [
         "\xC2\xAB" => "<<",
@@ -44,8 +43,7 @@ class OracleExtractProcessor extends ExtractProcessor
 
 
     /**
-     * @param BDSExtractOptions $options
-     * @param BDSSchemaNameMap $nameMap
+     * @inheritdoc
      */
     public function __construct(
         protected BDSExtractOptions $options,
@@ -58,136 +56,289 @@ class OracleExtractProcessor extends ExtractProcessor
 
 
     /**
-     * @param BDSSchema $schema
-     * @param string $bdsType
-     * @param string $extractName
-     * @param string $extractPath
-     * @return int
+     * @inheritdoc
      */
-    public function processExtract(
-        BDSSchema $schema,
-        string $bdsType,
-        string $extractName,
-        string $extractPath
-    ): int {
-        $ctlPath = $this->getProcessPath($extractName, '.ctl');
-        $sqlPath = $this->getProcessPath($extractName, '.sql');
-        $datPath = $this->getProcessPath($extractName, '.dat');
-        $tableName = $this->getTableName($schema);
-        $columns = [];
-
-        $rows = $this->generateDatFile(
-            $schema,
-            $extractPath,
-            $datPath . '.gz',
-            $columns
+    protected function processFullDiff(
+        BDSExtractProcessInfo $processInfo,
+        mixed $csvFile
+    ): array {
+        return $this->generateProcessFiles(
+            $processInfo,
+            $csvFile,
+            [
+                "DELETE FROM",
+                "  {$processInfo->tableName} t",
+                "WHERE",
+                "  EXISTS(",
+                "    SELECT",
+                "      1",
+                "    FROM",
+                "      {$processInfo->tableName}_LOAD s",
+                "    WHERE",
+                implode(" AND\n", array_map(
+                    fn ($col) => "      s.{$col} = t.{$col}",
+                    array_map(
+                        fn ($c) => $this->getTableColumnName($c->name),
+                        $processInfo->columns
+                    )
+                )),
+                "  )",
+                ";",
+            ]
         );
-
-        if ($rows > 0) {
-            OracleLoaderFileGenerator::generateCtlFile(
-                $ctlPath,
-                ($bdsType === 'Full') ? $tableName : $tableName . '_LOAD',
-                $columns
-            );
-
-            OracleLoaderFileGenerator::generateSqlFile(
-                $sqlPath,
-                $bdsType,
-                $tableName . '_LOAD',
-                $tableName,
-                $columns
-            );
-        }
-
-        return $rows;
     }
 
 
     /**
-     * @param BDSSchema $schema
-     * @param string $extractPath
-     * @param string $datPath
-     * @param array<int,BDSSchemaColumn> $columns
-     * @return int
+     * @inheritdoc
      */
-    private function generateDatFile(
-        BDSSchema $schema,
-        string $extractPath,
-        string $datPath,
-        array &$columns
-    ): int {
-        $error = false;
-        $total = 0;
+    protected function processFull(
+        BDSExtractProcessInfo $processInfo,
+        mixed $csvFile
+    ): array {
+        return $this->generateProcessFiles(
+            $processInfo,
+            $csvFile,
+            ["TRUNCATE TABLE {$processInfo->tableName}_LOAD"]
+        );
+    }
+
+
+    /**
+     * @inheritdoc
+     */
+    protected function processDiff(
+        BDSExtractProcessInfo $processInfo,
+        mixed $csvFile
+    ): array {
+        return $this->generateProcessFiles(
+            $processInfo,
+            $csvFile,
+            [
+                "MERGE INTO {$processInfo->tableName} t",
+                "USING {$processInfo->tableName}_LOAD s",
+                "ON (",
+                implode(" AND\n", array_map(
+                    fn ($col) => "  t.{$col} = s.{$col}",
+                    array_map(
+                        fn ($col) => self::getTableColumnName($col->name),
+                        array_filter(
+                            $processInfo->columns,
+                            fn ($col) => $col->pk
+                        )
+                    )
+                )),
+                ")",
+                ...(function ($nonKeyFields) {
+                    return (count($nonKeyFields) > 0)
+                        ? [
+                            "WHEN MATCHED THEN UPDATE SET",
+                            implode(",\n", array_map(
+                                fn ($c) => "  t.{$c} = s.{$c}",
+                                array_map(
+                                    fn ($c) => $this->getTableColumnName($c->name),
+                                    $nonKeyFields
+                                )
+                            ))
+                        ]
+                        : [];
+                })(array_filter($processInfo->columns, fn ($c) => !$c->pk)),
+                "WHEN NOT MATCHED THEN",
+                "INSERT (",
+                implode(",\n", array_map(
+                    fn ($c) => "  t." . $this->getTableColumnName($c->name),
+                    $processInfo->columns
+                )),
+                ")",
+                "VALUES (",
+                implode(",\n", array_map(
+                    fn ($c) => "  s." . $this->getTableColumnName($c->name),
+                    $processInfo->columns
+                )),
+                ");"
+            ]
+        );
+    }
+
+
+    /**
+     * @inheritdoc
+     */
+    protected function getFormatter(
+        BDSExtractProcessInfo $processInfo,
+        BDSSchemaColumn $column
+    ): \Closure {
+        return match ($column->dataType) {
+            'bit' => fn ($v) => ($v === '')
+                ? ''
+                : match (strtoupper($v)) {
+                    "1", "T", "TRUE" => "1",
+                    default => "0"
+                },
+            'nvarchar', 'varchar' => fn ($v) => ($v === '')
+                ? ''
+                : str_replace($this->search, $this->replacements, $v),
+            default => fn ($v) => $v,
+        };
+    }
+
+
+    /**
+     * @param BDSExtractProcessInfo $processInfo
+     * @param resource $csvFile
+     * @param string[] $sql
+     * @return array{0:int,1:array<string,string>}
+     */
+    protected function generateProcessFiles(
+        BDSExtractProcessInfo $processInfo,
+        mixed $csvFile,
+        array $sql
+    ): array {
+        list($totalRows, $dataFilePath) = $this->generateDataFile($processInfo, $csvFile);
+        $ctlFilePath = $this->generateCtlFile($processInfo);
+        $sqlFilePath = $this->generateSqlFile($processInfo, $sql);
+
+        return [
+            $totalRows,
+            [
+                'data' => $dataFilePath,
+                'ctl' => $ctlFilePath,
+                'sql' => $sqlFilePath
+            ]
+        ];
+    }
+
+
+    /**
+     * @param BDSExtractProcessInfo $processInfo
+     * @param resource $csvFile
+     * @return array{0:int,1:string}
+     */
+    protected function generateDataFile(
+        BDSExtractProcessInfo $processInfo,
+        mixed $csvFile
+    ): array {
+        $totalRows = 0;
+        $dataFilePath = "{$this->options->processDir}/{$processInfo->extractName}.dat.gz";
 
         try {
-            // Open input and output files
-            list($zipFile, $extractFile) = $this->openExtractFile($extractPath);
-            $datFile = $this->openProcessFile($datPath);
-
-            // Read first line in file and map column positions to dataset fields
-            $columns = $this->getColumns($schema, $extractFile);
-            $formatters = $this->getColumnFormatters($columns);
+            // Open output data file
+            $dataFile = FileIO::openGzipFile($dataFilePath);
 
             // For each row in extract
-            while ($row = fgetcsv(stream: $extractFile, escape: '"')) {
+            while ($row = fgetcsv(stream: $csvFile, escape: '"')) {
                 foreach ($row as $i => $v) {
-                    $row[$i] = ($formatters[$i])($v);
+                    $row[$i] = ($processInfo->formatters[$i])($v);
                 }
-                fputcsv($datFile, $row, ",", "\"", "", "\n");
-                $total++;
+                fputcsv($dataFile, $row, ",", "\"", "", "\n");
+                $totalRows++;
             }
-        } catch (\Throwable $t) {
-            $error = true;
-            throw new \RuntimeException("Error processing {$extractPath}", 0, $t);
         } finally {
-            // Close extract file
-            if (is_resource($extractFile ?? null)) {
-                @fclose($extractFile);
+            // Close output data file
+            if (is_resource($dataFile ?? null)) {
+                @gzclose($dataFile);
             }
-            if (($zipFile ?? null) instanceof \ZipArchive) {
-                @$zipFile->close();
-            }
-
-            // Close process file
-            if (is_resource($datFile ?? null)) {
-                @gzclose($datFile);
-            }
-
-            unset($zipFile, $extractFile, $datFile);
-
-            if ($error === true) {
-                // Remove process file if there was an error
-                @unlink($datPath);
-            }
+            unset($dataFile);
         }
 
-        return $total;
+        return [$totalRows, $dataFilePath];
     }
 
 
     /**
-     * @param array<int,BDSSchemaColumn> $columns
-     * @return array<int,(\Closure(string $v): string)>
+     * @param BDSExtractProcessInfo $processInfo
+     * @return string
      */
-    private function getColumnFormatters(array $columns): array
+    protected function generateCtlFile(BDSExtractProcessInfo $processInfo): string
     {
-        return array_map(
-            function (BDSSchemaColumn $column): \Closure {
-                /** @var (\Closure(string $v): string) $out */
-                $out = match ($column->dataType) {
-                    'bit' => fn ($v) => ($v === '') ? ''
-                        : match (strtoupper($v)) {
-                            "1", "T", "TRUE" => "1",
-                            default => "0"
-                        },
-                    'nvarchar', 'varchar' => fn ($v) => ($v === '') ? ''
-                        : str_replace($this->search, $this->replacements, $v),
-                    default => fn ($v) => $v,
-                };
+        $ctlFilePath = "{$this->options->processDir}/{$processInfo->extractName}.ctl";
+        $tableName = ($processInfo->bdsType === 'Full')
+            ? $processInfo->tableName
+            : $processInfo->tableName . '_LOAD';
 
-                return $out;
-            },
-            $columns
+        FileIO::putContents(
+            $ctlFilePath,
+            [
+                "LOAD DATA",
+                "CHARACTERSET UTF8",
+                "TRUNCATE INTO TABLE {$tableName}",
+                "FIELDS TERMINATED BY \",\"",
+                "OPTIONALLY ENCLOSED BY '\"'",
+                "TRAILING NULLCOLS",
+                "(",
+                implode(",\n", array_map(fn ($c) => $this->getCtlColumn($c), $processInfo->columns)),
+                ")",
+            ]
         );
+
+        return $ctlFilePath;
+    }
+
+
+    /**
+     * @param BDSSchemaColumn $column
+     * @return string
+     */
+    protected function getCtlColumn(BDSSchemaColumn $column): string
+    {
+        $name = $this->getTableColumnName($column->name);
+
+        $columnSize = max(match ($column->dataType) {
+            'bigint' => 20,
+            'bit' => 1,
+            'datetime2' => 21,
+            'decimal' => intval(array_sum(explode(",", $column->columnSize))),
+            'float' => 126,
+            'int' => 10,
+            'nvarchar', 'varchar' => intval(2.5 * intval($column->columnSize)),
+            'smallint' => 5,
+            'uniqueidentifier' => 36,
+            default => intval($column->columnSize)
+        }, 1);
+
+        $dataType = match ($column->dataType) {
+            'bigint', 'bit', 'int', 'smallint' => "INTEGER EXTERNAL({$columnSize})",
+            'datetime2' => "TIMESTAMP WITH TIME ZONE 'yyyy-mm-dd\"T\"hh24:mi:ss.fftzhtzm'",
+            'decimal' => "DECIMAL EXTERNAL({$columnSize})",
+            'float' => "FLOAT EXTERNAL({$columnSize})",
+            'nvarchar', 'varchar', 'uniqueidentifier' => "CHAR({$columnSize})",
+            default => "CHAR({$columnSize})"
+        };
+
+        return implode(
+            " ",
+            ($column->canBeNull)
+                ? [" ", $name, $dataType, "NULLIF ({$name}=BLANKS)"]
+                : [" ", $name, $dataType]
+        );
+    }
+
+
+    /**
+     * @param BDSExtractProcessInfo $processInfo
+     * @param string[] $sql
+     * @return string
+     */
+    protected function generateSqlFile(
+        BDSExtractProcessInfo $processInfo,
+        array $sql
+    ): string {
+        $sqlFilePath = "{$this->options->processDir}/{$processInfo->extractName}.sql";
+        array_push($sql, "", "QUIT;");
+        FileIO::putContents($sqlFilePath, $sql);
+        return $sqlFilePath;
+    }
+
+
+    /**
+     * @param string $name
+     * @return string
+     */
+    protected function getTableColumnName(string $name): string
+    {
+        return match (strtolower($name)) {
+            "group", "comment", "order" => "D2L" . $name,
+            default => $name
+        };
     }
 }
