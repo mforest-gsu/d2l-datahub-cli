@@ -7,6 +7,8 @@ namespace D2L\DataHub\BDS\Extract\Command;
 use D2L\DataHub\BDS\Extract\ExtractProcessor\ExtractProcessor;
 use D2L\DataHub\BDS\Extract\ExtractUploader\ExtractUploader;
 use D2L\DataHub\BDS\Extract\Model\BDSExtractOptions;
+use D2L\DataHub\BDS\Schema\Model\BDSSchema;
+use D2L\DataHub\Utils\FileIO;
 use mjfk23\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -135,6 +137,61 @@ class ExtractCommandOptions
             mode: InputOption::VALUE_OPTIONAL,
             description: 'Extract uploader class',
             default: $options->uploaderClass
+        );
+    }
+
+
+    /**
+     * @param Command $cmd
+     * @return void
+     */
+    public static function configDatasetList(Command $cmd): void
+    {
+        $cmd->addArgument(
+            name: 'datasets',
+            mode: InputOption::VALUE_OPTIONAL,
+            description: 'Dataset(s) to perform action on'
+        );
+    }
+
+
+    /**
+     * @param Command $cmd
+     * @return void
+     */
+    public static function configDataset(Command $cmd): void
+    {
+        $cmd->addArgument(
+            name: 'dataset',
+            mode: InputOption::VALUE_REQUIRED,
+            description: 'Dataset to perform action on'
+        );
+    }
+
+    /**
+     * @param Command $cmd
+     * @return void
+     */
+    public static function configExtractList(Command $cmd): void
+    {
+        $cmd->addArgument(
+            name: 'extracts',
+            mode: InputOption::VALUE_OPTIONAL,
+            description: 'Extract(s) to perform action on'
+        );
+    }
+
+
+    /**
+     * @param Command $cmd
+     * @return void
+     */
+    public static function configExtract(Command $cmd): void
+    {
+        $cmd->addArgument(
+            name: 'extract',
+            mode: InputOption::VALUE_REQUIRED,
+            description: 'Extract to perform action on'
         );
     }
 
@@ -285,6 +342,20 @@ class ExtractCommandOptions
 
     /**
      * @param InputInterface $input
+     * @return string
+     */
+    public static function getDataset(InputInterface $input): string
+    {
+        $datasetName = $input->getArgument('dataset');
+        if (!is_string($datasetName)) {
+            throw new \RuntimeException("Dataset not specified");
+        }
+        return $datasetName;
+    }
+
+
+    /**
+     * @param InputInterface $input
      * @return array{0:string,1:string,2:string}
      */
     public static function getExtract(InputInterface $input): array
@@ -295,5 +366,52 @@ class ExtractCommandOptions
         }
         list($datasetName,,, $bdsType) = explode('_', $extractName);
         return [$extractName, $datasetName, $bdsType];
+    }
+
+
+    /**
+     * @param string $schemaPath
+     * @return BDSSchema
+     */
+    public static function getSchema(string $schemaPath): BDSSchema
+    {
+        $schema = FileIO::jsonDecode(FileIO::getContents($schemaPath));
+        return BDSSchema::create(reset($schema));
+    }
+
+
+    /**
+     * @param BDSSchema $schema
+     * @return string[]
+     */
+    public static function getKeyFieldNames(BDSSchema $schema): array
+    {
+        return array_map(
+            fn ($v) => $v->name,
+            array_filter(
+                $schema->columns,
+                fn ($v) => $v->pk
+            )
+        );
+    }
+
+
+    /**
+     * @param array<int,string> $extractFields
+     * @param string[] $schemaFields
+     * @return array<int,string>
+     */
+    public static function filterExtractFields(
+        array $extractFields,
+        array $schemaFields
+    ): array {
+        return array_filter(
+            $extractFields,
+            fn (string $extractField): bool => in_array(
+                $extractField,
+                $schemaFields,
+                true
+            )
+        );
     }
 }

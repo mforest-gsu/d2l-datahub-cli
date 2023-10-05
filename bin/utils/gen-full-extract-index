@@ -1,0 +1,71 @@
+#!/bin/bash
+
+PIDLIST=()
+for cpu in $(cat /proc/cpuinfo | sed -n "s/^processor\s*: \([0-9][0-9]*\)$/\1/p");
+do
+  PIDLIST+=("")
+done
+
+CMD="${1}"
+DOWNLOADS_DIR="${2}"
+EXTRACT_NAME="${3}"
+
+cd "${DOWNLOADS_DIR}"
+
+if [ -f "${EXTRACT_NAME}.idx" ]
+then
+  exit 0
+fi
+
+EXTRACT_PATH="${EXTRACT_NAME}.zip"
+EXTRACT_COLS="$(unzip -a -p ${EXTRACT_PATH} | tail -c +4 2>/dev/null | head -1 | sed 's/[\r\n]//g')"
+
+rm -f ${EXTRACT_NAME}.chunk.*
+unzip -p "${EXTRACT_PATH}" | tail -n +2 | split -l5000000 - "${EXTRACT_NAME}.chunk."
+CHUNKS=($(ls -1 ${EXTRACT_NAME}.chunk.* 2>/dev/null))
+
+NEXT=0
+while (( ${NEXT} < ${#CHUNKS[@]} ));
+do
+  sleep 0.25
+
+  for i in ${!PIDLIST[@]};
+  do
+    if (( ${NEXT} >= ${#CHUNKS[@]} ))
+    then
+      break
+    fi
+
+    PID=${PIDLIST[${i}]}
+    CHUNK=${CHUNKS[${NEXT}]}
+
+    kill -0 "${PID}" >/dev/null 2>&1
+    RETVAL=$?
+
+    if (( ${RETVAL} != 0 ))
+    then    
+      cat "${CHUNK}" | ${CMD} extracts:gen:index-chunk "${EXTRACT_NAME}" "${EXTRACT_COLS}" > "${CHUNK}.idx" \
+        && mv "${CHUNK}.idx" "${CHUNK}" \
+        && sort -T "${DOWNLOADS_DIR}" "${CHUNK}" -o "${CHUNK}.sorted" \
+        && mv "${CHUNK}.sorted" "${CHUNK}" \
+        &
+
+      PIDLIST[${i}]=$!
+      NEXT=$((NEXT + 1))
+    fi
+  done
+done
+
+wait
+
+if (( ${#CHUNKS[@]} > 0 ))
+then
+  sort -m ${EXTRACT_NAME}.chunk.* -o "${EXTRACT_NAME}.idx"
+  rm -f ${EXTRACT_NAME}.chunk.*
+fi
+
+################################################################################
+
+trap - EXIT
+
+exit 0

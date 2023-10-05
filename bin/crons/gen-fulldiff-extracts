@@ -6,27 +6,33 @@ trap cleanup EXIT
 
 ################################################################################
 
+FULLDIFFS=($(${CMD} extracts:list:fulldiff ${DATASETS[@]}))
+
 NEXT=0
-while (( ${NEXT} < ${#DATASETS[@]} ));
+while (( ${NEXT} < ${#FULLDIFFS[@]} ));
 do
   sleep 0.25
 
   for i in ${!PIDLIST[@]};
   do
-    if (( ${NEXT} >= ${#DATASETS[@]} ))
+    if (( ${NEXT} >= ${#FULLDIFFS[@]} ))
     then
       break
     fi
 
     PID=${PIDLIST[$i]}
-    DATASET=${DATASETS[$NEXT]}
+    FULLDIFF=($(echo "${FULLDIFFS[${NEXT}]}" | sed 's/,/ /g'))
 
     kill -0 "${PID}" >/dev/null 2>&1
     RETVAL=$?
 
     if (( ${RETVAL} != 0 ))
     then
-      ${CMD} extracts:gen-fulldiff "${DATASET}" &
+      EXTRACT_NAME=
+      EXTRACT_PATH="${EXTRACT_DOWNLOADS_DIR}/${FULLDIFF[2]}.zip"
+      EXTRACT_COLS="$(unzip -a -p "${EXTRACT_PATH}" | tail -c +4 | head -1 | sed 's/[\r\n]//g')"
+
+      ${CMD} extracts:gen:fulldiff ${FULLDIFF[@]} ${EXTRACT_COLS} &
 
       PIDLIST[$i]=$!
       NEXT=$((NEXT + 1))

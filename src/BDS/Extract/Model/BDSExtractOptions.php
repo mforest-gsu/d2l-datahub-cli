@@ -52,6 +52,7 @@ class BDSExtractOptions
      * @param string $uploaderClass
      * @param string $availableFileExt
      * @param string $downloadsFileExt
+     * @param string $indexFileExt
      * @param string $processFileExt
      * @param string $uploadsFileExt
      */
@@ -66,6 +67,7 @@ class BDSExtractOptions
         public string $uploaderClass,
         public string $availableFileExt = '.json',
         public string $downloadsFileExt = '.zip',
+        public string $indexFileExt = '.idx',
         public string $processFileExt = '.json',
         public string $uploadsFileExt = '.json',
     ) {

@@ -9,11 +9,9 @@ use D2L\DataHub\BDS\Extract\Model\BDSExtractOptions;
 use D2L\DataHub\BDS\Schema\Command\SchemaCommandOptions;
 use D2L\DataHub\BDS\Schema\Model\BDSSchema;
 use D2L\DataHub\BDS\Schema\Model\BDSSchemaOptions;
-use D2L\DataHub\Utils\FileIO;
 use mjfk23\Console\Command\Command;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(name: 'extracts:process')]
@@ -41,12 +39,7 @@ class ProcessExtractCommand extends Command
         ExtractCommandOptions::configDownloadsDir($this, $this->options);
         ExtractCommandOptions::configProcessDir($this, $this->options);
         ExtractCommandOptions::configProcessorClass($this, $this->options);
-
-        $this->addArgument(
-            name: 'extract',
-            mode: InputOption::VALUE_REQUIRED,
-            description: 'Extract to process'
-        );
+        ExtractCommandOptions::configExtract($this);
     }
 
 
@@ -64,7 +57,13 @@ class ProcessExtractCommand extends Command
 
         return [
             ($this->processorFactory)($this->options),
-            $this->getDatasetSchema($datasetName),
+            ExtractCommandOptions::getSchema(
+                sprintf(
+                    "%s/%s.json",
+                    $this->schemaOptions->datasetsDir,
+                    $datasetName
+                )
+            ),
             $bdsType,
             $extractName,
         ];
@@ -100,20 +99,5 @@ class ProcessExtractCommand extends Command
         ]));
 
         return static::SUCCESS;
-    }
-
-
-    /**
-     * @param string $datasetName
-     * @return BDSSchema
-     */
-    public function getDatasetSchema(string $datasetName): BDSSchema
-    {
-        $schema = FileIO::jsonDecode(
-            FileIO::getContents(
-                "{$this->schemaOptions->datasetsDir}/{$datasetName}.json"
-            )
-        );
-        return BDSSchema::create(reset($schema));
     }
 }

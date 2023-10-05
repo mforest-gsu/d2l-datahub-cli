@@ -36,12 +36,7 @@ class FetchExtractsCommand extends Command
     protected function configure(): void
     {
         ExtractCommandOptions::configAvailableDir($this, $this->options);
-
-        $this->addArgument(
-            name: 'datasets',
-            mode: InputOption::VALUE_OPTIONAL,
-            description: 'Dataset(s) to perform action on'
-        );
+        ExtractCommandOptions::configDatasetList($this);
     }
 
 
@@ -52,7 +47,6 @@ class FetchExtractsCommand extends Command
     protected function collectInputs(InputInterface $input): array
     {
         ExtractCommandOptions::getAvailableDir($input, $this->options);
-
         return [$this->getArgumentArray($input, 'datasets')];
     }
 
@@ -68,25 +62,9 @@ class FetchExtractsCommand extends Command
     ): int {
         list($selected) = $this->collectInputs($input);
 
-        $datasets = $this->getAvailableDatasets($selected);
-
-        $totalDatasets = $totalExtracts = $totalBytes = 0;
-
-        foreach ($datasets as $name => $dataset) {
-            foreach (($dataset->Full?->Extracts ?? []) as $extract) {
-                $this->saveExtractInfo($name, $extract);
-                $totalBytes += $extract->DownloadSize;
-                $totalExtracts++;
-            }
-
-            foreach (($dataset->Differential?->Extracts ?? []) as $extract) {
-                $this->saveExtractInfo($name, $extract);
-                $totalBytes += $extract->DownloadSize;
-                $totalExtracts++;
-            }
-
-            $totalDatasets++;
-        }
+        list($totalDatasets, $totalExtracts, $totalBytes) = $this->saveAvailableDatasets(
+            $this->getAvailableDatasets($selected)
+        );
 
         $this->logger?->info("<Available Extracts> " . $this->formatLogResults([
             "Datasets" => $totalDatasets,
@@ -119,38 +97,49 @@ class FetchExtractsCommand extends Command
 
 
     /**
-     * @param string $datasetName
-     * @param BDSExtractInfo $extract
-     * @return int
+     * @param array<string,BDSInfo> $datasets
+     * @return array{0:int,1:int,2:int}
      */
-    private function saveExtractInfo(
-        string $datasetName,
-        BDSExtractInfo $extract
-    ): int {
-        $extractName = $this->getExtractName($datasetName, $extract);
-        return FileIO::putContents(
-            "{$this->options->availableDir}/{$extractName}.json",
-            FileIO::jsonEncode($extract)
-        );
+    private function saveAvailableDatasets(array $datasets): array
+    {
+        $totalDatasets = $totalExtracts = $totalBytes = 0;
+        foreach ($datasets as $name => $dataset) {
+            list($fullExtracts, $fullBytes) = $this->saveExtracts($name, $dataset->Full?->Extracts ?? []);
+            list($diffExtracts, $diffBytes) = $this->saveExtracts($name, $dataset->Differential?->Extracts ?? []);
+
+            $totalDatasets++;
+            $totalExtracts += $fullExtracts + $diffExtracts;
+            $totalBytes += $fullBytes + $diffBytes;
+        }
+        return [$totalDatasets, $totalExtracts, $totalBytes];
     }
 
 
     /**
      * @param string $datasetName
-     * @param BDSExtractInfo $extract
-     * @return string
+     * @param BDSExtractInfo[] $extracts
+     * @return array{0:int,1:int}
      */
-    private function getExtractName(
+    private function saveExtracts(
         string $datasetName,
-        BDSExtractInfo $extract
-    ): string {
-        return implode(
-            '_',
-            [
-                $datasetName,
-                $extract->QueuedForProcessingDate->format('Ymd_His'),
-                substr($extract->BdsType, 0, 4)
-            ]
-        );
+        array $extracts
+    ): array {
+        $totalExtracts = $totalBytes = 0;
+        foreach ($extracts as $extract) {
+            $extractName = implode(
+                '_',
+                [
+                    $datasetName,
+                    $extract->QueuedForProcessingDate->format('Ymd_His'),
+                    substr($extract->BdsType, 0, 4)
+                ]
+            );
+            $totalBytes += FileIO::putContents(
+                "{$this->options->availableDir}/{$extractName}.json",
+                FileIO::jsonEncode($extract)
+            );
+            $totalExtracts++;
+        }
+        return [$totalExtracts, $totalBytes];
     }
 }

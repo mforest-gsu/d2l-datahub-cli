@@ -38,12 +38,7 @@ class UploadExtractCommand extends Command
         ExtractCommandOptions::configUploadsDir($this, $this->options);
         ExtractCommandOptions::configUploadsDatabase($this, $this->options);
         ExtractCommandOptions::configUploaderClass($this, $this->options);
-
-        $this->addArgument(
-            name: 'extract',
-            mode: InputOption::VALUE_REQUIRED,
-            description: 'Extract to upload'
-        );
+        ExtractCommandOptions::configExtract($this);
     }
 
 
@@ -65,7 +60,12 @@ class UploadExtractCommand extends Command
             BDSExtractProcessInfo::create(
                 FileIO::jsonDecode(
                     FileIO::getContents(
-                        "{$this->options->processDir}/{$extractName}{$this->options->processFileExt}"
+                        sprintf(
+                            "%s/%s%s",
+                            $this->options->processDir,
+                            $extractName,
+                            $this->options->processFileExt
+                        )
                     )
                 )
             )

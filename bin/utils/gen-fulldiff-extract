@@ -1,18 +1,11 @@
 #!/bin/bash
 
-APP_DIR="$(realpath "$(dirname ${0})/../../")"
-CMD="${APP_DIR}/bin/console"
-DATASETS_DIR=$1
-DOWNLOADS_DIR=$2
-PREVIOUS_FULL=$3
-CURRENT_FULL=$4
-FULL_DIFF=$5
+FULL_DIFF=$1
+PREVIOUS_INDEX=$2
+CURRENT_INDEX=$3
+FULL_DIFF_COLS=$4
 
-cat \
-  <( ${CMD} extracts:gen-index --datasets-dir="${DATASETS_DIR}" --downloads-dir="${DOWNLOADS_DIR}" --show-header --hide-rows "${PREVIOUS_FULL}" ) \
-  <( \
-    comm -23 \
-    <( ${CMD} extracts:gen-index --datasets-dir="${DATASETS_DIR}" --downloads-dir="${DOWNLOADS_DIR}" "${PREVIOUS_FULL}" | sort ) \
-    <( ${CMD} extracts:gen-index --datasets-dir="${DATASETS_DIR}" --downloads-dir="${DOWNLOADS_DIR}" "${CURRENT_FULL}" | sort ) \
-  ) \
-  | zip -q "${FULL_DIFF}" -
+{
+  echo "${FULL_DIFF_COLS}";
+  comm -23 "${PREVIOUS_INDEX}" "${CURRENT_INDEX}";
+} | zip -q "${FULL_DIFF}" -

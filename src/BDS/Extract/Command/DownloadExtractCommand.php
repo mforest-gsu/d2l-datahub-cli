@@ -36,12 +36,7 @@ class DownloadExtractCommand extends Command
     {
         ExtractCommandOptions::configAvailableDir($this, $this->options);
         ExtractCommandOptions::configDownloadsDir($this, $this->options);
-
-        $this->addArgument(
-            name: 'extract',
-            mode: InputOption::VALUE_REQUIRED,
-            description: 'Extract to download'
-        );
+        ExtractCommandOptions::configExtract($this);
     }
 
 
@@ -56,8 +51,18 @@ class DownloadExtractCommand extends Command
         list($extractName) = ExtractCommandOptions::getExtract($input);
 
         return [
-            "{$this->options->availableDir}/{$extractName}{$this->options->availableFileExt}",
-            "{$this->options->downloadsDir}/{$extractName}{$this->options->downloadsFileExt}",
+            sprintf(
+                "%s/%s%s",
+                $this->options->availableDir,
+                $extractName,
+                $this->options->availableFileExt
+            ),
+            sprintf(
+                "%s/%s%s",
+                $this->options->downloadsDir,
+                $extractName,
+                $this->options->downloadsFileExt
+            ),
             $extractName
         ];
     }
