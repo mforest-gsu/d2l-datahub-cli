@@ -1938,12 +1938,12 @@
             {
                 "name": "IsRevoked",
                 "description": "Is award revoked",
-                "dataType": "bit",
-                "columnSize": "1",
+                "dataType": "int",
+                "columnSize": "4",
                 "canBeNull": false,
                 "pk": false,
                 "fk": false,
-                "versionHistory": "1.0"
+                "versionHistory": "8.9 - Changed Type and Column Size"
             },
             {
                 "name": "IssuedId",
@@ -2368,6 +2368,36 @@
                 "pk": false,
                 "fk": false,
                 "versionHistory": "3.3"
+            },
+            {
+                "name": "DateDeleted",
+                "description": "Date the category was deleted (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "8.9"
+            },
+            {
+                "name": "DeletedBy",
+                "description": "User who deleted the checklist category. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "8.9"
+            },
+            {
+                "name": "Version",
+                "description": "Indicates the version of the checklist category.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "8.9"
             }
         ]
     },
@@ -2520,6 +2550,36 @@
                 "pk": false,
                 "fk": false,
                 "versionHistory": "3.3"
+            },
+            {
+                "name": "DateDeleted",
+                "description": "Date the item was deleted (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "8.9"
+            },
+            {
+                "name": "DeletedBy",
+                "description": "User who deleted the checklist item. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "8.9"
+            },
+            {
+                "name": "Version",
+                "description": "Indicates the version of the checklist item.",
+                "dataType": "bigint",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "8.9"
             }
         ]
     },
@@ -2635,13 +2695,13 @@
         "columns": [
             {
                 "name": "ActivityId",
-                "description": "Unique identifier for the activity associated with the competency.",
+                "description": "Unique identifier for the activity associated with the competency. Can join with Competency Activity Results, Activity Exemptions Log, SCORM Objectives, SCORM Activity Attempts, SCORM Interactions, and SCORM Interaction Attempts.",
                 "dataType": "bigint",
                 "columnSize": "8",
                 "canBeNull": false,
                 "pk": true,
                 "fk": false,
-                "versionHistory": "2.5 \/ 3.0"
+                "versionHistory": "8.9 - Updated Description"
             },
             {
                 "name": "OrgUnitId",
@@ -3851,7 +3911,7 @@
     },
     "Course Access": {
         "name": "Course Access",
-        "description": "The Course Access Brightspace Data Set returns information on each day each user has accessed each course offering from the LMS\u00a0(via a browser) across the organization. The data set does not include course access via any of our Apps. The Course Access data set is limited to 3 years of data (all of the previous two calendar years and the current calendar year to date).",
+        "description": "The Course Access Brightspace Data Set returns information on each day each user has accessed each course offering from the LMS\u00a0(via a browser) across the organization. The data set does not include course access via any of our Apps. The Course Access data set is limited to 3 years of data (all of the previous two calendar years and the current calendar year to date). Note: If an administrator changes your time zone at the organization level, this can affect the calculation of DayAccessed because this field is in local time.",
         "columns": [
             {
                 "name": "OrgUnitId",
@@ -6443,7 +6503,7 @@
     },
     "LTI Launches": {
         "name": "LTI Launches",
-        "description": "The LTI Launches Brightspace Data Set logs details of each time a user launches an LTI link in the organization. Note: users must have the External\u00a0Learning Tools > Download LTI\u00a0Launch Data Set permission at the Organization level.",
+        "description": "The LTI Launches Brightspace Data Set logs details of each time a user launches an LTI link in the organization.",
         "columns": [
             {
                 "name": "LTILaunchId",
@@ -6517,13 +6577,13 @@
             },
             {
                 "name": "LTILinkId",
-                "description": "The id of the link that was used for the LTI launch.",
+                "description": "The id of the link that was used for the LTI launch. Field can be null.",
                 "dataType": "bigint",
                 "columnSize": "8",
-                "canBeNull": false,
+                "canBeNull": true,
                 "pk": false,
                 "fk": true,
-                "versionHistory": "5.7 \/ 6.0 - Changed Key"
+                "versionHistory": "8.9 - Changed Description"
             },
             {
                 "name": "DeploymentId",
@@ -7822,6 +7882,92 @@
                 "pk": false,
                 "fk": false,
                 "versionHistory": "6.9"
+            }
+        ]
+    },
+    "Outcomes Course Specific Scales": {
+        "name": "Outcomes Course Specific Scales",
+        "description": "The Outcomes Course Specific Scales Brightspace Data Set provides details on which achievement scales and achievement thresholds are being used in each of your courses. The only available data for course specific achievement scales is from May 2023 onwards.",
+        "columns": [
+            {
+                "name": "OrgUnitId",
+                "description": "ID of the org unit this registry is associated with.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "8.9"
+            },
+            {
+                "name": "RegistryId",
+                "description": "ID of the current registry.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "8.9"
+            },
+            {
+                "name": "ScaleId",
+                "description": "ID of the scale set as the LOA for the current registry.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "8.9"
+            },
+            {
+                "name": "AchievementThreshold",
+                "description": "Level ID representing the threshold of achievement for this registry. Field can be null.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "8.9"
+            },
+            {
+                "name": "CreatedDate",
+                "description": "Date when this item was originally created (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "8.9"
+            },
+            {
+                "name": "LastModifiedDate",
+                "description": "Date when this item was last modified. Contains created date upon creation and deleted date for deleted items (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "8.9"
+            },
+            {
+                "name": "LastModifiedBy",
+                "description": "ID of user who last modified, created, or deleted this item. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "8.9"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Whether this item has been deleted.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "8.9"
             }
         ]
     },
@@ -13656,8 +13802,8 @@
                 "columnSize": "8",
                 "canBeNull": false,
                 "pk": true,
-                "fk": false,
-                "versionHistory": "3.6 \/ 4.1"
+                "fk": true,
+                "versionHistory": "8.9 - Changed Key"
             },
             {
                 "name": "FileId",

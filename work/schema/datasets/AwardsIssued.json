@@ -76,12 +76,12 @@
             {
                 "name": "IsRevoked",
                 "description": "Is award revoked",
-                "dataType": "bit",
-                "columnSize": "1",
+                "dataType": "int",
+                "columnSize": "4",
                 "canBeNull": false,
                 "pk": false,
                 "fk": false,
-                "versionHistory": "1.0"
+                "versionHistory": "8.9 - Changed Type and Column Size"
             },
             {
                 "name": "IssuedId",

@@ -5,13 +5,13 @@
         "columns": [
             {
                 "name": "ActivityId",
-                "description": "Unique identifier for the activity associated with the competency.",
+                "description": "Unique identifier for the activity associated with the competency. Can join with Competency Activity Results, Activity Exemptions Log, SCORM Objectives, SCORM Activity Attempts, SCORM Interactions, and SCORM Interaction Attempts.",
                 "dataType": "bigint",
                 "columnSize": "8",
                 "canBeNull": false,
                 "pk": true,
                 "fk": false,
-                "versionHistory": "2.5 \/ 3.0"
+                "versionHistory": "8.9 - Updated Description"
             },
             {
                 "name": "OrgUnitId",

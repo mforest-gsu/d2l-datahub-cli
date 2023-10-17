@@ -1,7 +1,7 @@
 {
     "LTI Launches": {
         "name": "LTI Launches",
-        "description": "The LTI Launches Brightspace Data Set logs details of each time a user launches an LTI link in the organization. Note: users must have the External\u00a0Learning Tools > Download LTI\u00a0Launch Data Set permission at the Organization level.",
+        "description": "The LTI Launches Brightspace Data Set logs details of each time a user launches an LTI link in the organization.",
         "columns": [
             {
                 "name": "LTILaunchId",
@@ -75,13 +75,13 @@
             },
             {
                 "name": "LTILinkId",
-                "description": "The id of the link that was used for the LTI launch.",
+                "description": "The id of the link that was used for the LTI launch. Field can be null.",
                 "dataType": "bigint",
                 "columnSize": "8",
-                "canBeNull": false,
+                "canBeNull": true,
                 "pk": false,
                 "fk": true,
-                "versionHistory": "5.7 \/ 6.0 - Changed Key"
+                "versionHistory": "8.9 - Changed Description"
             },
             {
                 "name": "DeploymentId",

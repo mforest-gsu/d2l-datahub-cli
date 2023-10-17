@@ -1,0 +1,88 @@
+{
+    "Outcomes Course Specific Scales": {
+        "name": "Outcomes Course Specific Scales",
+        "description": "The Outcomes Course Specific Scales Brightspace Data Set provides details on which achievement scales and achievement thresholds are being used in each of your courses. The only available data for course specific achievement scales is from May 2023 onwards.",
+        "columns": [
+            {
+                "name": "OrgUnitId",
+                "description": "ID of the org unit this registry is associated with.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": false,
+                "pk": true,
+                "fk": true,
+                "versionHistory": "8.9"
+            },
+            {
+                "name": "RegistryId",
+                "description": "ID of the current registry.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "8.9"
+            },
+            {
+                "name": "ScaleId",
+                "description": "ID of the scale set as the LOA for the current registry.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": false,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "8.9"
+            },
+            {
+                "name": "AchievementThreshold",
+                "description": "Level ID representing the threshold of achievement for this registry. Field can be null.",
+                "dataType": "uniqueidentifier",
+                "columnSize": "16",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "8.9"
+            },
+            {
+                "name": "CreatedDate",
+                "description": "Date when this item was originally created (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "8.9"
+            },
+            {
+                "name": "LastModifiedDate",
+                "description": "Date when this item was last modified. Contains created date upon creation and deleted date for deleted items (UTC).",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "8.9"
+            },
+            {
+                "name": "LastModifiedBy",
+                "description": "ID of user who last modified, created, or deleted this item. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "8.9"
+            },
+            {
+                "name": "IsDeleted",
+                "description": "Whether this item has been deleted.",
+                "dataType": "bit",
+                "columnSize": "1",
+                "canBeNull": false,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "8.9"
+            }
+        ]
+    }
+}

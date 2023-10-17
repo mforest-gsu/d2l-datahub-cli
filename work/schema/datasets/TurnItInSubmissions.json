@@ -20,8 +20,8 @@
                 "columnSize": "8",
                 "canBeNull": false,
                 "pk": true,
-                "fk": false,
-                "versionHistory": "3.6 \/ 4.1"
+                "fk": true,
+                "versionHistory": "8.9 - Changed Key"
             },
             {
                 "name": "FileId",

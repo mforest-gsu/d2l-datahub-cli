@@ -1,7 +1,7 @@
 {
     "Course Access": {
         "name": "Course Access",
-        "description": "The Course Access Brightspace Data Set returns information on each day each user has accessed each course offering from the LMS\u00a0(via a browser) across the organization. The data set does not include course access via any of our Apps. The Course Access data set is limited to 3 years of data (all of the previous two calendar years and the current calendar year to date).",
+        "description": "The Course Access Brightspace Data Set returns information on each day each user has accessed each course offering from the LMS\u00a0(via a browser) across the organization. The data set does not include course access via any of our Apps. The Course Access data set is limited to 3 years of data (all of the previous two calendar years and the current calendar year to date). Note: If an administrator changes your time zone at the organization level, this can affect the calculation of DayAccessed because this field is in local time.",
         "columns": [
             {
                 "name": "OrgUnitId",
