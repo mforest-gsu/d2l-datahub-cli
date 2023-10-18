@@ -1,9 +1,9 @@
 DROP TABLE IF EXISTS `PortfolioEvidenceLog_LOAD`;
 
 CREATE TABLE `PortfolioEvidenceLog_LOAD` (
-  `LogId` VARCHAR(16) NOT NULL,
-  `ParentObjectId` VARCHAR(16) DEFAULT NULL,
-  `ObjectId` VARCHAR(16) DEFAULT NULL,
+  `LogId` VARCHAR(36) NOT NULL,
+  `ParentObjectId` VARCHAR(36) DEFAULT NULL,
+  `ObjectId` VARCHAR(36) DEFAULT NULL,
   `ObjectType` VARCHAR(40) DEFAULT NULL,
   `UserId` INT DEFAULT NULL,
   `OrgUnitId` INT DEFAULT NULL,

@@ -1,8 +1,8 @@
 DROP TABLE IF EXISTS `SCORMInteraction`;
 
 CREATE TABLE `SCORMInteraction` (
-  `InteractionId` VARCHAR(16) NOT NULL,
-  `ActivityId` VARCHAR(16) DEFAULT NULL,
+  `InteractionId` VARCHAR(36) NOT NULL,
+  `ActivityId` VARCHAR(36) DEFAULT NULL,
   `InternalId` VARCHAR(255) DEFAULT NULL,
   `InteractionType` VARCHAR(100) DEFAULT NULL,
   `Description` VARCHAR(250) DEFAULT NULL,

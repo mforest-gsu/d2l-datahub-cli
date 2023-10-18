@@ -1,9 +1,9 @@
 DROP TABLE IF EXISTS `CoursePublisherLaunch`;
 
 CREATE TABLE `CoursePublisherLaunch` (
-  `LaunchId` VARCHAR(16) NOT NULL,
+  `LaunchId` VARCHAR(36) NOT NULL,
   `OrgUnitId` INT DEFAULT NULL,
-  `RecipientId` VARCHAR(16) DEFAULT NULL,
+  `RecipientId` VARCHAR(36) DEFAULT NULL,
   `UserId` INT DEFAULT NULL,
   `RoleId` INT DEFAULT NULL,
   `LaunchMethod` VARCHAR(256) DEFAULT NULL,

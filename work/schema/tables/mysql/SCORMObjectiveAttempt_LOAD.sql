@@ -1,8 +1,8 @@
 DROP TABLE IF EXISTS `SCORMObjectiveAttempt_LOAD`;
 
 CREATE TABLE `SCORMObjectiveAttempt_LOAD` (
-  `VisitId` VARCHAR(16) NOT NULL,
-  `ObjectiveId` VARCHAR(16) NOT NULL,
+  `VisitId` VARCHAR(36) NOT NULL,
+  `ObjectiveId` VARCHAR(36) NOT NULL,
   `AttemptNumber` INT NOT NULL,
   `Score` FLOAT DEFAULT NULL,
   `ScoreRaw` FLOAT DEFAULT NULL,

@@ -1,9 +1,9 @@
 DROP TABLE IF EXISTS `SCORMActivity`;
 
 CREATE TABLE `SCORMActivity` (
-  `ActivityId` VARCHAR(16) NOT NULL,
-  `ScormObjectId` VARCHAR(16) DEFAULT NULL,
-  `ParentActivityId` VARCHAR(16) DEFAULT NULL,
+  `ActivityId` VARCHAR(36) NOT NULL,
+  `ScormObjectId` VARCHAR(36) DEFAULT NULL,
+  `ParentActivityId` VARCHAR(36) DEFAULT NULL,
   `NumChildren` INT DEFAULT NULL,
   `InternalId` VARCHAR(255) DEFAULT NULL,
   `Title` VARCHAR(200) DEFAULT NULL,

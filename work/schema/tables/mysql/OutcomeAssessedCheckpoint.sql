@@ -1,8 +1,8 @@
 DROP TABLE IF EXISTS `OutcomeAssessedCheckpoint`;
 
 CREATE TABLE `OutcomeAssessedCheckpoint` (
-  `CheckpointId` VARCHAR(16) NOT NULL,
-  `DemonstrationId` VARCHAR(16) NOT NULL,
+  `CheckpointId` VARCHAR(36) NOT NULL,
+  `DemonstrationId` VARCHAR(36) NOT NULL,
   `Feedback` VARCHAR(1000) DEFAULT NULL,
   `ConfigDecayRate` INT DEFAULT NULL,
   `ConfigAggregationMethod` INT DEFAULT NULL,

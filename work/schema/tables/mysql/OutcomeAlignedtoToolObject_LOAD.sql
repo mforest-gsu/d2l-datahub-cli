@@ -3,8 +3,8 @@ DROP TABLE IF EXISTS `OutcomeAlignedtoToolObject_LOAD`;
 CREATE TABLE `OutcomeAlignedtoToolObject_LOAD` (
   `ObjectType` INT NOT NULL,
   `ObjectId` VARCHAR(255) NOT NULL,
-  `OutcomeId` VARCHAR(16) NOT NULL,
-  `RegistryId` VARCHAR(16) NOT NULL,
+  `OutcomeId` VARCHAR(36) NOT NULL,
+  `RegistryId` VARCHAR(36) NOT NULL,
   `CreatedDate` DATETIME DEFAULT NULL,
   `CreatedBy` INT DEFAULT NULL,
   `LastModifiedDate` DATETIME DEFAULT NULL,

@@ -2,9 +2,9 @@ DROP TABLE IF EXISTS `OutcomeCourseSpecificScale_LOAD`;
 
 CREATE TABLE `OutcomeCourseSpecificScale_LOAD` (
   `OrgUnitId` INT NOT NULL,
-  `RegistryId` VARCHAR(16) DEFAULT NULL,
-  `ScaleId` VARCHAR(16) DEFAULT NULL,
-  `AchievementThreshold` VARCHAR(16) DEFAULT NULL,
+  `RegistryId` VARCHAR(36) DEFAULT NULL,
+  `ScaleId` VARCHAR(36) DEFAULT NULL,
+  `AchievementThreshold` VARCHAR(36) DEFAULT NULL,
   `CreatedDate` DATETIME DEFAULT NULL,
   `LastModifiedDate` DATETIME DEFAULT NULL,
   `LastModifiedBy` INT DEFAULT NULL,

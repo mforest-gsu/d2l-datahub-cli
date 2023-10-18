@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS `PortfolioCategory_LOAD`;
 
 CREATE TABLE `PortfolioCategory_LOAD` (
-  `CategoryId` VARCHAR(16) NOT NULL,
+  `CategoryId` VARCHAR(36) NOT NULL,
   `OrgUnitId` INT DEFAULT NULL,
   `Name` VARCHAR(256) DEFAULT NULL,
   `IsRetired` TINYINT DEFAULT NULL,

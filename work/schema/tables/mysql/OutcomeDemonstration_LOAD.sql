@@ -1,13 +1,13 @@
 DROP TABLE IF EXISTS `OutcomeDemonstration_LOAD`;
 
 CREATE TABLE `OutcomeDemonstration_LOAD` (
-  `DemonstrationId` VARCHAR(16) NOT NULL,
-  `ExplicitlyEnteredScaleLevelId` VARCHAR(16) DEFAULT NULL,
-  `AutomaticallyGeneratedScaleLevelId` VARCHAR(16) DEFAULT NULL,
+  `DemonstrationId` VARCHAR(36) NOT NULL,
+  `ExplicitlyEnteredScaleLevelId` VARCHAR(36) DEFAULT NULL,
+  `AutomaticallyGeneratedScaleLevelId` VARCHAR(36) DEFAULT NULL,
   `AlignedObjectType` INT DEFAULT NULL,
   `AlignedObjectId` VARCHAR(1000) DEFAULT NULL,
-  `OutcomeId` VARCHAR(16) DEFAULT NULL,
-  `RegistryId` VARCHAR(16) DEFAULT NULL,
+  `OutcomeId` VARCHAR(36) DEFAULT NULL,
+  `RegistryId` VARCHAR(36) DEFAULT NULL,
   `IsPublished` TINYINT DEFAULT NULL,
   `AssessedUserId` INT DEFAULT NULL,
   `AssessedDate` DATETIME DEFAULT NULL,

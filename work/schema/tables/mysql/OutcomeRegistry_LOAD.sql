@@ -1,8 +1,8 @@
 DROP TABLE IF EXISTS `OutcomeRegistry_LOAD`;
 
 CREATE TABLE `OutcomeRegistry_LOAD` (
-  `OutcomeId` VARCHAR(16) NOT NULL,
-  `RegistryId` VARCHAR(16) NOT NULL,
+  `OutcomeId` VARCHAR(36) NOT NULL,
+  `RegistryId` VARCHAR(36) NOT NULL,
   `CreatedDate` DATETIME DEFAULT NULL,
   `CreatedBy` INT DEFAULT NULL,
   `LastModifiedDate` DATETIME DEFAULT NULL,

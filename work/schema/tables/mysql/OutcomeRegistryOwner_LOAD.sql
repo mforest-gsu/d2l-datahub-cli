@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS `OutcomeRegistryOwner_LOAD`;
 CREATE TABLE `OutcomeRegistryOwner_LOAD` (
   `OwnerType` INT NOT NULL,
   `OwnerId` VARCHAR(255) NOT NULL,
-  `RegistryId` VARCHAR(16) NOT NULL,
+  `RegistryId` VARCHAR(36) NOT NULL,
   `CreatedDate` DATETIME DEFAULT NULL,
   `CreatedBy` INT DEFAULT NULL,
   `LastModifiedDate` DATETIME DEFAULT NULL,

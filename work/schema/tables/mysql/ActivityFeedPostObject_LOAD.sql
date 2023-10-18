@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS `ActivityFeedPostObject_LOAD`;
 
 CREATE TABLE `ActivityFeedPostObject_LOAD` (
   `OrgUnitId` INT DEFAULT NULL,
-  `PostId` VARCHAR(16) NOT NULL,
+  `PostId` VARCHAR(36) NOT NULL,
   `PostType` VARCHAR(16) DEFAULT NULL,
   `LastModifiedBy` INT DEFAULT NULL,
   `LastModified` DATETIME DEFAULT NULL,

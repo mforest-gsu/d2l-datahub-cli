@@ -1,8 +1,8 @@
 DROP TABLE IF EXISTS `SCORMActivityAttempt_LOAD`;
 
 CREATE TABLE `SCORMActivityAttempt_LOAD` (
-  `VisitId` VARCHAR(16) NOT NULL,
-  `ActivityId` VARCHAR(16) NOT NULL,
+  `VisitId` VARCHAR(36) NOT NULL,
+  `ActivityId` VARCHAR(36) NOT NULL,
   `AttemptNumber` INT NOT NULL,
   `Completion` VARCHAR(100) DEFAULT NULL,
   `Success` VARCHAR(100) DEFAULT NULL,

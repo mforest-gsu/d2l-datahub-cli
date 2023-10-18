@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS `PortfolioEvidenceObject_LOAD`;
 
 CREATE TABLE `PortfolioEvidenceObject_LOAD` (
-  `EvidenceId` VARCHAR(16) NOT NULL,
+  `EvidenceId` VARCHAR(36) NOT NULL,
   `OwnerId` INT DEFAULT NULL,
   `OrgUnitId` INT DEFAULT NULL,
   `EvidenceType` VARCHAR(30) DEFAULT NULL,

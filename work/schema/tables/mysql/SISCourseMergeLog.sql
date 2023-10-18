@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS `SISCourseMergeLog`;
 
 CREATE TABLE `SISCourseMergeLog` (
-  `BatchId` VARCHAR(16) NOT NULL,
+  `BatchId` VARCHAR(36) NOT NULL,
   `JobType` VARCHAR(32) DEFAULT NULL,
   `Status` VARCHAR(32) DEFAULT NULL,
   `OriginalTargetOrgUnitId` BIGINT DEFAULT NULL,

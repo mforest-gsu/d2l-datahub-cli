@@ -1,10 +1,10 @@
 DROP TABLE IF EXISTS `SCORMInteractionAttempt_LOAD`;
 
 CREATE TABLE `SCORMInteractionAttempt_LOAD` (
-  `VisitId` VARCHAR(16) NOT NULL,
-  `InteractionId` VARCHAR(16) NOT NULL,
+  `VisitId` VARCHAR(36) NOT NULL,
+  `InteractionId` VARCHAR(36) NOT NULL,
   `AttemptNumber` INT NOT NULL,
-  `ActivityId` VARCHAR(16) DEFAULT NULL,
+  `ActivityId` VARCHAR(36) DEFAULT NULL,
   `Timestamp` DATETIME DEFAULT NULL,
   `Response` VARCHAR(1000) DEFAULT NULL,
   `Result` VARCHAR(100) DEFAULT NULL,

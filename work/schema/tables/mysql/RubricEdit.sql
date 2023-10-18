@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS `RubricEdit`;
 
 CREATE TABLE `RubricEdit` (
-  `AuditLogId` VARCHAR(16) NOT NULL,
+  `AuditLogId` VARCHAR(36) NOT NULL,
   `RubricId` BIGINT DEFAULT NULL,
   `CriterionId` BIGINT DEFAULT NULL,
   `LevelId` BIGINT DEFAULT NULL,

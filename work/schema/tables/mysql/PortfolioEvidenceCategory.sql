@@ -1,8 +1,8 @@
 DROP TABLE IF EXISTS `PortfolioEvidenceCategory`;
 
 CREATE TABLE `PortfolioEvidenceCategory` (
-  `CategoryId` VARCHAR(16) NOT NULL,
-  `EvidenceId` VARCHAR(16) NOT NULL,
+  `CategoryId` VARCHAR(36) NOT NULL,
+  `EvidenceId` VARCHAR(36) NOT NULL,
   `Group` VARCHAR(30) NOT NULL,
   `IsDeleted` TINYINT DEFAULT NULL,
   `LastModified` DATETIME DEFAULT NULL,

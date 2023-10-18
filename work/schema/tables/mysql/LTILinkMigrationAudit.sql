@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS `LTILinkMigrationAudit`;
 
 CREATE TABLE `LTILinkMigrationAudit` (
-  `LTIMigrationId` VARCHAR(16) NOT NULL,
+  `LTIMigrationId` VARCHAR(36) NOT NULL,
   `UserId` BIGINT DEFAULT NULL,
   `MigrationDate` DATETIME DEFAULT NULL,
   `OrgUnitId` BIGINT DEFAULT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE `LTILinkMigrationAudit` (
   `LinkName` VARCHAR(200) DEFAULT NULL,
   `ClientId` VARCHAR(255) DEFAULT NULL,
   `RegistrationDomain` VARCHAR(2083) DEFAULT NULL,
-  `DeploymentId` VARCHAR(16) DEFAULT NULL,
+  `DeploymentId` VARCHAR(36) DEFAULT NULL,
   `JobId` BIGINT DEFAULT NULL,
   `Status` VARCHAR(2) DEFAULT NULL,
   `FailureCode` VARCHAR(2) DEFAULT NULL,

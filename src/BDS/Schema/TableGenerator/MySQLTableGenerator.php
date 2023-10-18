@@ -95,6 +95,9 @@ class MySQLTableGenerator extends TableGenerator
                     $dataType .= '(' . $column->columnSize . ')';
                 }
                 break;
+            case 'UNIQUEIDENTIFIER':
+                $dataType = 'VARCHAR(36)';
+                break;
             default:
                 $dataType = 'VARCHAR';
                 $columnSize = intval($column->columnSize);

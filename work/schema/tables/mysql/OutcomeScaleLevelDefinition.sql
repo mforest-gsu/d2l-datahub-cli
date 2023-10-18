@@ -1,8 +1,8 @@
 DROP TABLE IF EXISTS `OutcomeScaleLevelDefinition`;
 
 CREATE TABLE `OutcomeScaleLevelDefinition` (
-  `ScaleLevelId` VARCHAR(16) NOT NULL,
-  `ScaleId` VARCHAR(16) DEFAULT NULL,
+  `ScaleLevelId` VARCHAR(36) NOT NULL,
+  `ScaleId` VARCHAR(36) DEFAULT NULL,
   `Name` VARCHAR(1000) DEFAULT NULL,
   `SortOrder` INT DEFAULT NULL,
   `PercentageRangeStart` INT DEFAULT NULL,
