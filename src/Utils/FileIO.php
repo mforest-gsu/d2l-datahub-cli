@@ -76,10 +76,13 @@ final class FileIO
 
     /**
      * @param string $path
+     * @param bool $stripBOM
      * @return array{0:\ZipArchive,1:resource}
      */
-    public static function openZipFile(string $path): array
-    {
+    public static function openZipFile(
+        string $path,
+        bool $stripBOM = true
+    ): array {
         $zipFile = new \ZipArchive();
         if ($zipFile->open($path) !== true) {
             throw new \RuntimeException("Unable to open zip file: {$path}");
@@ -91,7 +94,9 @@ final class FileIO
         }
 
         // Strip byte order mark (BOM)
-        fread($zipFileStream, 3);
+        if ($stripBOM) {
+            fread($zipFileStream, 3);
+        }
 
         return [$zipFile, $zipFileStream];
     }

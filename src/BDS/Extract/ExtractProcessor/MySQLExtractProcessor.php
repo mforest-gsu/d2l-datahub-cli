@@ -133,7 +133,7 @@ class MySQLExtractProcessor extends ExtractProcessor
                     return 'NULL';
                 }
                 $dateValue = @strtotime($v);
-                return is_int($dateValue) ? date('Y-m-d H:i:s', $dateValue) : 'NULL';
+                return is_int($dateValue) ? "'" . date('Y-m-d H:i:s', $dateValue) . "'" : 'NULL';
             },
             'nvarchar', 'varchar' => fn ($v) => ($v === '')
                 ? 'NULL'

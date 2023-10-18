@@ -107,7 +107,10 @@ abstract class ExtractProcessor
      */
     protected function openSourceFile(BDSExtractProcessInfo $processInfo): array
     {
-        return FileIO::openZipFile($this->getSourceFilePath($processInfo));
+        return FileIO::openZipFile(
+            $this->getSourceFilePath($processInfo),
+            $processInfo->bdsType !== 'FullDiff'
+        );
     }
 
 
@@ -129,8 +132,9 @@ abstract class ExtractProcessor
             throw new \RuntimeException("Error reading columns from source file");
         }
 
+
         // Map extract columns to schema columns
-        return array_column(
+        $sourceFileColumns = array_column(
             array_filter(
                 array_map(
                     fn ($v, $k) => [$schemaColumns[$v] ?? null, intval($k)],
@@ -142,6 +146,8 @@ abstract class ExtractProcessor
             0,
             1
         );
+
+        return $sourceFileColumns;
     }
 
 
