@@ -12,7 +12,6 @@ use mjfk23\D2LAPI\DataHub\Model\BDSExtractInfo;
 use mjfk23\D2LAPI\DataHub\Model\BDSInfo;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(name: 'extracts:fetch')]
@@ -62,15 +61,31 @@ class FetchExtractsCommand extends Command
     ): int {
         list($selected) = $this->collectInputs($input);
 
-        list($totalDatasets, $totalExtracts, $totalBytes) = $this->saveAvailableDatasets(
-            $this->getAvailableDatasets($selected)
-        );
+        try {
+            $availableDatasets = $this->getAvailableDatasets($selected);
+        } catch (\Throwable $t) {
+            throw new \RuntimeException(
+                "Unable to fetch available extracts from API",
+                0,
+                $t
+            );
+        }
 
-        $this->logger?->info("<Available Extracts> " . $this->formatLogResults([
-            "Datasets" => $totalDatasets,
-            "Extracts" => $totalExtracts,
-            "Bytes" => $totalBytes
-        ]));
+        list(
+            $totalDatasets,
+            $totalExtracts,
+            $totalBytes
+        ) = $this->saveAvailableDatasets($availableDatasets);
+
+        $this->logger?->info(sprintf(
+            '%s - %s',
+            $input->__toString(),
+            $this->formatLogResults([
+                "Datasets" => $totalDatasets,
+                "Extracts" => $totalExtracts,
+                "Bytes" => $totalBytes
+            ])
+        ));
 
         return static::SUCCESS;
     }
@@ -106,7 +121,6 @@ class FetchExtractsCommand extends Command
         foreach ($datasets as $name => $dataset) {
             list($fullExtracts, $fullBytes) = $this->saveExtracts($name, $dataset->Full?->Extracts ?? []);
             list($diffExtracts, $diffBytes) = $this->saveExtracts($name, $dataset->Differential?->Extracts ?? []);
-
             $totalDatasets++;
             $totalExtracts += $fullExtracts + $diffExtracts;
             $totalBytes += $fullBytes + $diffBytes;
@@ -126,19 +140,25 @@ class FetchExtractsCommand extends Command
     ): array {
         $totalExtracts = $totalBytes = 0;
         foreach ($extracts as $extract) {
-            $extractName = implode(
-                '_',
-                [
-                    $datasetName,
-                    $extract->QueuedForProcessingDate->format('Ymd_His'),
-                    substr($extract->BdsType, 0, 4)
-                ]
-            );
-            $totalBytes += FileIO::putContents(
-                "{$this->options->availableDir}/{$extractName}.json",
-                FileIO::jsonEncode($extract)
-            );
-            $totalExtracts++;
+            $extractName = implode('_', [
+                $datasetName,
+                $extract->QueuedForProcessingDate->format('Ymd_His'),
+                substr($extract->BdsType, 0, 4)
+            ]);
+
+            try {
+                $totalBytes += FileIO::putContents(
+                    "{$this->options->availableDir}/{$extractName}.json",
+                    FileIO::jsonEncode($extract)
+                );
+                $totalExtracts++;
+            } catch (\Throwable $t) {
+                throw new \RuntimeException(
+                    "Unable to save extract info: '{$extractName}'",
+                    0,
+                    $t
+                );
+            }
         }
         return [$totalExtracts, $totalBytes];
     }

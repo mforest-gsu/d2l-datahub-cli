@@ -65,49 +65,58 @@ class GenerateIndexCommand extends Command
     ): int {
         list($extractName) = $this->collectInputs($input);
 
-        $cmdOutput = [];
-        $returnCode = $this->execGenFullExtractIndex(
-            sprintf(
-                "%s/bin/utils/gen-full-extract-index",
-                $this->options->appDir
-            ),
-            sprintf(
-                "%s/bin/console --datasets-dir=%s",
-                $this->options->appDir,
-                $this->schemaOptions->datasetsDir
-            ),
-            $this->options->downloadsDir,
-            $extractName,
-            $cmdOutput
-        );
-
-        $cmdOutput = implode("\n", $cmdOutput);
-        if ($cmdOutput !== "") {
-            $output->writeln($cmdOutput);
+        try {
+            list($returnCode, $cmdOutput) = $this->execGenFullExtractIndex($extractName);
+        } catch (\Throwable $t) {
+            throw new \RuntimeException(
+                "Unable to generate index for extract: '{$extractName}'",
+                0,
+                $t
+            );
         }
 
-        $this->logger?->info("<Gen Full Extract Index> " . $this->formatLogResults([
-            "Extract" => $extractName
-        ]));
+        if ($returnCode !== static::SUCCESS) {
+            if ($cmdOutput !== "") {
+                $output->writeln($cmdOutput);
+            }
 
-        return $returnCode;
+            throw new \RuntimeException(sprintf(
+                "Unable to generate index for extract: '%s', return code is %s",
+                $extractName,
+                $returnCode
+            ));
+        }
+
+        $this->logger?->info(sprintf(
+            '%s - %s',
+            $input->__toString(),
+            $this->formatLogResults([
+                "Extract" => $extractName
+            ])
+        ));
+
+        return static::SUCCESS;
     }
 
 
     /**
-     * @param string $cmd
-     * @param string $downloadsDir
      * @param string $extractName
-     * @param string[] $output
-     * @return int
+     * @return array{0:int, 1:string}
      */
-    private function execGenFullExtractIndex(
-        string $cmd,
-        string $consoleCmd,
-        string $downloadsDir,
-        string $extractName,
-        array &$output = []
-    ): int {
+    private function execGenFullExtractIndex(string $extractName): array
+    {
+        $cmd = sprintf(
+            "%s/bin/utils/gen-full-extract-index",
+            $this->options->appDir
+        );
+
+        $consoleCmd = sprintf(
+            "%s/bin/console --datasets-dir=%s",
+            $this->options->appDir,
+            $this->schemaOptions->datasetsDir
+        );
+
+        $output = [];
         $returnCode = 0;
 
         exec(
@@ -115,13 +124,13 @@ class GenerateIndexCommand extends Command
                 "%s %s %s %s",
                 escapeshellcmd($cmd),
                 escapeshellarg($consoleCmd),
-                escapeshellarg($downloadsDir),
+                escapeshellarg($this->options->downloadsDir),
                 escapeshellarg($extractName)
             ),
             $output,
             $returnCode
         );
 
-        return $returnCode;
+        return [$returnCode, implode(PHP_EOL, $output)];
     }
 }

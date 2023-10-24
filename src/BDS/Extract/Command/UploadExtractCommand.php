@@ -11,7 +11,6 @@ use D2L\DataHub\Utils\FileIO;
 use mjfk23\Console\Command\Command;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(name: 'extracts:upload')]
@@ -44,7 +43,7 @@ class UploadExtractCommand extends Command
 
     /**
      * @param InputInterface $input
-     * @return array{0:ExtractUploader,1:string,2:BDSExtractProcessInfo}
+     * @return array{0:string,1:string,2:string}
      */
     protected function collectInputs(InputInterface $input): array
     {
@@ -52,24 +51,7 @@ class UploadExtractCommand extends Command
         ExtractCommandOptions::getUploadsDir($input, $this->options);
         ExtractCommandOptions::getUploadsDatabase($input, $this->options);
         ExtractCommandOptions::getUploaderClass($input, $this->options);
-        list($extractName) = ExtractCommandOptions::getExtract($input);
-
-        return [
-            ($this->uploaderFactory)($this->options),
-            $extractName,
-            BDSExtractProcessInfo::create(
-                FileIO::jsonDecode(
-                    FileIO::getContents(
-                        sprintf(
-                            "%s/%s%s",
-                            $this->options->processDir,
-                            $extractName,
-                            $this->options->processFileExt
-                        )
-                    )
-                )
-            )
-        ];
+        return ExtractCommandOptions::getExtract($input);
     }
 
 
@@ -82,19 +64,58 @@ class UploadExtractCommand extends Command
         InputInterface $input,
         OutputInterface $output
     ): int {
-        list(
-            $extractUploader,
-            $extractName,
-            $processInfo
-        ) = $this->collectInputs($input);
+        list($extractName) = $this->collectInputs($input);
 
-        $rows = $extractUploader->uploadExtract($processInfo);
+        try {
+            $uploader = ($this->uploaderFactory)($this->options);
+        } catch (\Throwable $t) {
+            throw new \RuntimeException(
+                "Unable to create processor instance: '{$this->options->uploaderClass}'",
+                0,
+                $t
+            );
+        }
 
-        $this->logger?->info("<Upload Extract> " . $this->formatLogResults([
-            "Extract" => $extractName,
-            "Class" => (new \ReflectionClass($extractUploader))->getShortName(),
-            "Rows" => $rows,
-        ]));
+        try {
+            $processInfoPath = sprintf(
+                "%s/%s%s",
+                $this->options->processDir,
+                $extractName,
+                $this->options->processFileExt
+            );
+
+            $processInfo = BDSExtractProcessInfo::create(
+                FileIO::jsonDecode(
+                    FileIO::getContents($processInfoPath)
+                )
+            );
+        } catch (\Throwable $t) {
+            throw new \RuntimeException(
+                "Unable to retrieve process info for extract: '{$extractName}'",
+                0,
+                $t
+            );
+        }
+
+        try {
+            $rows = $uploader->uploadExtract($processInfo);
+        } catch (\Throwable $t) {
+            throw new \RuntimeException(
+                "Unable to upload extract: '{$extractName}'",
+                0,
+                $t
+            );
+        }
+
+        $this->logger?->info(sprintf(
+            '%s - %s',
+            $input->__toString(),
+            $this->formatLogResults([
+                "Extract" => $extractName,
+                "Class" => (new \ReflectionClass($uploader))->getShortName(),
+                "Rows" => $rows,
+            ])
+        ));
 
         return static::SUCCESS;
     }

@@ -130,7 +130,7 @@ abstract class ListExtractsCommand extends Command
                 && !($skipFull && $bdsType === 'Full')
                 && !($skipDiff && $bdsType === 'Diff')
             ) {
-                echo "{$extractName}\n";
+                $output->writeln($extractName);
             }
         }
 

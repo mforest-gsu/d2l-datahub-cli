@@ -57,14 +57,14 @@ class GenerateFullDiffExtractCommand extends Command
 
     /**
      * @param InputInterface $input
-     * @return array{0:string,1:string,2:string,3:string}
+     * @return array{0:string,1:string,2:string,3:string,4:string}
      */
     protected function collectInputs(InputInterface $input): array
     {
         SchemaCommandOptions::getDatasetsDir($input, $this->schemaOptions);
         ExtractCommandOptions::getDownloadsDir($input, $this->options);
 
-        list($fullDiff, $datasetName, $bdsType) = ExtractCommandOptions::getExtract($input);
+        list($extractName, $datasetName, $bdsType) = ExtractCommandOptions::getExtract($input);
         if ($bdsType !== 'FullDiff') {
             throw new \RuntimeException("Invalid dataset type");
         }
@@ -79,27 +79,17 @@ class GenerateFullDiffExtractCommand extends Command
             throw new \RuntimeException("Current index not specified");
         }
 
-        $fullDiffColumns = $input->getArgument('columns');
-        if (!is_string($fullDiffColumns)) {
+        $extractColumns = $input->getArgument('columns');
+        if (!is_string($extractColumns)) {
             throw new \RuntimeException("Columns not specified");
         }
 
         return [
-            $fullDiff,
+            $extractName,
+            $datasetName,
             $previousIndex,
             $currentIndex,
-            implode(",", ExtractCommandOptions::filterExtractFields(
-                explode(",", $fullDiffColumns),
-                ExtractCommandOptions::getKeyFieldNames(
-                    ExtractCommandOptions::getSchema(
-                        sprintf(
-                            "%s/%s.json",
-                            $this->schemaOptions->datasetsDir,
-                            $datasetName
-                        )
-                    )
-                )
-            ))
+            $extractColumns
         ];
     }
 
@@ -114,61 +104,134 @@ class GenerateFullDiffExtractCommand extends Command
         OutputInterface $output
     ): int {
         list(
-            $fullDiff,
+            $extractName,
+            $datasetName,
             $previousIndex,
             $currentIndex,
-            $fullDiffColumns
+            $extractColumns
         ) = $this->collectInputs($input);
 
-        $returnCode = $this->execGenFullDiffExtract(
-            sprintf("%s/bin/utils/gen-fulldiff-extract", $this->options->appDir),
-            sprintf("%s/%s%s", $this->options->downloadsDir, $fullDiff, $this->options->downloadsFileExt),
-            sprintf("%s/%s%s", $this->options->downloadsDir, $previousIndex, $this->options->indexFileExt),
-            sprintf("%s/%s%s", $this->options->downloadsDir, $currentIndex, $this->options->indexFileExt),
-            $fullDiffColumns
-        );
+        try {
+            $schema = ExtractCommandOptions::getSchema(sprintf(
+                "%s/%s.json",
+                $this->schemaOptions->datasetsDir,
+                $datasetName
+            ));
+        } catch (\Throwable $t) {
+            throw new \RuntimeException(
+                "Unable to retrieve schema for dataset: '{$datasetName}'",
+                0,
+                $t
+            );
+        }
 
-        $this->logger?->info("<Gen FullDiff Extract> " . $this->formatLogResults([
-            "Extract" => $fullDiff,
-            "Previous" => $previousIndex,
-            "Current" => $currentIndex
-        ]));
+        try {
+            $columns = implode(",", ExtractCommandOptions::filterExtractFields(
+                explode(",", $extractColumns),
+                ExtractCommandOptions::getKeyFieldNames($schema)
+            ));
 
-        return $returnCode;
+            if (strlen($columns) < 1) {
+                throw new \RuntimeException("Extract must have at least one column");
+            }
+        } catch (\Throwable $t) {
+            throw new \RuntimeException(
+                "Unable to get columns for extract: '{$extractName}'",
+                0,
+                $t
+            );
+        }
+
+        try {
+            list($returnCode, $cmdOutput) = $this->execGenFullDiffExtract(
+                $extractName,
+                $previousIndex,
+                $currentIndex,
+                $columns
+            );
+        } catch (\Throwable $t) {
+            throw new \RuntimeException(
+                "Unable to generate fulldiff extract: '{$extractName}'",
+                0,
+                $t
+            );
+        }
+
+        if ($returnCode !== static::SUCCESS) {
+            if ($cmdOutput !== "") {
+                $output->writeln($cmdOutput);
+            }
+
+            throw new \RuntimeException(sprintf(
+                "Unable to generate fulldiff extract: '%s', return code is %s",
+                $extractName,
+                $returnCode
+            ));
+        }
+
+        $this->logger?->info(sprintf(
+            '%s - %s',
+            $input->__toString(),
+            $this->formatLogResults([
+                "Extract" => $extractName,
+                "Previous" => $previousIndex,
+                "Current" => $currentIndex
+            ])
+        ));
+
+        return static::SUCCESS;
     }
 
 
     /**
-     * @param string $fullDiff
+     * @param string $extractName
      * @param string $previousIndex
      * @param string $currentIndex
-     * @param string $fullDiffColumns
-     * @param string[] $output
-     * @return int
+     * @param string $columns
+     * @return array{0:int,1:string}
      */
     private function execGenFullDiffExtract(
-        string $cmd,
-        string $fullDiff,
+        string $extractName,
         string $previousIndex,
         string $currentIndex,
-        string $fullDiffColumns,
-        array &$output = []
-    ): int {
+        string $columns
+    ): array {
+        $cmd = sprintf("%s/bin/utils/gen-fulldiff-extract", $this->options->appDir);
+        $extractPath = sprintf(
+            "%s/%s%s",
+            $this->options->downloadsDir,
+            $extractName,
+            $this->options->downloadsFileExt
+        );
+        $previousIndexPath = sprintf(
+            "%s/%s%s",
+            $this->options->downloadsDir,
+            $previousIndex,
+            $this->options->indexFileExt
+        );
+        $currentIndexPath = sprintf(
+            "%s/%s%s",
+            $this->options->downloadsDir,
+            $currentIndex,
+            $this->options->indexFileExt
+        );
+
+        $output = [];
         $returnCode = 0;
 
         exec(
             sprintf(
                 "%s %s %s %s %s",
                 escapeshellcmd($cmd),
-                escapeshellarg($fullDiff),
-                escapeshellarg($previousIndex),
-                escapeshellarg($currentIndex),
-                escapeshellarg($fullDiffColumns)
+                escapeshellarg($extractPath),
+                escapeshellarg($previousIndexPath),
+                escapeshellarg($currentIndexPath),
+                escapeshellarg($columns)
             ),
             $output,
             $returnCode
         );
 
-        return $returnCode;
+        return [$returnCode, implode(PHP_EOL, $output)];
     }
 }

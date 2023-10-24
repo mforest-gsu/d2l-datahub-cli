@@ -11,7 +11,6 @@ use mjfk23\D2LAPI\DataHub\DataHubAPI;
 use mjfk23\D2LAPI\DataHub\Model\BDSExtractInfo;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(name: 'extracts:download')]
@@ -48,23 +47,7 @@ class DownloadExtractCommand extends Command
     {
         ExtractCommandOptions::getAvailableDir($input, $this->options);
         ExtractCommandOptions::getDownloadsDir($input, $this->options);
-        list($extractName) = ExtractCommandOptions::getExtract($input);
-
-        return [
-            sprintf(
-                "%s/%s%s",
-                $this->options->availableDir,
-                $extractName,
-                $this->options->availableFileExt
-            ),
-            sprintf(
-                "%s/%s%s",
-                $this->options->downloadsDir,
-                $extractName,
-                $this->options->downloadsFileExt
-            ),
-            $extractName
-        ];
+        return ExtractCommandOptions::getExtract($input);
     }
 
 
@@ -77,25 +60,57 @@ class DownloadExtractCommand extends Command
         InputInterface $input,
         OutputInterface $output
     ): int {
-        list(
-            $availablePath,
-            $downloadPath,
-            $extractName
-        ) = $this->collectInputs($input);
+        list($extractName) = $this->collectInputs($input);
 
-        $bytes = $this->dataHubAPI->downloadBDSExtract(
-            BDSExtractInfo::create(
+        try {
+            $extractInfoPath = sprintf(
+                "%s/%s%s",
+                $this->options->availableDir,
+                $extractName,
+                $this->options->availableFileExt
+            );
+
+            $extractInfo = BDSExtractInfo::create(
                 FileIO::jsonDecode(
-                    FileIO::getContents($availablePath)
+                    FileIO::getContents($extractInfoPath)
                 )
-            ),
-            $downloadPath
-        );
+            );
+        } catch (\Throwable $t) {
+            throw new \RuntimeException(
+                "Unable to retrieve extract info: '{$extractName}'",
+                0,
+                $t
+            );
+        }
 
-        $this->logger?->info("<Download Extract> " . $this->formatLogResults([
-            "Extract" => $extractName,
-            "Size" => $bytes
-        ]));
+        try {
+            $downloadPath = sprintf(
+                "%s/%s%s",
+                $this->options->downloadsDir,
+                $extractName,
+                $this->options->downloadsFileExt
+            );
+
+            $bytes = $this->dataHubAPI->downloadBDSExtract(
+                $extractInfo,
+                $downloadPath
+            );
+        } catch (\Throwable $t) {
+            throw new \RuntimeException(
+                "Unable to download extract: '{$extractName}'",
+                0,
+                $t
+            );
+        }
+
+        $this->logger?->info(sprintf(
+            '%s - %s',
+            $input->__toString(),
+            $this->formatLogResults([
+                "Extract" => $extractName,
+                "Size" => $bytes
+            ])
+        ));
 
         return static::SUCCESS;
     }

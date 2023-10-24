@@ -7,7 +7,6 @@ namespace D2L\DataHub\BDS\Extract\Command;
 use D2L\DataHub\BDS\Extract\ExtractProcessor\ExtractProcessor;
 use D2L\DataHub\BDS\Extract\Model\BDSExtractOptions;
 use D2L\DataHub\BDS\Schema\Command\SchemaCommandOptions;
-use D2L\DataHub\BDS\Schema\Model\BDSSchema;
 use D2L\DataHub\BDS\Schema\Model\BDSSchemaOptions;
 use mjfk23\Console\Command\Command;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -45,7 +44,7 @@ class ProcessExtractCommand extends Command
 
     /**
      * @param InputInterface $input
-     * @return array{0:ExtractProcessor,1:BDSSchema,2:string,3:string}
+     * @return array{0:string,1:string,2:string}
      */
     protected function collectInputs(InputInterface $input): array
     {
@@ -53,20 +52,7 @@ class ProcessExtractCommand extends Command
         ExtractCommandOptions::getDownloadsDir($input, $this->options);
         ExtractCommandOptions::getProcessDir($input, $this->options);
         ExtractCommandOptions::getProcessorClass($input, $this->options);
-        list($extractName, $datasetName, $bdsType) = ExtractCommandOptions::getExtract($input);
-
-        return [
-            ($this->processorFactory)($this->options),
-            ExtractCommandOptions::getSchema(
-                sprintf(
-                    "%s/%s.json",
-                    $this->schemaOptions->datasetsDir,
-                    $datasetName
-                )
-            ),
-            $bdsType,
-            $extractName,
-        ];
+        return ExtractCommandOptions::getExtract($input);
     }
 
 
@@ -80,23 +66,60 @@ class ProcessExtractCommand extends Command
         OutputInterface $output
     ): int {
         list(
-            $extractProcessor,
-            $schema,
-            $bdsType,
-            $extractName
+            $extractName,
+            $datasetName,
+            $bdsType
         ) = $this->collectInputs($input);
 
-        $rows = $extractProcessor->processExtract(
-            $schema,
-            $bdsType,
-            $extractName
-        );
+        try {
+            $processor = ($this->processorFactory)($this->options);
+        } catch (\Throwable $t) {
+            throw new \RuntimeException(
+                "Unable to create processor instance: '{$this->options->processorClass}'",
+                0,
+                $t
+            );
+        }
 
-        $this->logger?->info("<Process Extract> " . $this->formatLogResults([
-            "Extract" => $extractName,
-            "Class" => (new \ReflectionClass($extractProcessor))->getShortName(),
-            "Rows" => $rows
-        ]));
+        try {
+            $schema = ExtractCommandOptions::getSchema(
+                sprintf(
+                    "%s/%s.json",
+                    $this->schemaOptions->datasetsDir,
+                    $datasetName
+                )
+            );
+        } catch (\Throwable $t) {
+            throw new \RuntimeException(
+                "Unable to retrieve dataset schema: '{$datasetName}'",
+                0,
+                $t
+            );
+        }
+
+        try {
+            $rows = $processor->processExtract(
+                $schema,
+                $bdsType,
+                $extractName
+            );
+        } catch (\Throwable $t) {
+            throw new \RuntimeException(
+                "Unable to process extract: '{$extractName}'",
+                0,
+                $t
+            );
+        }
+
+        $this->logger?->info(sprintf(
+            '%s - %s',
+            $input->__toString(),
+            $this->formatLogResults([
+                "Extract" => $extractName,
+                "Class" => (new \ReflectionClass($processor))->getShortName(),
+                "Rows" => $rows
+            ])
+        ));
 
         return static::SUCCESS;
     }
