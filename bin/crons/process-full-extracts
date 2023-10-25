@@ -26,11 +26,11 @@ do
 
     if (( ${RETVAL} != 0 ))
     then
-      EXTRACT=$(${CMD} extracts:list:downloaded --skip-fulldiff --skip-diff "${DATASET}" | head -1)
+      EXTRACT=$(${CMD} extracts:list:downloaded --skip-fulldiff --skip-diff "${DATASET}" | tail -1)
 
       if [ -n "${EXTRACT}" ]
       then
-        SKIP=$(${CMD} extracts:list:downloaded --skip-full "${DATASET}")
+        SKIP=$(${CMD} extracts:list:downloaded "${DATASET}")
 
         for PREV in $SKIP
         do
