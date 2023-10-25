@@ -98,7 +98,7 @@ class ProcessExtractCommand extends Command
         }
 
         try {
-            $rows = $processor->processExtract(
+            $processInfo = $processor->processExtract(
                 $schema,
                 $bdsType,
                 $extractName
@@ -117,7 +117,7 @@ class ProcessExtractCommand extends Command
             $this->formatLogResults([
                 "Extract" => $extractName,
                 "Class" => (new \ReflectionClass($processor))->getShortName(),
-                "Rows" => $rows
+                "Rows" => $processInfo->totalRows
             ])
         ));
 

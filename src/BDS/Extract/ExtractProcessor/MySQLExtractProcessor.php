@@ -181,7 +181,7 @@ class MySQLExtractProcessor extends ExtractProcessor
             }
 
             // For each row in extract
-            while ($row = fgetcsv(stream: $csvFile, escape: '"')) {
+            for ($rowNum = 1; $row = fgetcsv(stream: $csvFile, escape: '"'); $rowNum++) {
                 // If at end of current chunk
                 if ($totalRows % self::BUFFER_SIZE === 0) {
                     // Close out previous chunk, if it exists
@@ -197,9 +197,27 @@ class MySQLExtractProcessor extends ExtractProcessor
 
                 // Write current row
                 foreach ($row as $i => $v) {
-                    $row[$i] = ($processInfo->formatters[$i])($v);
+                    try {
+                        $row[$i] = ($processInfo->formatters[$i])($v);
+                    } catch (\Throwable $t) {
+                        throw new \RuntimeException(
+                            "Unable to format row '{$rowNum}', col '{$i}'",
+                            0,
+                            $t
+                        );
+                    }
                 }
-                gzwrite($dataFile, "  (" . implode(",", $row) . ")");
+
+                try {
+                    gzwrite($dataFile, "  (" . implode(",", $row) . ")");
+                } catch (\Throwable $t) {
+                    throw new \RuntimeException(
+                        "Unable to write row '{$rowNum}'",
+                        0,
+                        $t
+                    );
+                }
+
                 $totalRows++;
             }
 

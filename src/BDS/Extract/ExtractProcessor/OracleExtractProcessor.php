@@ -226,11 +226,29 @@ class OracleExtractProcessor extends ExtractProcessor
             $dataFile = FileIO::openGzipFile($dataFilePath);
 
             // For each row in extract
-            while ($row = fgetcsv(stream: $csvFile, escape: '"')) {
+            for ($rowNum = 1; $row = fgetcsv(stream: $csvFile, escape: '"'); $rowNum++) {
                 foreach ($row as $i => $v) {
-                    $row[$i] = ($processInfo->formatters[$i])($v);
+                    try {
+                        $row[$i] = ($processInfo->formatters[$i])($v);
+                    } catch (\Throwable $t) {
+                        throw new \RuntimeException(
+                            "Unable to format row '{$rowNum}', col '{$i}'",
+                            0,
+                            $t
+                        );
+                    }
                 }
-                fputcsv($dataFile, $row, ",", "\"", "", "\n");
+
+                try {
+                    fputcsv($dataFile, $row, ",", "\"", "", "\n");
+                } catch (\Throwable $t) {
+                    throw new \RuntimeException(
+                        "Unable to write row '{$rowNum}'",
+                        0,
+                        $t
+                    );
+                }
+
                 $totalRows++;
             }
         } finally {

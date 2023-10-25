@@ -124,14 +124,24 @@ abstract class ExtractProcessor
         mixed $csvFile
     ): array {
         // Get schema columns
-        $schemaColumns = array_column($processInfo->schema->columns, null, 'name');
+        $schemaColumns = array_column(
+            array_map(
+                fn ($v) => [$v, strtoupper($v->name)],
+                $processInfo->schema->columns
+            ),
+            0,
+            1
+        );
 
         // Get extract columns
         $csvColumns = fgetcsv(stream: $csvFile, escape: '"');
         if (!is_array($csvColumns)) {
             throw new \RuntimeException("Error reading columns from source file");
         }
-
+        $csvColumns = array_map(
+            fn ($v) => strtoupper($v),
+            $csvColumns
+        );
 
         // Map extract columns to schema columns
         $sourceFileColumns = array_column(
