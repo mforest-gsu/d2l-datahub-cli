@@ -25,7 +25,7 @@
             },
             {
                 "name": "DateMet",
-                "description": "Date the prerequisite condition was met. Field can be null",
+                "description": "Date the prerequisite condition was met (UTC). Field can be null",
                 "dataType": "datetime2",
                 "columnSize": "8",
                 "canBeNull": true,

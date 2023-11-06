@@ -2686,6 +2686,26 @@
                 "pk": false,
                 "fk": true,
                 "versionHistory": "4.9 \/ 5.3"
+            },
+            {
+                "name": "DateDeleted",
+                "description": "Date the checklist item was deleted (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "8.10"
+            },
+            {
+                "name": "DeletedBy",
+                "description": "User who deleted the checklist item. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "8.10"
             }
         ]
     },
@@ -3377,7 +3397,7 @@
     },
     "Content Files Properties Log": {
         "name": "Content Files Properties Log",
-        "description": "In the Content Files Properties Log Brightspace Data Set, each row represents a change (created, edited, or deleted) to a file that is linked to a content object within an org unit. The data set only captures changes to content files from July 2022 onwards. Q: Does this data set provide the size of all files within Brightspace?A: No. This data set only provides data on files associated with content objects. Additionally, it only surfaces data for newly uploaded, edited, or deleted files (associated with content) starting with the release of the data set in July 2022. It does not provide any historical data. Q: Are Active and Inactive courses included in the data?A: Yes. As long as the files are associated with a content object, it doesn't matter whether the course is active or inactive. Q: Are all file formats included in the data?A: Yes, all file formats are included when associated with a content object. However, please be aware that this data set does NOT include files that are embedded within an HTML content object. Q: If courses are copied (via Course Copy or CCS) or imported, will files associated with the newly created course be included in the data?A: Yes, files that are associated with content objects within a copied or imported course are surfaced in the data set with \"Created\" in the Action field. For more information about this data set, refer to New Brightspace Data Set - Content Files Properties Log in Brightspace Community.",
+        "description": "In the Content Files Properties Log Brightspace Data Set, each row represents a change (created, edited, or deleted) to a file that is linked to a content object within an org unit. The data set only captures changes to content files from July 2022 onwards. Q: Does this data set provide the size of all files within Brightspace?A: No. This data set only provides data on files associated with content objects. Additionally, it only surfaces data for newly uploaded, edited, or deleted files (associated with content) starting with the release of the data set in July 2022. It does not provide any historical data. Q: Are Active and Inactive courses included in the data?A: Yes. As long as the files are associated with a content object, it doesn't matter whether the course is active or inactive. Q: Are all file formats included in the data?A: Yes, all file formats are included when associated with a content object. However, please be aware that this data set does NOT include files that are embedded within an HTML content object. Q: If courses are copied (via Course Copy or CCS) or imported, will files associated with the newly created course be included in the data?A: Yes, files that are associated with content objects within a copied or imported course are surfaced in the data set with \"Created\" in the Action field.",
         "columns": [
             {
                 "name": "OrgUnitId",
@@ -3587,33 +3607,33 @@
             },
             {
                 "name": "ObjectId1",
-                "description": "Object ID, depending on the type of associated tool: TopicId, ChecklistId, SurveyId, QuizId, DropboxId, ChatId, Self-AssessmentId. Field can be null.",
+                "description": "Quick link Object ID for the associated tool. Maps to DropboxId, QuizId, ChecklistId, SurveyId, ChatId, Self-AssessmentId. For Discussions, this field is used if a Forum is quicklinked. Field can be null.",
                 "dataType": "int",
                 "columnSize": "4",
                 "canBeNull": true,
                 "pk": false,
                 "fk": false,
-                "versionHistory": "1.0"
+                "versionHistory": "8.10 - Updated description"
             },
             {
                 "name": "ObjectId2",
-                "description": "Object ID, depending on the type of associated tool: TopicId, ChecklistId, SurveyId, QuizId, DropboxId, ChatId, Self-AssessmentId. Field can be null.",
+                "description": "Quick link Object ID, only used for the Discussion tool if a Topic is quicklinked. Field can be null.",
                 "dataType": "int",
                 "columnSize": "4",
                 "canBeNull": true,
                 "pk": false,
                 "fk": false,
-                "versionHistory": "1.0"
+                "versionHistory": "8.10 - Updated description"
             },
             {
                 "name": "ObjectId3",
-                "description": "Object Id, depending on the type of associated tool: TopicId, ChecklistId, SurveyId, QuizId, DropboxId, ChatId, Self-AssessmentId. Field can be null.",
+                "description": "Quick link Object ID, only used for the Discussion tool if a Thread is quicklinked. Field can be null.",
                 "dataType": "int",
                 "columnSize": "4",
                 "canBeNull": true,
                 "pk": false,
                 "fk": false,
-                "versionHistory": "1.0"
+                "versionHistory": "8.10 - Updated description"
             },
             {
                 "name": "LastModified",
@@ -6546,7 +6566,7 @@
                 "versionHistory": "5.5"
             },
             {
-                "name": "ImpersonatingUserIMSRoleName",
+                "name": "ImpersonatingUserIMSRoleNames",
                 "description": "A list of impersonating user's IMS roles. Field can be null.",
                 "dataType": "nvarchar",
                 "columnSize": "10000",
@@ -8997,7 +9017,7 @@
             },
             {
                 "name": "DateMet",
-                "description": "Date the prerequisite condition was met. Field can be null",
+                "description": "Date the prerequisite condition was met (UTC). Field can be null",
                 "dataType": "datetime2",
                 "columnSize": "8",
                 "canBeNull": true,
@@ -9435,13 +9455,13 @@
             },
             {
                 "name": "IsRetakeIncorrectOnly",
-                "description": "Indicates if the quiz allows Retake Incorrect Only.",
+                "description": "Indicates if this attempt only includes questions that were incorrect on a previous attempt.",
                 "dataType": "bit",
                 "columnSize": "1",
                 "canBeNull": false,
                 "pk": false,
                 "fk": false,
-                "versionHistory": "5.11 \/ 6.4"
+                "versionHistory": "8.10 - Updated description"
             },
             {
                 "name": "DueDate",
@@ -9927,13 +9947,13 @@
             },
             {
                 "name": "IsRetakeIncorrectOnly",
-                "description": "Indicates if this attempt only includes questions that were incorrect on a previous attempt.",
+                "description": "Indicates if the quiz allows Retake Incorrect Only.",
                 "dataType": "bit",
                 "columnSize": "1",
                 "canBeNull": false,
                 "pk": false,
                 "fk": false,
-                "versionHistory": "5.11 \/ 6.4"
+                "versionHistory": "8.10 - Updated description"
             },
             {
                 "name": "PagingTypeId",

@@ -102,6 +102,26 @@
                 "pk": false,
                 "fk": true,
                 "versionHistory": "4.9 \/ 5.3"
+            },
+            {
+                "name": "DateDeleted",
+                "description": "Date the checklist item was deleted (UTC). Field can be null.",
+                "dataType": "datetime2",
+                "columnSize": "8",
+                "canBeNull": true,
+                "pk": false,
+                "fk": false,
+                "versionHistory": "8.10"
+            },
+            {
+                "name": "DeletedBy",
+                "description": "User who deleted the checklist item. Field can be null.",
+                "dataType": "int",
+                "columnSize": "4",
+                "canBeNull": true,
+                "pk": false,
+                "fk": true,
+                "versionHistory": "8.10"
             }
         ]
     }

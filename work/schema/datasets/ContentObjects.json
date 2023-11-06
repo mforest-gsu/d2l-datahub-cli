@@ -105,33 +105,33 @@
             },
             {
                 "name": "ObjectId1",
-                "description": "Object ID, depending on the type of associated tool: TopicId, ChecklistId, SurveyId, QuizId, DropboxId, ChatId, Self-AssessmentId. Field can be null.",
+                "description": "Quick link Object ID for the associated tool. Maps to DropboxId, QuizId, ChecklistId, SurveyId, ChatId, Self-AssessmentId. For Discussions, this field is used if a Forum is quicklinked. Field can be null.",
                 "dataType": "int",
                 "columnSize": "4",
                 "canBeNull": true,
                 "pk": false,
                 "fk": false,
-                "versionHistory": "1.0"
+                "versionHistory": "8.10 - Updated description"
             },
             {
                 "name": "ObjectId2",
-                "description": "Object ID, depending on the type of associated tool: TopicId, ChecklistId, SurveyId, QuizId, DropboxId, ChatId, Self-AssessmentId. Field can be null.",
+                "description": "Quick link Object ID, only used for the Discussion tool if a Topic is quicklinked. Field can be null.",
                 "dataType": "int",
                 "columnSize": "4",
                 "canBeNull": true,
                 "pk": false,
                 "fk": false,
-                "versionHistory": "1.0"
+                "versionHistory": "8.10 - Updated description"
             },
             {
                 "name": "ObjectId3",
-                "description": "Object Id, depending on the type of associated tool: TopicId, ChecklistId, SurveyId, QuizId, DropboxId, ChatId, Self-AssessmentId. Field can be null.",
+                "description": "Quick link Object ID, only used for the Discussion tool if a Thread is quicklinked. Field can be null.",
                 "dataType": "int",
                 "columnSize": "4",
                 "canBeNull": true,
                 "pk": false,
                 "fk": false,
-                "versionHistory": "1.0"
+                "versionHistory": "8.10 - Updated description"
             },
             {
                 "name": "LastModified",

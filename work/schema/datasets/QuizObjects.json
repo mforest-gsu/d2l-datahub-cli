@@ -345,13 +345,13 @@
             },
             {
                 "name": "IsRetakeIncorrectOnly",
-                "description": "Indicates if this attempt only includes questions that were incorrect on a previous attempt.",
+                "description": "Indicates if the quiz allows Retake Incorrect Only.",
                 "dataType": "bit",
                 "columnSize": "1",
                 "canBeNull": false,
                 "pk": false,
                 "fk": false,
-                "versionHistory": "5.11 \/ 6.4"
+                "versionHistory": "8.10 - Updated description"
             },
             {
                 "name": "PagingTypeId",
