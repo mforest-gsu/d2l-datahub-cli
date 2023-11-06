@@ -175,9 +175,19 @@ class OracleExtractProcessor extends ExtractProcessor
                     "1", "T", "TRUE" => "1",
                     default => "0"
                 },
+            'float' => fn ($v) => ($v === '')
+                ? ''
+                : strval(floatval($v)),
+            'bigint', 'int', 'smallint' => fn ($v) => ($v === '')
+                ? ''
+                : strval(intval($v)),
             'nvarchar', 'varchar' => fn ($v) => ($v === '')
                 ? ''
-                : str_replace($this->search, $this->replacements, $v),
+                : substr(
+                    str_replace($this->search, $this->replacements, $v),
+                    0,
+                    min(intval(2 * max(1, intval($column->columnSize))), 4000)
+                ),
             default => fn ($v) => $v,
         };
     }
@@ -277,6 +287,7 @@ class OracleExtractProcessor extends ExtractProcessor
         FileIO::putContents(
             $ctlFilePath,
             [
+                "UNRECOVERABLE",
                 "LOAD DATA",
                 "CHARACTERSET UTF8",
                 "TRUNCATE INTO TABLE {$tableName}",

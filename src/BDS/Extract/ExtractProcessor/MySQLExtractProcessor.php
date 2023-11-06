@@ -128,11 +128,14 @@ class MySQLExtractProcessor extends ExtractProcessor
                     "1", "T", "TRUE" => "1",
                     default => "0"
                 },
+            'float' => fn ($v) => ($v === '')
+                ? 'NULL'
+                : strval(floatval($v)),
+            'bigint', 'int', 'smallint' => fn ($v) => ($v === '')
+                ? 'NULL'
+                : strval(intval($v)),
             'datetime2' => function ($v): string {
-                if ($v === '') {
-                    return 'NULL';
-                }
-                $dateValue = @strtotime($v);
+                $dateValue = ($v !== '') ? @strtotime($v) : false;
                 return is_int($dateValue) ? "'" . date('Y-m-d H:i:s', $dateValue) . "'" : 'NULL';
             },
             'nvarchar', 'varchar' => fn ($v) => ($v === '')
