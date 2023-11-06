@@ -9,7 +9,7 @@ CREATE TABLE `AssignmentSpecialAccess_LOAD` (
   `ModifiedBy` INT DEFAULT NULL,
   `LastModified` DATETIME DEFAULT NULL,
   `IsDeleted` TINYINT DEFAULT NULL,
-  `StartDateAvailabilityType` VARCHAR(2) DEFAULT NULL,
-  `EndDateAvailabilityType` VARCHAR(2) DEFAULT NULL,
+  `StartDateAvailabilityType` SMALLINT DEFAULT NULL,
+  `EndDateAvailabilityType` SMALLINT DEFAULT NULL,
   UNIQUE KEY (`DropboxId`, `UserId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

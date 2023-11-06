@@ -21,7 +21,7 @@ CREATE TABLE `AssignmentSummary` (
   `ResultId` INT DEFAULT NULL,
   `CategoryId` BIGINT DEFAULT NULL,
   `Version` BIGINT DEFAULT NULL,
-  `StartDateAvailabilityType` VARCHAR(2) DEFAULT NULL,
-  `EndDateAvailabilityType` VARCHAR(2) DEFAULT NULL,
+  `StartDateAvailabilityType` SMALLINT DEFAULT NULL,
+  `EndDateAvailabilityType` SMALLINT DEFAULT NULL,
   UNIQUE KEY (`DropboxId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

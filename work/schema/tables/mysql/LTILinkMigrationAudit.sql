@@ -12,8 +12,8 @@ CREATE TABLE `LTILinkMigrationAudit` (
   `RegistrationDomain` VARCHAR(2083) DEFAULT NULL,
   `DeploymentId` VARCHAR(36) DEFAULT NULL,
   `JobId` BIGINT DEFAULT NULL,
-  `Status` VARCHAR(2) DEFAULT NULL,
-  `FailureCode` VARCHAR(2) DEFAULT NULL,
-  `MigrationType` VARCHAR(2) DEFAULT NULL,
+  `Status` SMALLINT DEFAULT NULL,
+  `FailureCode` SMALLINT DEFAULT NULL,
+  `MigrationType` SMALLINT DEFAULT NULL,
   UNIQUE KEY (`LTIMigrationId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

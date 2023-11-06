@@ -4,7 +4,7 @@ CREATE TABLE `ContentFilePropertyLog_LOAD` (
   `OrgUnitId` INT NOT NULL,
   `ContentObjectId` INT NOT NULL,
   `Action` VARCHAR(10) DEFAULT NULL,
-  `FilePath` TEXT(10000) DEFAULT NULL,
+  `FilePath` VARCHAR(9999) DEFAULT NULL,
   `FileName` VARCHAR(512) DEFAULT NULL,
   `FileExtension` VARCHAR(512) DEFAULT NULL,
   `FileSizeBytes` BIGINT DEFAULT NULL,

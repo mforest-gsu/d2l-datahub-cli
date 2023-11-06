@@ -95,9 +95,9 @@ class OracleTableGenerator extends TableGenerator
                 'bit'                 => '(1)',
                 'decimal', 'float'    => "({$column->columnSize})",
                 'int'                 => '(10)',
-                'nvarchar'            => '(' . min(intval(1.25 * max(1, intval($column->columnSize))), 4000) . ')',
+                'nvarchar'            => '(' . min(intval(2 * max(1, intval($column->columnSize))), 4000) . ')',
                 'smallint'            => '(5)',
-                'varchar'             => '(' . min(intval(1.25 * max(1, intval($column->columnSize))), 4000) . ' CHAR)',
+                'varchar'             => '(' . min(intval(2 * max(1, intval($column->columnSize))), 4000) . ' CHAR)',
                 'uniqueidentifier'    => '(36)',
                 default               => ''
             }

@@ -77,40 +77,21 @@ class MySQLTableGenerator extends TableGenerator
      */
     private function getDataType(BDSSchemaColumn $column): string
     {
-        switch (strtoupper($column->dataType)) {
-            case 'BIGINT':
-            case 'FLOAT':
-            case 'INT':
-                $dataType = strtoupper($column->dataType);
-                break;
-            case 'BIT':
-                $dataType = 'TINYINT';
-                break;
-            case 'DATETIME2':
-                $dataType = 'DATETIME';
-                break;
-            case 'DECIMAL':
-                $dataType = 'DECIMAL';
-                if ($column->columnSize !== '') {
-                    $dataType .= '(' . $column->columnSize . ')';
-                }
-                break;
-            case 'UNIQUEIDENTIFIER':
-                $dataType = 'VARCHAR(36)';
-                break;
-            default:
-                $dataType = 'VARCHAR';
-                $columnSize = intval($column->columnSize);
-                if ($columnSize < 1) {
-                    $columnSize = 128;
-                }
-                if ($columnSize >= 10000) {
-                    $dataType = 'TEXT';
-                }
-                $dataType .= '(' . $columnSize . ')';
-                break;
-        }
+        $columnSize = ($column->columnSize !== '')
+            ? match ($column->dataType) {
+                'nvarchar', 'varchar' => '(' . min(intval(max(1, intval($column->columnSize))), 9999) . ')',
+                'decimal'             => "({$column->columnSize})",
+                'uniqueidentifier'    => '(36)',
+                default               => ''
+            }
+            : '';
 
-        return $dataType;
+        return match ($column->dataType) {
+            'bigint', 'int', 'smallint', 'float' => strtoupper($column->dataType),
+            'bit'                                => 'TINYINT',
+            'datetime2'                          => 'DATETIME',
+            'decimal'                            => 'DECIMAL',
+            default                              => 'VARCHAR'
+        } . $columnSize;
     }
 }

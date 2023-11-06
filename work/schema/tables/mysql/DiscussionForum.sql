@@ -15,8 +15,8 @@ CREATE TABLE `DiscussionForum` (
   `DeletedByUserId` INT DEFAULT NULL,
   `ResultId` INT DEFAULT NULL,
   `StartDate` DATETIME DEFAULT NULL,
-  `StartDateAvailabilityType` VARCHAR(2) DEFAULT NULL,
+  `StartDateAvailabilityType` SMALLINT DEFAULT NULL,
   `EndDate` DATETIME DEFAULT NULL,
-  `EndDateAvailabilityType` VARCHAR(2) DEFAULT NULL,
+  `EndDateAvailabilityType` SMALLINT DEFAULT NULL,
   UNIQUE KEY (`ForumId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
