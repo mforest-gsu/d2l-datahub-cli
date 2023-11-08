@@ -21,16 +21,26 @@ do
     fi
 
     PID=${PIDLIST[$i]}
-    EXTRACT=${EXTRACTS[$NEXT]}
-
     kill -0 "${PID}" >/dev/null 2>&1
     RETVAL=$?
 
     if (( ${RETVAL} != 0 ))
     then
-      ${CMD} extracts:process "${EXTRACT}" &
+      EXTRACT=${EXTRACTS[$NEXT]}
+      
+      if [ -n "${EXTRACT}" ] && [ ! -f "${EXTRACT_PROCESS_DIR}/${EXTRACT}.json" ]
+      then
+        FULL=$(echo ${EXTRACT} | sed -n 's/FullDiff$/Full/p')
+        if [ -n "${FULL}"]
+        then
+            rm -f ${EXTRACT_PROCESS_DIR}/${FULL}.*
+            cat /dev/null > ${EXTRACT_PROCESS_DIR}/${FULL}.json
+        fi
 
-      PIDLIST[$i]=$!
+        ${CMD} extracts:process "${EXTRACT}" &
+        PIDLIST[$i]=$!
+      fi
+
       NEXT=$((NEXT + 1))
     fi
   done

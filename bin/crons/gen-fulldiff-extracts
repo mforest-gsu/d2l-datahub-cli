@@ -21,20 +21,21 @@ do
     fi
 
     PID=${PIDLIST[$i]}
-    FULLDIFF=($(echo "${FULLDIFFS[${NEXT}]}" | sed 's/,/ /g'))
-
     kill -0 "${PID}" >/dev/null 2>&1
     RETVAL=$?
 
     if (( ${RETVAL} != 0 ))
     then
-      EXTRACT_NAME=
+      FULLDIFF=($(echo "${FULLDIFFS[${NEXT}]}" | sed 's/,/ /g'))
       EXTRACT_PATH="${EXTRACT_DOWNLOADS_DIR}/${FULLDIFF[2]}.zip"
       EXTRACT_COLS="$(unzip -a -p "${EXTRACT_PATH}" | tail -c +4 | head -1 | sed 's/[\r\n]//g')"
 
-      ${CMD} extracts:gen:fulldiff ${FULLDIFF[@]} ${EXTRACT_COLS} &
+      if [ -n "${EXTRACT_PATH}" ] && [ ! -f "${EXTRACT_PATH}" ]
+      then
+        ${CMD} extracts:gen:fulldiff ${FULLDIFF[@]} ${EXTRACT_COLS} &
+        PIDLIST[$i]=$!
+      fi
 
-      PIDLIST[$i]=$!
       NEXT=$((NEXT + 1))
     fi
   done

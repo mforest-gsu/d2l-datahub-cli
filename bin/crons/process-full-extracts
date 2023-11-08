@@ -19,30 +19,51 @@ do
     fi
 
     PID=${PIDLIST[$i]}
-    DATASET=${DATASETS[$NEXT]}
-
     kill -0 "${PID}" >/dev/null 2>&1
     RETVAL=$?
 
     if (( ${RETVAL} != 0 ))
     then
-      EXTRACT=$(${CMD} extracts:list:downloaded --skip-fulldiff --skip-diff "${DATASET}" | tail -1)
+      DATASET=${DATASETS[$NEXT]}
+
+      EXTRACT=$(${CMD} extracts:list:downloaded --all --skip-fulldiff --skip-diff "${DATASET}" | tail -1)
 
       if [ -n "${EXTRACT}" ]
       then
-        SKIP=$(${CMD} extracts:list:downloaded "${DATASET}")
-
-        for PREV in $SKIP
+        for PREV in $(${CMD} extracts:list:downloaded --all --skip-full "${DATASET}")
         do
           if [[ "${PREV}" < "${EXTRACT}" ]]
           then
-            touch "${EXTRACT_PROCESS_DIR}/${PREV}.json"
+            rm -f ${EXTRACT_DOWNLOADS_DIR}/${PREV}.*
+            rm -f ${EXTRACT_PROCESS_DIR}/${PREV}.*
+
+            cat /dev/null > ${EXTRACT_DOWNLOADS_DIR}/${PREV}.zip
+            cat /dev/null > ${EXTRACT_PROCESS_DIR}/${PREV}.json
           fi
         done
 
-        ${CMD} extracts:process "${EXTRACT}" &
+        for PREV in $(${CMD} extracts:list:downloaded --all --skip-fulldiff --skip-diff "${DATASET}")
+        do
+          if [[ "${PREV}" < "${EXTRACT}" ]]
+          then
+            rm -f ${EXTRACT_DOWNLOADS_DIR}/${PREV}.*
+            rm -f ${EXTRACT_DOWNLOADS_DIR}/${PREV}Diff.*
+            rm -f ${EXTRACT_PROCESS_DIR}/${PREV}.*
+            rm -f ${EXTRACT_PROCESS_DIR}/${PREV}Diff.*
 
-        PIDLIST[$i]=$!
+            cat /dev/null > ${EXTRACT_DOWNLOADS_DIR}/${PREV}.zip
+            cat /dev/null > ${EXTRACT_DOWNLOADS_DIR}/${PREV}.idx
+            cat /dev/null > ${EXTRACT_DOWNLOADS_DIR}/${PREV}Diff.zip
+            cat /dev/null > ${EXTRACT_PROCESS_DIR}/${PREV}.json
+            cat /dev/null > ${EXTRACT_PROCESS_DIR}/${PREV}Diff.json
+          fi
+        done
+
+        if [ ! -f "${EXTRACT_PROCESS_DIR}/${EXTRACT}.json" ]
+        then
+          ${CMD} extracts:process "${EXTRACT}" &
+          PIDLIST[$i]=$!
+        fi
       fi
 
       NEXT=$((NEXT + 1))

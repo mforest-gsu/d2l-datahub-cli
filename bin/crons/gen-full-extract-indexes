@@ -8,7 +8,7 @@ trap cleanup EXIT
 
 for EXTRACT_NAME in $(${CMD} extracts:list:downloaded --all --skip-fulldiff --skip-diff ${DATASETS[@]})
 do
-  if [ ! -f "${EXTRACT_NAME}.idx" ]
+  if [ ! -f "${EXTRACT_DOWNLOADS_DIR}/${EXTRACT_NAME}.idx" ]
   then
     ${CMD} extracts:gen:index "${EXTRACT_NAME}"
   fi

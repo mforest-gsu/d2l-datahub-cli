@@ -6,8 +6,6 @@ trap cleanup EXIT
 
 ################################################################################
 
-EXTRACTS=()
-
 NEXT=0
 while (( ${NEXT} < ${#DATASETS[@]} ));
 do
@@ -28,21 +26,33 @@ do
 
     if (( ${RETVAL} != 0 ))
     then
-      EXTRACT=$(${CMD} extracts:list:processed --skip-fulldiff --skip-diff "${DATASET}" | tail -1)
+      EXTRACT=$(${CMD} extracts:list:processed --all --skip-fulldiff --skip-diff "${DATASET}" | tail -1)
 
       if [ -n "${EXTRACT}" ]
       then
-        for PREV in $(${CMD} extracts:list:processed --skip-full "${DATASET}")
+        for PREV in $(${CMD} extracts:list:processed --all "${DATASET}")
         do
           if [[ "${PREV}" < "${EXTRACT}" ]]
           then
-            touch "${EXTRACT_UPLOADS_DIR}/${PREV}.json"
+            rm -f ${EXTRACT_UPLOADS_DIR}/${PREV}.*
+            cat /dev/null > ${EXTRACT_UPLOADS_DIR}/${PREV}.json
           fi
         done
 
-        ${CMD} extracts:upload "${EXTRACT}" &
+        for PREV in $(${CMD} extracts:list:processed --all --skip-fulldiff --skip-diff "${DATASET}")
+        do
+          if [[ "${PREV}" < "${EXTRACT}" ]]
+          then
+            rm -f ${EXTRACT_UPLOADS_DIR}/${PREV}Diff.*
+            cat /dev/null > ${EXTRACT_UPLOADS_DIR}/${PREV}Diff.json
+          fi
+        done
 
-        PIDLIST[$i]=$!
+        if [ ! -f "${EXTRACT_UPLOADS_DIR}/${EXTRACT}.json" ]
+        then
+          ${CMD} extracts:upload "${EXTRACT}" &
+          PIDLIST[$i]=$!
+        fi
       fi
 
       NEXT=$((NEXT + 1))

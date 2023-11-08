@@ -6,7 +6,7 @@ trap cleanup EXIT
 
 ################################################################################
 
-${CMD} extracts:fetch
+${CMD} extracts:fetch ${DATASETS[@]}
 
 EXTRACTS=($(${CMD} extracts:list:available ${DATASETS[@]}))
 
@@ -23,16 +23,19 @@ do
     fi
 
     PID=${PIDLIST[$i]}
-    EXTRACT=${EXTRACTS[$NEXT]}
-
     kill -0 "${PID}" >/dev/null 2>&1
     RETVAL=$?
 
     if (( ${RETVAL} != 0 ))
     then
-      ${CMD} extracts:download "${EXTRACT}" &
+      EXTRACT=${EXTRACTS[$NEXT]}
 
-      PIDLIST[$i]=$!
+      if [ -n "${EXTRACT}" ] && [ ! -f "${EXTRACT_DOWNLOADS_DIR}/${EXTRACT}.zip" ]
+      then
+        ${CMD} extracts:download "${EXTRACT}" &
+        PIDLIST[$i]=$!
+      fi
+
       NEXT=$((NEXT + 1))
     fi
   done
